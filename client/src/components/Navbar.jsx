@@ -215,7 +215,7 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-            //   color="inherit"
+            
               sx={{color:"#EFA51C"}} 
             >
               <AccountCircle  sx={{ fontSize: "30px" }} />
