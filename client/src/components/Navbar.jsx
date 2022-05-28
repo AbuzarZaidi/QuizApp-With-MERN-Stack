@@ -179,7 +179,7 @@ export default function PrimarySearchAppBar() {
             sx={{ fontWeight: 'bold', textTransform: 'capitalize'}}
             
           >
-              <img src={Logo} style={{height:"70px",width:"100px"}}/>
+              <img src={Logo} alt="Logo.png" style={{height:"70px",width:"100px"}}/>
             {/* Quiz World */}
           </Typography>
            
