@@ -17,10 +17,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const CreateQuiz = () => {
   return (
-    <Box sx={{ flexGrow: 1, mt: 0.5, height: "90vh", bgcolor: "#F2F2F1" }}>
+    <Box sx={{ flexGrow: 1, mt: 0.5, height: "95vh", bgcolor: "#F2F2F1" }}>
       <Grid container spacing={0.1}>
         <Grid item xs={2}>
-          <Item sx={{ height: "90vh" }}><LeftQuizMenu/></Item>
+          <Item sx={{ height: "95vh" }}><LeftQuizMenu/></Item>
         </Grid>
         <Grid item xs={8}>
           <Item sx={{ bgcolor: "#F2F2F1"}}>
@@ -28,7 +28,7 @@ const CreateQuiz = () => {
           </Item>
         </Grid>
         <Grid item xs={2}>
-          <Item sx={{ height: "90vh" }}><RightQuizMenu/></Item>
+          <Item sx={{ height: "95vh" }}><RightQuizMenu/></Item>
         </Grid>
       </Grid>
     </Box>

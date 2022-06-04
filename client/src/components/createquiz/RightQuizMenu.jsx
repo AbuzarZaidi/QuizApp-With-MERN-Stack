@@ -22,7 +22,6 @@ const RightQuizMenu = () => {
   };
   return (
     <>
-    
       <Typography
         component="div"
         gutterBottom

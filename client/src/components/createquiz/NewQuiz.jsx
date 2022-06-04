@@ -20,14 +20,15 @@ const newQuiz = () => {
   return (
     <>
       <Container fixed>
-        <Box sx={{ height: "85vh" }}>
+        <Box sx={{ height: "82vh" }}>
           <Box
             component="form"
             sx={{
               // width: 500,
               maxWidth: "100%",
               bgcolor: "#fff",
-              mt: 2,
+              mt: 8,
+              
               borderRadius: 2,
             }}
             noValidate
