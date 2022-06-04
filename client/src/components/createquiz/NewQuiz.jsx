@@ -20,14 +20,14 @@ const newQuiz = () => {
   return (
     <>
       <Container fixed>
-        <Box sx={{ height: "90vh" }}>
+        <Box sx={{ height: "85vh" }}>
           <Box
             component="form"
             sx={{
               // width: 500,
               maxWidth: "100%",
               bgcolor: "#fff",
-              mt: 5,
+              mt: 2,
               borderRadius: 2,
             }}
             noValidate
@@ -50,7 +50,7 @@ const newQuiz = () => {
               />
             </Typography>
           </Box>
-          <Box sx={{ flexGrow: 1, mt: 3 }}>
+          <Box sx={{ flexGrow: 1, mt: 6 }}>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <Item>

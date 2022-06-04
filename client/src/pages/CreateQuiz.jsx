@@ -1,10 +1,12 @@
 import React from "react";
 import NewQuiz from "../components/createquiz/NewQuiz";
+import LeftQuizMenu from "../components/createquiz/LeftQuizMenu";
+ import RightQuizMenu from "../components/createquiz/RightQuizMenu";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -15,21 +17,18 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const CreateQuiz = () => {
   return (
-    <Box sx={{ flexGrow: 1, mt: 0.5, height: "100vh", bgcolor: "#F2F2F1" }}>
+    <Box sx={{ flexGrow: 1, mt: 0.5, height: "90vh", bgcolor: "#F2F2F1" }}>
       <Grid container spacing={0.1}>
         <Grid item xs={2}>
-          <Item sx={{ height: "100vh" }}>xs=2</Item>
+          <Item sx={{ height: "90vh" }}><LeftQuizMenu/></Item>
         </Grid>
         <Grid item xs={8}>
-          {/* <Item sx={{ height: "100vh" }}> */}
-          <Item sx={{bgcolor: "#F2F2F1"}}>
-             
-<NewQuiz/>
-
+          <Item sx={{ bgcolor: "#F2F2F1"}}>
+            <NewQuiz />
           </Item>
         </Grid>
         <Grid item xs={2}>
-          <Item sx={{ height: "100vh" }}>xs=2</Item>
+          <Item sx={{ height: "90vh" }}><RightQuizMenu/></Item>
         </Grid>
       </Grid>
     </Box>
