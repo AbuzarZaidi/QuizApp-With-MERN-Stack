@@ -18,6 +18,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
+import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
 const pages = ['Home','Discover', 'Library', 'Reports'];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -206,7 +207,7 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
          
-          <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5}}>Create</Button>
+          <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5}}><QuizOutlinedIcon/>Create</Button>
           
             <IconButton
               size="large"
