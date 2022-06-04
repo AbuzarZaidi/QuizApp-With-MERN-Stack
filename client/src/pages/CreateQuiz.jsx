@@ -25,6 +25,7 @@ const CreateQuiz = () => {
         <Grid item xs={8}>
           <Item sx={{ bgcolor: "#F2F2F1"}}>
             <NewQuiz />
+           
           </Item>
         </Grid>
         <Grid item xs={2}>
