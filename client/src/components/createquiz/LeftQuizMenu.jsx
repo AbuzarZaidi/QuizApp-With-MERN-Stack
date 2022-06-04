@@ -4,6 +4,19 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { styled ,alpha} from '@mui/material/styles';
+
+
+
+const ButtonHover = styled('div')(({ theme }) => ({
+    backgroundColor: "#40890F",
+    '&:hover': {
+        backgroundColor: "#6b530f"
+    },
+   
+  }));
+
+
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -45,15 +58,15 @@ const LeftQuizMenu = () => {
           display: 'grid',
           gridAutoRows: '90px',
           gap: 7,
-          mt:4
+          mt:2
         }}
       >
-        <Item sx={{ gridColumn: '1', gridRow: 'span 2' }}> 
-        <Button variant="outlined" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:3,py:2,mt:3,color:"black",backgroundColor:"#F2F2F2"}}><SettingsOutlinedIcon/>Quiz Summary</Button>
-        <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5,py:2,mt:3}}>Add Question</Button>
+        <Item sx={{ gridColumn: '1', gridRow: 'span 3' }}> 
+        <Button variant="outlined" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:3,py:2,mt:2,color:"black",backgroundColor:"#F2F2F2"}}><SettingsOutlinedIcon/>Quiz Summary</Button>
+        <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5,py:2,mt:2}}>Add Question</Button>
         </Item>
         {/* The second non-visible row has height of 40px */}
-        <Item sx={{ gridColumn: '1', gridRow: '4 / 5' }}>
+        <Item sx={{ gridColumn: '1', gridRow: '4/ 5' }}>
         <Box
       sx={{
         display: 'flex',
@@ -67,7 +80,9 @@ const LeftQuizMenu = () => {
         <ButtonGroup variant="outlined" >
  
   <Button variant="outlined" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:3 ,mr:1,color: "#A13333 ",backgroundColor:"#F2F2F2"}}>Exit</Button>
-  <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:3,backgroundColor:"#40890F",}}>Save</Button>
+  <ButtonHover>
+  <Button  sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:3,backgroundColor:"#40890F",color:"white"}}>Save</Button>
+  </ButtonHover>
 </ButtonGroup>
 </Box>
         </Item>
