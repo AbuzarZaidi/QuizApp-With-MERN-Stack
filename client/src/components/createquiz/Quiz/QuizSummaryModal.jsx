@@ -6,10 +6,21 @@ import Modal from "@mui/material/Modal";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-// import Card from "@mui/material/Card";
-// import CardMedia from "@mui/material/CardMedia";
-// import CardContent from '@mui/material/CardContent';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import ButtonGroup from "@mui/material/ButtonGroup";
+import { styled } from "@mui/material/styles";
 import Paper from '@mui/material/Paper';
+const ButtonHover = styled("div")(({ theme }) => ({
+  backgroundColor: "#40890F",
+  "&:hover": {
+    backgroundColor: "#6b530f",
+  },
+}));
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -64,7 +75,7 @@ const QuizSummaryModal = () => {
           </Typography>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={7}>
                 {/* <Item> */}
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" component="div" gutterBottom>
@@ -91,35 +102,14 @@ const QuizSummaryModal = () => {
                 </Box>
                 {/* </Item> */}
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={5}>
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" component="div" gutterBottom>
                     Cover Image
                   </Typography>
-                  {/* <Card  sx={{ maxWidth: 345}}>
-                  
-                    <CardMedia
-                      component="img"
-                      height="184"
-                      image="images/background.jpg"
-                      alt="Paella dish"
-                    /> 
-                  <CardContent>  <Button
-              variant="contained"
-              sx={{
-                fontWeight: "bold",
-                textTransform: "capitalize",
-                px: 2,
-                py: 1,
-                
-              }}
-            >
-              Change
-            </Button> </CardContent>
-                      
-                  </Card> */}
+                 
                   <Paper style={styles.paperContainer}>
-                      <Box sx={{}}>
+                      <Box >
                   <Button
               variant="contained"
               sx={{
@@ -134,13 +124,66 @@ const QuizSummaryModal = () => {
             </Button> 
             </Box>
             </Paper>
-                  <Typography variant="h6" component="div" gutterBottom>
+                  <Typography variant="h6" component="div" gutterBottom sx={{mt:2}}>
                     Visibility
                   </Typography>
+                  <FormControl>
+      
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel value="private" control={<Radio />} label="Private" />
+        <FormControlLabel value="public" control={<Radio />} label="Public" />
+       
+      </RadioGroup>
+    </FormControl>
                 </Box>
               </Grid>
             </Grid>
           </Box>
+          <Box
+              sx={{
+                display: "flex",
+                // flexDirection: "column",
+                justifyContent:"center",
+                alignItems: "center",
+                "& > *": {
+                  m: 1,
+                },
+              }}
+            >
+              <ButtonGroup variant="outlined">
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                    px: 3,
+                    mr: 1,
+                    color: "#A13333 ",
+                    backgroundColor: "#F2F2F2",
+                  }}
+                >
+                  Exit
+                </Button>
+                <ButtonHover>
+                  <Button
+                    sx={{
+                      fontWeight: "bold",
+                      textTransform: "capitalize",
+                      px: 3,
+
+                      backgroundColor: "#40890F",
+                      color: "white",
+                    }}
+                  >
+                    Save
+                  </Button>
+                </ButtonHover>
+              </ButtonGroup>
+            </Box>
         </Box>
       </Modal>
     </div>
