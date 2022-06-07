@@ -1,40 +1,42 @@
-import * as React from 'react';
- import { Link } from "react-router-dom";
+import * as React from "react";
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Badge,
+  MenuItem,
+  Menu,
+  MenuIcon,
+  AccountCircle,
+  MailIcon,
+  NotificationsIcon,
+  Button,
+  HomeOutlinedIcon,
+  ExploreOutlinedIcon,
+  ListOutlinedIcon,
+  LeaderboardOutlinedIcon,
+  QuizOutlinedIcon,
+} from "../utlis/materialComponents";
+import { styled, alpha } from "@mui/material/styles";
+import Logo from "../logo1.png";
 
-import { styled, alpha } from '@mui/material/styles';
-import Logo from '../logo1.png'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import Button from '@mui/material/Button';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
-import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
-import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
-import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
-const pages = ['Home','Discover', 'Library', 'Reports'];
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const pages = ["Home", "Discover", "Library", "Reports"];
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('md')]: {
+  width: "100%",
+  [theme.breakpoints.up("md")]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
@@ -86,19 +88,19 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -108,25 +110,25 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit" >
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -161,61 +163,86 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar position="static" sx={{ bgcolor: 'background.paper',color: '#46178F'}}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="static"
+        sx={{ bgcolor: "background.paper", color: "#46178F" }}
+      >
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 ,display: { xs: 'flex', md: 'none' } }}
+            sx={{ mr: 2, display: { xs: "flex", md: "none" } }}
           >
             <MenuIcon onClick={handleMobileMenuOpen} />
-          </IconButton >
-         
+          </IconButton>
+
           <Search>
-          <Typography
-            variant="h6"
-            noWrap
-            // component="div"
-            sx={{ fontWeight: 'bold', textTransform: 'capitalize'}}
-            to='/' component={Link}
-          >
-              <img src={Logo} alt="Logo.png" style={{height:"70px",width:"100px"}}/>
-            {/* Quiz World */}
-          </Typography>
-           
+            <Typography
+              variant="h6"
+              noWrap
+              // component="div"
+              sx={{ fontWeight: "bold", textTransform: "capitalize" }}
+              to="/"
+              component={Link}
+            >
+              <img
+                src={Logo}
+                alt="Logo.png"
+                style={{ height: "70px", width: "100px" }}
+              />
+              {/* Quiz World */}
+            </Typography>
           </Search>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex',  }, justifyContent: 'flex-end'}}>
-              
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
             {pages.map((page) => (
-                <>
-            
-              <Button
-                key={page}
-                // onClick={handleCloseNavMenu}
-                sx={{ my: 2,mr:2, color: '#004d40',fontWeight: 'bold', textTransform: 'capitalize' }}
-                to={`/${page==="Home"?"":page}`} component={Link}
-              >
-            {page==="Home"&&<HomeOutlinedIcon sx={{mr:1}}/>} 
-            {page==="Discover"&&<ExploreOutlinedIcon sx={{mr:1}}/>}
-            {page==="Library"&&<ListOutlinedIcon sx={{mr:1}}/>}
-            {page==="Reports"&&<LeaderboardOutlinedIcon sx={{mr:1}}/>}
-             {page}
-              </Button>
+              <>
+                <Button
+                  key={page}
+                  // onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    mr: 2,
+                    color: "#004d40",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                  }}
+                  to={`/${page === "Home" ? "" : page}`}
+                  component={Link}
+                >
+                  {page === "Home" && <HomeOutlinedIcon sx={{ mr: 1 }} />}
+                  {page === "Discover" && (
+                    <ExploreOutlinedIcon sx={{ mr: 1 }} />
+                  )}
+                  {page === "Library" && <ListOutlinedIcon sx={{ mr: 1 }} />}
+                  {page === "Reports" && (
+                    <LeaderboardOutlinedIcon sx={{ mr: 1 }} />
+                  )}
+                  {page}
+                </Button>
               </>
             ))}
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          
-          <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5}} 
-           to='/createquiz' component={Link}>
-          
-          <QuizOutlinedIcon/>Create
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Button
+              variant="contained"
+              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5 }}
+              to="/createquiz"
+              component={Link}
+            >
+              <QuizOutlinedIcon />
+              Create
             </Button>
-            
+
             <IconButton
               size="large"
               edge="end"
@@ -223,13 +250,11 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-            
-              sx={{color:"#EFA51C"}} 
+              sx={{ color: "#EFA51C" }}
             >
-              <AccountCircle  sx={{ fontSize: "30px" }} />
+              <AccountCircle sx={{ fontSize: "30px" }} />
             </IconButton>
           </Box>
-    
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

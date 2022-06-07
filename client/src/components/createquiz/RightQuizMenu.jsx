@@ -1,16 +1,16 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
-import CategoryIcon from "@mui/icons-material/Category";
-// import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import {
+  Box,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Typography,
+  Divider,
+  TimerOutlinedIcon,
+  CategoryIcon,
+} from "../../utlis/materialComponents";
 
-// import Button from "@mui/material/Button";
 const RightQuizMenu = () => {
   const [quiz, setQuiz] = React.useState("");
   const [timer, setTimer] = React.useState("");
@@ -72,20 +72,6 @@ const RightQuizMenu = () => {
         </FormControl>
       </Box>
       <Divider />
-      {/* <Button
-        variant="outlined"
-        sx={{
-          fontWeight: "bold",
-          textTransform: "capitalize",
-          px: 3,
-          mt: 5,
-          color: "#A13333 ",
-        }}
-      >
-        {" "}
-        <DeleteOutlineOutlinedIcon />
-        Delete Question
-      </Button> */}
     </>
   );
 };

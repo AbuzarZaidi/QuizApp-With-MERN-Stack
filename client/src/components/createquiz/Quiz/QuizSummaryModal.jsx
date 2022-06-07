@@ -1,18 +1,10 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import ButtonGroup from "@mui/material/ButtonGroup";
+import {Box,Button,Typography,Modal,SettingsOutlinedIcon, Grid,TextField ,Radio,RadioGroup,FormControlLabel,
+  FormControl, ButtonGroup,Paper
+} from "../../../utlis/materialComponents"
 import { styled } from "@mui/material/styles";
-import Paper from '@mui/material/Paper';
+
+
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
   "&:hover": {

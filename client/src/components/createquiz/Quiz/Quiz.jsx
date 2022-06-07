@@ -1,13 +1,9 @@
 import React,{useState} from "react";
 import QuizAnswers from "./QuizAnswers";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import StarsRoundedIcon from "@mui/icons-material/StarsRounded";
+import {TextField,Box,Grid,DeleteOutlineOutlinedIcon,Button,Divider,StarsRoundedIcon}
+ from "../../../utlis/materialComponents"
+
 const Quiz = () => {
 const [moreOption,setMoreOption]=useState(false);
 const [moreOptionText,setMoreOptionText]=useState("Add more answers");

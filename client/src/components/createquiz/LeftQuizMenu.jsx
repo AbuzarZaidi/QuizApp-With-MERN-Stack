@@ -1,9 +1,8 @@
 import * as React from "react";
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
+
 import { styled } from "@mui/material/styles";
 
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -56,7 +55,7 @@ const LeftQuizMenu = () => {
           }}
         >
           <Item sx={{ gridColumn: "1", gridRow: "span 3" }}>
-          <QuizSummaryModal/>
+            <QuizSummaryModal />
             <Button
               variant="contained"
               sx={{
@@ -69,7 +68,6 @@ const LeftQuizMenu = () => {
             >
               Add Question
             </Button>
-           
           </Item>
           {/* The second non-visible row has height of 40px */}
           <Item sx={{ gridColumn: "1", gridRow: "4/ 5" }}>
