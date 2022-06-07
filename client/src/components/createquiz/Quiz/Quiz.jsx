@@ -1,27 +1,28 @@
-import React from "react";
+import React,{useState} from "react";
+import QuizAnswers from "./QuizAnswers";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import StarsRoundedIcon from "@mui/icons-material/StarsRounded";
-import Checkbox from "@mui/material/Checkbox";
-import { pink } from "@mui/material/colors";
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  // padding: theme.spacing(1),
-  textAlign: "center",
-  fontColor: "white",
-
-  // color: theme.palette.text.secondary,
-}));
 const Quiz = () => {
+const [moreOption,setMoreOption]=useState(false);
+const [moreOptionText,setMoreOptionText]=useState("Add more answers");
+const moreOptionHandler=()=>{
+  if(moreOption===false)
+  {
+    setMoreOption(true)
+    setMoreOptionText("Remove addition answers")
+  }
+  else{
+    setMoreOption(false)
+    setMoreOptionText("Add more answers")
+  }
+  
+}
   return (
     <>
       <Box
@@ -57,188 +58,17 @@ const Quiz = () => {
 
       <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
-            <Item>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <Item>
-                  {" "}
-                  <Box
-                    sx={{
-                      width: "40px",
-                      height: "109px",
-                      backgroundColor: "#E22D3B",
-                      borderRadius: 1,
-                    }}
-                  ></Box>
-                </Item>
-                <Item>
-                  {" "}
-                  <TextField
-                    // fullWidth
-                    placeholder="Add answer 1"
-                    id="fullWidth"
-                    variant="standard"
-                    // multiline
-                    sx={{
-                      // p: 1.5,
-                      input: { width: "294px", height: "100px" },
-
-                      display: "flex",
-
-                      pl: 2,
-                      justifyContent: "center",
-                    }}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                </Item>
-                <Item
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: pink[800],
-                      "&.Mui-checked": {
-                        color: pink[600],
-                      },
-                    }}
-                  />
-                </Item>
-              </Box>
-            </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <Item>
-                  {" "}
-                  <Box
-                    sx={{
-                      width: "40px",
-                      height: "109px",
-                      backgroundColor: "#3668CE",
-                      borderRadius: 1,
-                    }}
-                  ></Box>
-                </Item>
-                <Item>
-                  {" "}
-                  <TextField
-                    // fullWidth
-                    placeholder="Add answer 2"
-                    id="fullWidth"
-                    variant="standard"
-                    sx={{
-                      input: { width: "294px", height: "100px" },
-                      pl: 2,
-                      display: "flex",
-
-                      justifyContent: "center",
-                    }}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                </Item>
-                <Item
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: pink[800],
-                      "&.Mui-checked": {
-                        color: pink[600],
-                      },
-                    }}
-                  />
-                </Item>
-              </Box>
-            </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <Item>
-                  {" "}
-                  <Box
-                    sx={{
-                      width: "40px",
-                      height: "109px",
-                      backgroundColor: "#D89E14",
-                      borderRadius: 1,
-                    }}
-                  ></Box>
-                </Item>
-                <Item>
-                  {" "}
-                  <TextField
-                    // fullWidth
-                    placeholder="Add answer 3"
-                    id="fullWidth"
-                    variant="standard"
-                    sx={{
-                      input: { width: "294px", height: "100px" },
-                      pl: 2,
-                      display: "flex",
-
-                      justifyContent: "center",
-                    }}
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                  />
-                </Item>
-                <Item
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: pink[800],
-                      "&.Mui-checked": {
-                        color: pink[600],
-                      },
-                    }}
-                  />
-                </Item>
-              </Box>
-            </Item>
-          </Grid>
-         
+          <QuizAnswers color="#E22D3B" count="1" />
+          <QuizAnswers color="#3668CE" count="2" />
+          <QuizAnswers color="#D89E14" count="3" />
+          <QuizAnswers color="#40890F" count="4" />
+          {moreOption&&<QuizAnswers color="#50A4A4" count="5" />}
+          {moreOption&&<QuizAnswers color="#864CBF" count="6" />}
         </Grid>
 
         <Button
           variant="outlined"
+          onClick={moreOptionHandler}
           sx={{
             fontWeight: "bold",
             textTransform: "capitalize",
