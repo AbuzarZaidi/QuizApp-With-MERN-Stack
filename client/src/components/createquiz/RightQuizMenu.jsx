@@ -8,9 +8,9 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import CategoryIcon from "@mui/icons-material/Category";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+// import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 const RightQuizMenu = () => {
   const [quiz, setQuiz] = React.useState("");
   const [timer, setTimer] = React.useState("");
@@ -72,7 +72,7 @@ const RightQuizMenu = () => {
         </FormControl>
       </Box>
       <Divider />
-      <Button
+      {/* <Button
         variant="outlined"
         sx={{
           fontWeight: "bold",
@@ -85,7 +85,7 @@ const RightQuizMenu = () => {
         {" "}
         <DeleteOutlineOutlinedIcon />
         Delete Question
-      </Button>
+      </Button> */}
     </>
   );
 };

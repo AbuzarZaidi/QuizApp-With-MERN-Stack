@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
@@ -116,6 +116,7 @@ const LeftQuizMenu = () => {
                       fontWeight: "bold",
                       textTransform: "capitalize",
                       px: 3,
+                     
                       backgroundColor: "#40890F",
                       color: "white",
                     }}

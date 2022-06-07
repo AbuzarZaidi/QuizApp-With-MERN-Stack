@@ -1,4 +1,6 @@
 import * as React from 'react';
+ import { Link } from "react-router-dom";
+
 import { styled, alpha } from '@mui/material/styles';
 import Logo from '../logo1.png'
 import AppBar from '@mui/material/AppBar';
@@ -176,9 +178,9 @@ export default function PrimarySearchAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            // component="div"
             sx={{ fontWeight: 'bold', textTransform: 'capitalize'}}
-            
+            to='/' component={Link}
           >
               <img src={Logo} alt="Logo.png" style={{height:"70px",width:"100px"}}/>
             {/* Quiz World */}
@@ -194,6 +196,7 @@ export default function PrimarySearchAppBar() {
                 key={page}
                 // onClick={handleCloseNavMenu}
                 sx={{ my: 2,mr:2, color: '#004d40',fontWeight: 'bold', textTransform: 'capitalize' }}
+                to={`/${page==="Home"?"":page}`} component={Link}
               >
             {page==="Home"&&<HomeOutlinedIcon sx={{mr:1}}/>} 
             {page==="Discover"&&<ExploreOutlinedIcon sx={{mr:1}}/>}
@@ -206,9 +209,13 @@ export default function PrimarySearchAppBar() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-         
-          <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5}}><QuizOutlinedIcon/>Create</Button>
           
+          <Button variant="contained" sx={{ fontWeight: 'bold', textTransform: 'capitalize',px:5}} 
+           to='/createquiz' component={Link}>
+          
+          <QuizOutlinedIcon/>Create
+            </Button>
+            
             <IconButton
               size="large"
               edge="end"
@@ -222,7 +229,7 @@ export default function PrimarySearchAppBar() {
               <AccountCircle  sx={{ fontSize: "30px" }} />
             </IconButton>
           </Box>
-          
+    
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
