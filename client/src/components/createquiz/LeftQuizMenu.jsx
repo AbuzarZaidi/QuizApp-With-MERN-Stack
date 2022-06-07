@@ -1,9 +1,9 @@
 import * as React from "react";
+import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { styled } from "@mui/material/styles";
 
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -56,21 +56,7 @@ const LeftQuizMenu = () => {
           }}
         >
           <Item sx={{ gridColumn: "1", gridRow: "span 3" }}>
-            <Button
-              variant="outlined"
-              sx={{
-                fontWeight: "bold",
-                textTransform: "capitalize",
-                px: 3,
-                py: 2,
-                mt: 2,
-                color: "black",
-                backgroundColor: "#F2F2F2",
-              }}
-            >
-              <SettingsOutlinedIcon />
-              Quiz Summary
-            </Button>
+          <QuizSummaryModal/>
             <Button
               variant="contained"
               sx={{
@@ -83,6 +69,7 @@ const LeftQuizMenu = () => {
             >
               Add Question
             </Button>
+           
           </Item>
           {/* The second non-visible row has height of 40px */}
           <Item sx={{ gridColumn: "1", gridRow: "4/ 5" }}>
@@ -116,7 +103,7 @@ const LeftQuizMenu = () => {
                       fontWeight: "bold",
                       textTransform: "capitalize",
                       px: 3,
-                     
+
                       backgroundColor: "#40890F",
                       color: "white",
                     }}

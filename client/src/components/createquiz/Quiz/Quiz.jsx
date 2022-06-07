@@ -81,7 +81,7 @@ const moreOptionHandler=()=>{
         >
           {" "}
           <StarsRoundedIcon />
-          Add More Answers
+          {moreOptionText}
         </Button>
         <Button
           variant="outlined"
