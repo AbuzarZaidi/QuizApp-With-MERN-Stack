@@ -1,8 +1,11 @@
 const express=require('express');
 const bodyParser=require('body-parser')
 const createsQuizRoutes =require('./routes/createsQuizRoutes')
+require("./db/index.js");
+const cors = require('cors');
 const app=express();
-const port = 5000
+app.use(cors());
+const port=process.env.PORT||5000;
 app.use(bodyParser.json())
  app.use('/creator',createsQuizRoutes);
 app.use('/',(req,res,next)=>{
