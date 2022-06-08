@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const createQuizSchema = new Schema({
-    quizDetail:{},
-    quizQNA:[]
-  
- 
+    quizDetail:{type:Object,required:true},
+    quizQNA:{type:Array,required:true}
 });
 
 const CreateQuizModel = mongoose.model('CreateQuiz', createQuizSchema );
