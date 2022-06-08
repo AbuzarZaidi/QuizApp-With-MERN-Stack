@@ -6,13 +6,13 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Badge,
+  // Badge,
   MenuItem,
   Menu,
   MenuIcon,
   AccountCircle,
-  MailIcon,
-  NotificationsIcon,
+  // MailIcon,
+  // NotificationsIcon,
   Button,
   HomeOutlinedIcon,
   ExploreOutlinedIcon,
@@ -127,13 +127,13 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Message</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -158,7 +158,11 @@ export default function PrimarySearchAppBar() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
+       <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Discover</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Library</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Reports</MenuItem>
     </Menu>
   );
 
