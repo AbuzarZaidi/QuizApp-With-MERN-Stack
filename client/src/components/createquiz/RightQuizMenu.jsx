@@ -1,4 +1,8 @@
 import React from "react";
+// import {useState} from "react";
+import { useDispatch } from 'react-redux';
+import {updateQuizType,updateTimeLimit,} from 
+'../../store/quizSummary'
 import {
   Box,
   InputLabel,
@@ -12,14 +16,18 @@ import {
 } from "../../utlis/materialComponents";
 
 const RightQuizMenu = () => {
+  const dispatch = useDispatch();
   const [quiz, setQuiz] = React.useState("");
   const [timer, setTimer] = React.useState("");
   const handleChangeQuiz = (event) => {
     setQuiz(event.target.value);
+    dispatch(updateQuizType(event.target.value)); 
   };
   const handleChangeTimer = (event) => {
     setTimer(event.target.value);
+    dispatch(updateTimeLimit(event.target.value)); 
   };
+
   return (
     <>
       <Typography

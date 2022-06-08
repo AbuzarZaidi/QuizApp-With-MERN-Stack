@@ -1,9 +1,25 @@
-import * as React from "react";
-import {Box,Button,Typography,Modal,SettingsOutlinedIcon, Grid,TextField ,Radio,RadioGroup,FormControlLabel,
-  FormControl, ButtonGroup,Paper
-} from "../../../utlis/materialComponents"
+import *as React from "react";
+import {useState} from "react";
+import { useDispatch } from 'react-redux';
+// import {updateTitle,updateDescription,updateVisibility,updateImgSrc} from 
+import {updateTitle,updateDescription,updateVisibility} from 
+'../../../store/quizSummary'
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  SettingsOutlinedIcon,
+  Grid,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  ButtonGroup,
+  Paper,
+} from "../../../utlis/materialComponents";
 import { styled } from "@mui/material/styles";
-
 
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
@@ -11,7 +27,6 @@ const ButtonHover = styled("div")(({ theme }) => ({
     backgroundColor: "#6b530f",
   },
 }));
-
 
 const style = {
   position: "absolute",
@@ -24,19 +39,31 @@ const style = {
   p: 4,
 };
 const styles = {
-    paperContainer: {
-        backgroundImage: `url(images/background.jpg)`,
-        height:194,
-        display:"flex",
-                      flexDirection: 'column',
-                justifyContent:"center",
-                alignItems:"center"
-    }
+  paperContainer: {
+    backgroundImage: `url(images/background.jpg)`,
+    height: 194,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 };
 const QuizSummaryModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+//handle data
+const [title,setTitle]=useState("")
+const [description,setDescription]=useState("")
+ const [visibility,setVisibility]=useState("private")
+// const [title,setTitle]=useState("")
+const dispatch = useDispatch();
+const saveInfoHandler=()=>{
+  dispatch(updateTitle(title)); 
+  dispatch(updateDescription(description)); 
+  dispatch(updateVisibility(visibility)); 
+ 
+}
 
   return (
     <div>
@@ -74,6 +101,8 @@ const QuizSummaryModal = () => {
                     Title
                   </Typography>
                   <TextField
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
                     id="outlined-basic"
                     label="Enter Quiz Title Here"
                     variant="outlined"
@@ -85,6 +114,8 @@ const QuizSummaryModal = () => {
                     Description (optional)
                   </Typography>
                   <TextField
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
                     id="outlined-multiline-static"
                     label="Quiz Description"
                     multiline
@@ -99,83 +130,96 @@ const QuizSummaryModal = () => {
                   <Typography variant="h6" component="div" gutterBottom>
                     Cover Image
                   </Typography>
-                 
+
                   <Paper style={styles.paperContainer}>
-                      <Box >
-                  <Button
-              variant="contained"
-              sx={{
-                fontWeight: "bold",
-                textTransform: "capitalize",
-                px: 2,
-                py: 1,
-                
-              }}
-            >
-              Change
-            </Button> 
-            </Box>
-            </Paper>
-                  <Typography variant="h6" component="div" gutterBottom sx={{mt:2}}>
+                    <Box>
+                      <Button
+                        variant="contained"
+                        sx={{
+                          fontWeight: "bold",
+                          textTransform: "capitalize",
+                          px: 2,
+                          py: 1,
+                        }}
+                      >
+                        Change
+                      </Button>
+                    </Box>
+                  </Paper>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    gutterBottom
+                    sx={{ mt: 2 }}
+                  >
                     Visibility
                   </Typography>
                   <FormControl>
-      
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel value="private" control={<Radio />} label="Private" />
-        <FormControlLabel value="public" control={<Radio />} label="Public" />
-       
-      </RadioGroup>
-    </FormControl>
+                    <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                    >
+                      <FormControlLabel
+                        value="private"
+                        control={<Radio />}
+                        label="Private"
+                        onClick={setVisibility("private")}
+                      />
+                      <FormControlLabel
+                      onClick={setVisibility("public")}
+                        value="public"
+                        control={<Radio />}
+                        label="Public"
+                      />
+                    </RadioGroup>
+                  </FormControl>
                 </Box>
               </Grid>
             </Grid>
           </Box>
           <Box
-              sx={{
-                display: "flex",
-                // flexDirection: "column",
-                justifyContent:"center",
-                alignItems: "center",
-                "& > *": {
-                  m: 1,
-                },
-              }}
-            >
-              <ButtonGroup variant="outlined">
+            sx={{
+              display: "flex",
+              // flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              "& > *": {
+                m: 1,
+              },
+            }}
+          >
+            <ButtonGroup variant="outlined">
+              <Button
+                variant="outlined"
+                sx={{
+                  fontWeight: "bold",
+                  textTransform: "capitalize",
+                  px: 3,
+                  mr: 1,
+                  color: "#A13333 ",
+                  backgroundColor: "#F2F2F2",
+                }}
+              >
+                Exit
+              </Button>
+              <ButtonHover>
                 <Button
-                  variant="outlined"
                   sx={{
                     fontWeight: "bold",
                     textTransform: "capitalize",
                     px: 3,
-                    mr: 1,
-                    color: "#A13333 ",
-                    backgroundColor: "#F2F2F2",
-                  }}
-                >
-                  Exit
-                </Button>
-                <ButtonHover>
-                  <Button
-                    sx={{
-                      fontWeight: "bold",
-                      textTransform: "capitalize",
-                      px: 3,
 
-                      backgroundColor: "#40890F",
-                      color: "white",
-                    }}
-                  >
-                    Save
-                  </Button>
-                </ButtonHover>
-              </ButtonGroup>
-            </Box>
+                    backgroundColor: "#40890F",
+                    color: "white",
+                  }}
+                  onClick={saveInfoHandler}
+                >
+                  Save
+                </Button>
+              </ButtonHover>
+            </ButtonGroup>
+          </Box>
         </Box>
       </Modal>
     </div>
