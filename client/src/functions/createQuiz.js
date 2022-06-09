@@ -1,4 +1,4 @@
-import * as api from "../api";
+import * as api from "../api/createQuiz";
 export const createNewQuiz = async (newQuiz) => {
     try {
       const { data } = await api.createNewQuiz(newQuiz);

@@ -63,7 +63,7 @@ const saveInfoHandler=()=>{
   dispatch(updateDescription(description)); 
   dispatch(updateVisibility(visibility)); 
  
-}
+ }
 
   return (
     <div>
@@ -97,7 +97,7 @@ const saveInfoHandler=()=>{
               <Grid item xs={7}>
                 {/* <Item> */}
                 <Box sx={{ mt: 3 }}>
-                  <Typography variant="h6" component="div" gutterBottom>
+                  <Typography variant="h6" component="h6" gutterBottom>
                     Title
                   </Typography>
                   <TextField
@@ -110,7 +110,7 @@ const saveInfoHandler=()=>{
                   />
                 </Box>
                 <Box sx={{ mt: 3 }}>
-                  <Typography variant="h6" component="div" gutterBottom>
+                  <Typography variant="h6" component="h6" gutterBottom>
                     Description (optional)
                   </Typography>
                   <TextField
@@ -127,7 +127,7 @@ const saveInfoHandler=()=>{
               </Grid>
               <Grid item xs={5}>
                 <Box sx={{ mt: 3 }}>
-                  <Typography variant="h6" component="div" gutterBottom>
+                  <Typography variant="h6" component="h6" gutterBottom>
                     Cover Image
                   </Typography>
 
@@ -148,7 +148,7 @@ const saveInfoHandler=()=>{
                   </Paper>
                   <Typography
                     variant="h6"
-                    component="div"
+                    component="h6"
                     gutterBottom
                     sx={{ mt: 2 }}
                   >
@@ -164,10 +164,10 @@ const saveInfoHandler=()=>{
                         value="private"
                         control={<Radio />}
                         label="Private"
-                        onClick={setVisibility("private")}
+                        onClick={()=>{setVisibility("private")}}
                       />
                       <FormControlLabel
-                      onClick={setVisibility("public")}
+                      onClick={()=>{setVisibility("public")}}
                         value="public"
                         control={<Radio />}
                         label="Public"

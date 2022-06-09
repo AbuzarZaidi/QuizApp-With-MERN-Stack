@@ -13,9 +13,9 @@ const newQuiz = () => {
         
         <Box sx={{ height: "95vh" }} className="scrollbar scrollbar-primary" style={scrollContainerStyle}>
       
-         <Quiz/>
-         <Quiz/>
-         <Quiz/>
+         <Quiz key="1"/>
+         <Quiz key="2"/>
+         <Quiz key="3"/>
       
      
                 </Box>

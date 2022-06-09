@@ -2,9 +2,9 @@ import * as React from "react";
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
-import {  useSelector } from 'react-redux';
+ import {  useSelector } from 'react-redux';
 import { styled } from "@mui/material/styles";
-
+const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
   "&:hover": {
@@ -43,9 +43,28 @@ Item.propTypes = {
 };
 
  const LeftQuizMenu = () => {
-  // const saveInfoHandler=async()=>{
-
-  // }
+  const quizType = useSelector((state) => state.detail.quizType);
+  const timeLimit = useSelector((state) => state.detail.timeLimit);
+  const title = useSelector((state) => state.detail.title);
+  const description = useSelector((state) => state.detail.description);
+  const visibility = useSelector((state) => state.detail.visibility);
+  const saveInfoHandler=async()=>{
+    
+    const newQuiz={
+      quizType,
+      timeLimit,
+      title,
+      description,
+      visibility
+    }
+    const Quiz={
+      quizDetail:newQuiz,
+      quizQNA:[],
+    }
+    const result = await createNewQuiz(Quiz);
+    console.log(Quiz)
+    console.log(result);
+  }
   return (
     <>
       <div style={{ width: "100%", height: 360 }}>
@@ -100,7 +119,7 @@ Item.propTypes = {
                 </Button>
                 <ButtonHover>
                   <Button
-                  // onClick={saveInfoHandler}
+                  onClick={saveInfoHandler}
                     sx={{
                       fontWeight: "bold",
                       textTransform: "capitalize",
