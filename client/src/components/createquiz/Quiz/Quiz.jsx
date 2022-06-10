@@ -1,7 +1,7 @@
 import React, { useState } from "react";
  import { useDispatch  } from 'react-redux';
 import QuizAnswers from "./QuizAnswers";
-import {addMoreOptionHandler } from "../../../store/quizMcq";
+import {addMoreOptionHandler,removeMoreOptionHandler } from "../../../store/quizMcq";
 import {
   TextField,
   Box,
@@ -24,7 +24,9 @@ const Quiz = ({ ques, index, questionHandler }) => {
       setMoreOptionText("Remove addition answers");
       // console.log(ques)
     } else {
-      // setMoreOption(false);
+      setMoreOption(false);
+      dispatch(removeMoreOptionHandler({ index}));
+      
       setMoreOptionText("Add more answers");
     }
   };
