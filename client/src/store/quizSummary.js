@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialCounterState = { 
-  quizType: "qqq",
+  quizType: "quiz",
 timeLimit: 0,
 title: "",
 description: "",
