@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
+import { useDispatch  } from 'react-redux';
 import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import {Box,Grid,Checkbox,TextField,Paper } from "../../../utlis/materialComponents"
 
-
+ import { optionHandler} from "../../../store/quizMcq";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -12,7 +13,15 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   fontColor: "white",
 }));
-const QuizAnswers = (props) => {
+const QuizAnswers = ({indexj,opt,index}) => {
+  const dispatch = useDispatch();
+  const [optionValue,setOptionValue]=useState(opt.option);
+  const optionValHandler=(value,i,j)=>{
+    // console.log(value)
+    // console.log(i)
+    // console.log(j)
+     dispatch(optionHandler({ value, i,j }));
+  }
   return (
     <Grid item xs={6}>
       <Item>
@@ -28,7 +37,7 @@ const QuizAnswers = (props) => {
               sx={{
                 width: "40px",
                 height: "109px",
-                backgroundColor: props.color,
+                backgroundColor: opt.color,
                 borderRadius: 1,
               }}
             ></Box>
@@ -36,8 +45,15 @@ const QuizAnswers = (props) => {
           <Item>
             {" "}
             <TextField
+             onChange={(e) => {
+              setOptionValue(e.target.value);
+            }}
+            onBlur={(e) => {
+              optionValHandler(e.target.value, index,indexj);
+            }}
+            value={optionValue}
               // fullWidth
-              placeholder={`Add Answer ${props.count}`}
+              placeholder={`Add Answer ${indexj+1}`}
               id="fullWidth"
               variant="standard"
               sx={{

@@ -1,9 +1,12 @@
-import *as React from "react";
-import {useState} from "react";
-import { useDispatch } from 'react-redux';
-// import {updateTitle,updateDescription,updateVisibility,updateImgSrc} from 
-import {updateTitle,updateDescription,updateVisibility} from 
-'../../../store/quizSummary'
+import * as React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+// import {updateTitle,updateDescription,updateVisibility,updateImgSrc} from
+import {
+  updateTitle,
+  updateDescription,
+  updateVisibility,
+} from "../../../store/quizSummary";
 import {
   Box,
   Button,
@@ -52,18 +55,18 @@ const QuizSummaryModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-//handle data
-const [title,setTitle]=useState("")
-const [description,setDescription]=useState("")
- const [visibility,setVisibility]=useState("private")
-// const [title,setTitle]=useState("")
-const dispatch = useDispatch();
-const saveInfoHandler=()=>{
-  dispatch(updateTitle(title)); 
-  dispatch(updateDescription(description)); 
-  dispatch(updateVisibility(visibility)); 
-  setOpen(false)
- }
+  //handle data
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [visibility, setVisibility] = useState("private");
+  // const [title,setTitle]=useState("")
+  const dispatch = useDispatch();
+  const saveInfoHandler = () => {
+    dispatch(updateTitle(title));
+    dispatch(updateDescription(description));
+    dispatch(updateVisibility(visibility));
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -101,8 +104,8 @@ const saveInfoHandler=()=>{
                     Title
                   </Typography>
                   <TextField
-                  value={title}
-                  onChange={e => setTitle(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     id="outlined-basic"
                     label="Enter Quiz Title Here"
                     variant="outlined"
@@ -114,8 +117,8 @@ const saveInfoHandler=()=>{
                     Description (optional)
                   </Typography>
                   <TextField
-                  value={description}
-                  onChange={e => setDescription(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     id="outlined-multiline-static"
                     label="Quiz Description"
                     multiline
@@ -164,10 +167,14 @@ const saveInfoHandler=()=>{
                         value="private"
                         control={<Radio />}
                         label="Private"
-                        onClick={()=>{setVisibility("private")}}
+                        onClick={() => {
+                          setVisibility("private");
+                        }}
                       />
                       <FormControlLabel
-                      onClick={()=>{setVisibility("public")}}
+                        onClick={() => {
+                          setVisibility("public");
+                        }}
                         value="public"
                         control={<Radio />}
                         label="Public"
@@ -200,7 +207,7 @@ const saveInfoHandler=()=>{
                   color: "#A13333 ",
                   backgroundColor: "#F2F2F2",
                 }}
-               onClick={handleClose}
+                onClick={handleClose}
               >
                 Exit
               </Button>
@@ -215,7 +222,6 @@ const saveInfoHandler=()=>{
                     color: "white",
                   }}
                   onClick={saveInfoHandler}
-                  
                 >
                   Save
                 </Button>

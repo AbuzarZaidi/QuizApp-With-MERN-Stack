@@ -1,26 +1,31 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 // import { useDispatch  } from 'react-redux';
 import QuizAnswers from "./QuizAnswers";
 
-import {TextField,Box,Grid,DeleteOutlineOutlinedIcon,Button,Divider,StarsRoundedIcon}
- from "../../../utlis/materialComponents"
+import {
+  TextField,
+  Box,
+  Grid,
+  DeleteOutlineOutlinedIcon,
+  Button,
+  Divider,
+  StarsRoundedIcon,
+} from "../../../utlis/materialComponents";
 
-const Quiz = ({ques,index,questionHandler}) => {
-const [moreOption,setMoreOption]=useState(false);
-const [moreOptionText,setMoreOptionText]=useState("Add more answers");
- const[quesValue,setQuesValue]=useState(ques.question);
-const moreOptionHandler=()=>{
-  if(moreOption===false)
-  {
-    setMoreOption(true)
-    setMoreOptionText("Remove addition answers")
-  }
-  else{
-    setMoreOption(false)
-    setMoreOptionText("Add more answers")
-  }
-  
-}
+const Quiz = ({ ques, index, questionHandler }) => {
+  const [moreOption, setMoreOption] = useState(false);
+  const [moreOptionText, setMoreOptionText] = useState("Add more answers");
+  const [quesValue, setQuesValue] = useState(ques.question);
+  const moreOptionHandler = () => {
+    if (moreOption === false) {
+      setMoreOption(true);
+      setMoreOptionText("Remove addition answers");
+    } else {
+      setMoreOption(false);
+      setMoreOptionText("Add more answers");
+    }
+  };
+
   return (
     <>
       <Box
@@ -37,39 +42,38 @@ const moreOptionHandler=()=>{
         autoComplete="off"
       >
         {/* <Typography> */}
-          <TextField
+        <TextField
           value={quesValue}
           onBlur={(e) => {
             questionHandler(e.target.value, index);
           }}
           onChange={(e) => {
-            
-             setQuesValue(e.target.value)
+            setQuesValue(e.target.value);
           }}
-            fullWidth
-            id="outlined-basic"
-            placeholder="start typing your question"
-            InputProps={{
-              disableUnderline: true,
-            }}
-            variant="standard"
-            sx={{
-              p: 1,
-              borderRadius: "40px",
-              input: { textAlign: "center", fontSize: "20px" },
-            }}
-          />
+          fullWidth
+          id="outlined-basic"
+          placeholder="start typing your question"
+          InputProps={{
+            disableUnderline: true,
+          }}
+          variant="standard"
+          sx={{
+            p: 1,
+            borderRadius: "40px",
+            input: { textAlign: "center", fontSize: "20px" },
+          }}
+        />
         {/* </Typography> */}
       </Box>
 
       <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
         <Grid container spacing={1}>
-          <QuizAnswers color="#E22D3B" count="1" key="1"/>
-          <QuizAnswers color="#3668CE" count="2" key="2"/>
-          <QuizAnswers color="#D89E14" count="3" key="3"/>
-          <QuizAnswers color="#40890F" count="4" key="4"/>
-          {moreOption&&<QuizAnswers color="#50A4A4" count="5" key="5"/>}
-          {moreOption&&<QuizAnswers color="#864CBF" count="6" key="6"/>}
+        {ques.options.map((op, j) => {
+         
+        return  <QuizAnswers  indexj={j} opt={op} index={index}/>
+        })}
+          {moreOption && <QuizAnswers color="#50A4A4" count="5" key="5" />}
+          {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />}
         </Grid>
 
         <Button
