@@ -51,6 +51,7 @@ Item.propTypes = {
   const title = useSelector((state) => state.detail.title);
   const description = useSelector((state) => state.detail.description);
   const visibility = useSelector((state) => state.detail.visibility);
+  const quizArray = useSelector((state) => state.mcq.quizQna);
   const saveInfoHandler=async()=>{
     
     const newQuiz={
@@ -62,7 +63,7 @@ Item.propTypes = {
     }
     const Quiz={
       quizDetail:newQuiz,
-      quizQNA:[],
+      quizQNA:quizArray,
     }
     const result = await createNewQuiz(Quiz);
     console.log(Quiz)

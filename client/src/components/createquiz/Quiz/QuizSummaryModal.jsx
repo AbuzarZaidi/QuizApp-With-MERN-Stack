@@ -62,7 +62,7 @@ const saveInfoHandler=()=>{
   dispatch(updateTitle(title)); 
   dispatch(updateDescription(description)); 
   dispatch(updateVisibility(visibility)); 
- 
+  setOpen(false)
  }
 
   return (
@@ -200,6 +200,7 @@ const saveInfoHandler=()=>{
                   color: "#A13333 ",
                   backgroundColor: "#F2F2F2",
                 }}
+               onClick={handleClose}
               >
                 Exit
               </Button>
@@ -214,6 +215,7 @@ const saveInfoHandler=()=>{
                     color: "white",
                   }}
                   onClick={saveInfoHandler}
+                  
                 >
                   Save
                 </Button>
