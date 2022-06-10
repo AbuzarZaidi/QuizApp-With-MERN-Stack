@@ -4,7 +4,12 @@ const initialCounterState = {
     {
       question: "",
       correctOpt: "",
-      options: [{ option: "",color:"#E22D3B"}, {option: "",color:"#3668CE"},{ option:"", color:"#D89E14"}, {option: "",color:"#40890F"}],
+      options: [
+        { option: "", color: "#E22D3B" },
+        { option: "", color: "#3668CE" },
+        { option: "", color: "#D89E14" },
+        { option: "", color: "#40890F" },
+      ],
     },
   ],
 };
@@ -16,21 +21,42 @@ const quizMcqSlice = createSlice({
       state.quizQna.push({
         question: "",
         correctOpt: "",
-        options: [{ option: "",color:"#E22D3B"}, {option: "",color:"#3668CE"},{ option:"", color:"#D89E14"}, {option: "",color:"#40890F"}],
+        options: [
+          { option: "", color: "#E22D3B" },
+          { option: "", color: "#3668CE" },
+          { option: "", color: "#D89E14" },
+          { option: "", color: "#40890F" },
+        ],
       });
       // console.log(state.quizQna)
     },
     quesHandler(state, action) {
       state.quizQna[action.payload.i].question = action.payload.text;
     },
-    optionHandler(state,action){
-      state.quizQna[action.payload.i].options[action.payload.j].option = action.payload.value;
+    optionHandler(state, action) {
+      state.quizQna[action.payload.i].options[action.payload.j].option =
+        action.payload.value;
     },
-    correctOptionHandler(state,action){
-       state.quizQna[action.payload.i].correctOpt = action.payload.j;
-    }
+    correctOptionHandler(state, action) {
+      state.quizQna[action.payload.i].correctOpt = action.payload.j;
+    },
+    addMoreOptionHandler(state,action){
+      // console.log(state.quizQna[action.payload.index].options)
+      state.quizQna[action.payload.index].options.push( { option: "", color: "#50A4A4" },
+      { option: "", color: "#864CBF" },)
+      // console.log(state.quizQna)
+    },
+    // removeMoreOptionHandler(state,action){
+
+    // }
   },
 });
 
-export const { addNewQuestion, quesHandler,optionHandler,correctOptionHandler } = quizMcqSlice.actions;
+export const {
+  addNewQuestion,
+  quesHandler,
+  optionHandler,
+  correctOptionHandler,
+  addMoreOptionHandler
+} = quizMcqSlice.actions;
 export default quizMcqSlice.reducer;

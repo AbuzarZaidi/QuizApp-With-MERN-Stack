@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { useDispatch  } from 'react-redux';
+ import { useDispatch  } from 'react-redux';
 import QuizAnswers from "./QuizAnswers";
-
+import {addMoreOptionHandler } from "../../../store/quizMcq";
 import {
   TextField,
   Box,
@@ -13,15 +13,18 @@ import {
 } from "../../../utlis/materialComponents";
 
 const Quiz = ({ ques, index, questionHandler }) => {
+  const dispatch = useDispatch();
   const [moreOption, setMoreOption] = useState(false);
   const [moreOptionText, setMoreOptionText] = useState("Add more answers");
   const [quesValue, setQuesValue] = useState(ques.question);
   const moreOptionHandler = () => {
     if (moreOption === false) {
       setMoreOption(true);
+      dispatch(addMoreOptionHandler ({ index}));
       setMoreOptionText("Remove addition answers");
+      // console.log(ques)
     } else {
-      setMoreOption(false);
+      // setMoreOption(false);
       setMoreOptionText("Add more answers");
     }
   };
@@ -72,8 +75,8 @@ const Quiz = ({ ques, index, questionHandler }) => {
          
         return  <QuizAnswers key={j}  indexj={j} opt={op} index={index}/>
         })}
-          {moreOption && <QuizAnswers color="#50A4A4" count="5" key="5" />}
-          {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />}
+          {/* {moreOption && <QuizAnswers color="#50A4A4" count="5" key="5" />} */}
+          {/* {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />} */}
         </Grid>
 
         <Button
