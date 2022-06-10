@@ -1,8 +1,10 @@
 import * as React from "react";
+// import {useEffect} from "react"
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
- import {  useSelector } from 'react-redux';
+ import {  useSelector,useDispatch  } from 'react-redux';
+ import {addNewQuestion} from '../../store/quizMcq'
 import { styled } from "@mui/material/styles";
 const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -43,6 +45,7 @@ Item.propTypes = {
 };
 
  const LeftQuizMenu = () => {
+  const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
   const title = useSelector((state) => state.detail.title);
@@ -65,6 +68,16 @@ Item.propTypes = {
     console.log(Quiz)
     console.log(result);
   }
+   const addQuestionHandler=()=>{
+      dispatch(addNewQuestion());
+    }
+  //  useEffect(() => {
+  //   const addQuestionHandler=()=>{
+  //     dispatch(addNewQuestion());
+  //   }
+  //  }, [addQuestionHandler])
+   
+ 
   return (
     <>
       <div style={{ width: "100%", height: 360 }}>
@@ -79,6 +92,7 @@ Item.propTypes = {
           <Item sx={{ gridColumn: "1", gridRow: "span 3" }}>
             <QuizSummaryModal />
             <Button
+            onClick={addQuestionHandler}
               variant="contained"
               sx={{
                 fontWeight: "bold",

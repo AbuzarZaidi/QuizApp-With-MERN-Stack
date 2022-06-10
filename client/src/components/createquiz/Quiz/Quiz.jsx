@@ -1,12 +1,14 @@
 import React,{useState} from "react";
+// import { useDispatch  } from 'react-redux';
 import QuizAnswers from "./QuizAnswers";
-// import { Typography } from "@mui/material";
+
 import {TextField,Box,Grid,DeleteOutlineOutlinedIcon,Button,Divider,StarsRoundedIcon}
  from "../../../utlis/materialComponents"
 
-const Quiz = () => {
+const Quiz = ({ques,index,questionHandler}) => {
 const [moreOption,setMoreOption]=useState(false);
 const [moreOptionText,setMoreOptionText]=useState("Add more answers");
+ const[quesValue,setQuesValue]=useState(ques.question);
 const moreOptionHandler=()=>{
   if(moreOption===false)
   {
@@ -36,6 +38,14 @@ const moreOptionHandler=()=>{
       >
         {/* <Typography> */}
           <TextField
+          value={quesValue}
+          onBlur={(e) => {
+            questionHandler(e.target.value, index);
+          }}
+          onChange={(e) => {
+            
+             setQuesValue(e.target.value)
+          }}
             fullWidth
             id="outlined-basic"
             placeholder="start typing your question"
