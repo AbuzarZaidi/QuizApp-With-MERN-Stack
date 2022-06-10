@@ -4,7 +4,7 @@ import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import {Box,Grid,Checkbox,TextField,Paper } from "../../../utlis/materialComponents"
 
- import { optionHandler} from "../../../store/quizMcq";
+ import { optionHandler,correctOptionHandler} from "../../../store/quizMcq";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -21,6 +21,10 @@ const QuizAnswers = ({indexj,opt,index}) => {
     // console.log(i)
     // console.log(j)
      dispatch(optionHandler({ value, i,j }));
+  }
+  const correctOptHandler=(i,j)=>{
+     dispatch(correctOptionHandler({ i,j }));
+    // console.log("click")
   }
   return (
     <Grid item xs={6}>
@@ -76,6 +80,10 @@ const QuizAnswers = ({indexj,opt,index}) => {
             }}
           >
             <Checkbox
+            onClick={(e) => {
+              correctOptHandler( index,indexj);
+            }}
+            
               {...label}
               sx={{
                 color: pink[800],

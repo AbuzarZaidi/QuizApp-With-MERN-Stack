@@ -16,7 +16,7 @@ const quizMcqSlice = createSlice({
       state.quizQna.push({
         question: "",
         correctOpt: "",
-        options: [{ option1: "", option2: "", option3: "", option4: "" }],
+        options: [{ option: "",color:"#E22D3B"}, {option: "",color:"#3668CE"},{ option:"", color:"#D89E14"}, {option: "",color:"#40890F"}],
       });
       // console.log(state.quizQna)
     },
@@ -25,12 +25,12 @@ const quizMcqSlice = createSlice({
     },
     optionHandler(state,action){
       state.quizQna[action.payload.i].options[action.payload.j].option = action.payload.value;
-      // console.log(action.payload.i)
-      // console.log(action.payload.j)
-      // console.log(action.payload.value);
+    },
+    correctOptionHandler(state,action){
+       state.quizQna[action.payload.i].correctOpt = action.payload.j;
     }
   },
 });
 
-export const { addNewQuestion, quesHandler,optionHandler } = quizMcqSlice.actions;
+export const { addNewQuestion, quesHandler,optionHandler,correctOptionHandler } = quizMcqSlice.actions;
 export default quizMcqSlice.reducer;

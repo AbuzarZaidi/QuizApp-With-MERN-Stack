@@ -11,7 +11,6 @@ const NewQuiz = () => {
   const dispatch = useDispatch();
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const [quizes, setQuizes] = useState(quizArray);
-  // console.log(quizes);
   useEffect(() => {
     setQuizes(quizArray);
   }, [quizArray, quizes]);

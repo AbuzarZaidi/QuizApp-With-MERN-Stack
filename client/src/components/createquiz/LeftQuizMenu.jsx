@@ -66,8 +66,7 @@ Item.propTypes = {
       quizQNA:quizArray,
     }
     const result = await createNewQuiz(Quiz);
-    console.log(Quiz)
-    console.log(result);
+   console.log(result)
   }
    const addQuestionHandler=()=>{
       dispatch(addNewQuestion());

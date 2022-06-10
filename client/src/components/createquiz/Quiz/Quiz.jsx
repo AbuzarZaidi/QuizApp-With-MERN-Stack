@@ -70,7 +70,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
         <Grid container spacing={1}>
         {ques.options.map((op, j) => {
          
-        return  <QuizAnswers  indexj={j} opt={op} index={index}/>
+        return  <QuizAnswers key={j}  indexj={j} opt={op} index={index}/>
         })}
           {moreOption && <QuizAnswers color="#50A4A4" count="5" key="5" />}
           {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />}
