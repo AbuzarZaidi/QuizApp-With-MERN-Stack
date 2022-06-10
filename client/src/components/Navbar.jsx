@@ -63,8 +63,9 @@ const Search = styled("div")(({ theme }) => ({
 //     },
 //   },
 // }));
+// export default function PrimarySearchAppBar() {
+const Navbar = () => {
 
-export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -179,8 +180,9 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2, display: { xs: "flex", md: "none" } }}
+            onClick={handleMobileMenuOpen}
           >
-            <MenuIcon onClick={handleMobileMenuOpen} />
+            <MenuIcon  />
           </IconButton>
 
           <Search>
@@ -207,10 +209,10 @@ export default function PrimarySearchAppBar() {
               justifyContent: "flex-end",
             }}
           >
-            {pages.map((page) => (
-              <>
-                <Button
-                  key={page}
+            {pages.map((page,ind) => (
+              
+               <Button
+                  key={ind}
                   // onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,
@@ -222,7 +224,7 @@ export default function PrimarySearchAppBar() {
                   to={`/${page === "Home" ? "" : page}`}
                   component={Link}
                 >
-                  {page === "Home" && <HomeOutlinedIcon sx={{ mr: 1 }} />}
+                  {page === "Home" && <HomeOutlinedIcon sx={{ mr: 1 }}  />}
                   {page === "Discover" && (
                     <ExploreOutlinedIcon sx={{ mr: 1 }} />
                   )}
@@ -232,7 +234,7 @@ export default function PrimarySearchAppBar() {
                   )}
                   {page}
                 </Button>
-              </>
+              
             ))}
           </Box>
           <Box sx={{ flexGrow: 1 }} />
@@ -266,3 +268,5 @@ export default function PrimarySearchAppBar() {
     </Box>
   );
 }
+
+export default Navbar

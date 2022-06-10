@@ -41,7 +41,6 @@ const Reports = () => {
             freeSolo
             id="free-solo-2-demo"
             disableClearable
-            // options={top100Films.map((option) => option.title)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -88,7 +87,7 @@ const Reports = () => {
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow
+              <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
