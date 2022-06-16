@@ -1,5 +1,5 @@
 const mongoose =require('mongoose');
-const CreateQuiz=require('../models/createQuiz')
+const CreateQuiz=require('../models/quiz')
 
 const createQuiz=async(req,res,next)=>{
   const newQuiz=new CreateQuiz(req.body);
@@ -12,5 +12,4 @@ const createQuiz=async(req,res,next)=>{
    res.status(409).json({error:error.message})
   }
 }
-
 exports.createQuiz = createQuiz;
