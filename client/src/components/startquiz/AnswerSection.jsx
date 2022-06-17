@@ -17,8 +17,12 @@ import Button from "@mui/material/Button";
 const AnswerSection = (props) => {
   const [selectedColor,setSelectedColor]=useState(props.color)
 const selectHandler=()=>{
-  setSelectedColor('#E7AB79')
+  if(props.checkClick===false){
+    setSelectedColor('#E7AB79')
+  props.checkClickHandler(true,props.index)
+  }
   
+ 
 }
   return (
     <Grid item xs={6}  onClick={selectHandler} >

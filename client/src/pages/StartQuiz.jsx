@@ -34,6 +34,8 @@ window.onbeforeunload = function () {
   }
 };
 const StartQuiz = () => {
+    const[clicked,setClicked]=useState(false);
+    const[correct,setCorrect]=useState(0);
     const quizArray = useSelector((state) => state.set.quiz);
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(quizArray.quizDetail.timeLimit);
@@ -53,6 +55,7 @@ const StartQuiz = () => {
     setTimeout(() => {
       setCurrVal(quizArray.quizQNA[count]);
       setTimer(quizArray.quizDetail.timeLimit);
+      setClicked(false)
     }, 100);}
   };
   if (count <= quizArray.quizQNA.length) {
@@ -63,8 +66,20 @@ const StartQuiz = () => {
         setCount(count + 1);
         setCurrVal(quizArray.quizQNA[count]);
         setTimer(quizArray.quizDetail.timeLimit);
+        setClicked(false)
       }
     }, 1000);
+  }
+  const checkHandler=(val,ind)=>{
+    if(ind===currVal.correctOpt){
+        setCorrect(correct+1)
+        
+       }
+  if(val===true){
+    setClicked(true)
+   
+  }
+  
   }
   return (
     <>
@@ -127,6 +142,8 @@ const StartQuiz = () => {
                     color={value.color}
                     index={ind}
                     key={ind}
+                    checkClick={clicked}
+                    checkClickHandler={checkHandler}
                   />
                 );
               })}
@@ -136,6 +153,7 @@ const StartQuiz = () => {
             <Button variant="contained" onClick={nextQuestionHandler}>
               Next
             </Button>
+            Result:{correct}
           </Box>
         </>
       )}
