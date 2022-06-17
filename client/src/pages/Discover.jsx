@@ -1,7 +1,4 @@
 import React,{useEffect,useState} from "react";
-import { useDispatch } from 'react-redux';
-import { setnHandler} from 
-'../store/startQuiz'
 import QuizCard from "../components/Discover/QuizCard";
 
 import Box from "@mui/material/Box";
@@ -11,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const {readQuiz} =require( "../functions/readQuiz")
 
 const Discover = () => {
-  const dispatch = useDispatch();
+ 
   const [quizArr,setQuizArr]=useState(null);
   const [show,setShow]=useState(false);
   useEffect(() => {
