@@ -1,9 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
+import { useSelector} from "react-redux";
+import AnswerSection from "../components/startquiz/AnswerSection";
+import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-const Input = styled(Paper)(({ theme }) => ({
+import Button from '@mui/material/Button';
+const Question = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -12,7 +16,71 @@ const Input = styled(Paper)(({ theme }) => ({
   width: "70%",
   color: theme.palette.text.secondary,
 }));
+const Answer = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#E22D3B",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  mt: 3,
+  width: "40%",
+  color: theme.palette.text.secondary,
+}));
+
+
 const Home = () => {
+  // const quizArray = useSelector((state) => state.set.quiz);
+  // const [quizes, setQuizes] = useState(quizArray);
+// console.log("success")
+//  console.log(quizes)
+// console.log(1)
+  const quizQna=[
+    {
+      question:"1+1",
+      correctOpt:0,
+      options:[{option:"2",color:"#E22D3B"},{option:"4",color:"#3668CE"},{option:"6",color:"#D89E14"},{option:"1",color:"#40890F"}]
+    },
+    {
+      question:"3+1",
+      correctOpt:1,
+      options:[{option:"2",color:"#E22D3B"},{option:"4",color:"#3668CE"},{option:"6",color:"#D89E14"},{option:"1",color:"#40890F"}]
+    },
+
+    {
+      question:"5+1",
+      correctOpt:2,
+      options:[{option:"2",color:"#E22D3B"},{option:"4",color:"#3668CE"},{option:"6",color:"#D89E14"},{option:"1",color:"#40890F"}]
+    }
+  ]
+  const [count,setCount]=useState(1);
+  const[currVal,setCurrVal]=useState(quizQna[0])
+  const [timer,setTimer]=useState(2);
+ 
+  const nextQuestionHandler=()=>{
+    // console.log('before')
+    // console.log(count)
+    setCount(count + 1)
+    setTimeout(() => {
+    setCurrVal(quizQna[count])
+    }, 100);
+    // console.log('after')
+    // console.log(count)
+    
+  }
+  if(count<=quizQna.length){
+  setTimeout(() => {
+   
+    if(timer>0){
+      setTimer(timer-1)
+    }
+   else if(count<quizQna.length){
+    
+    setCount(count + 1)
+    setCurrVal(quizQna[count])
+    setTimer(2)
+   }
+ 
+    }, 1000);
+  }
   return (
     <>
       <Box
@@ -36,12 +104,12 @@ const Home = () => {
           component="div"
           sx={{ fontWeight: "bold", mt: 2, fontSize: 32 }}
         >
-          23{" "}
+          {timer}{" "}
         </Typography>
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-        <Input>
+        <Question>
           <Typography
             variant="h5"
             gutterBottom
@@ -53,12 +121,23 @@ const Home = () => {
               fontWeight: "bold",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-            explicabo dolor ut soluta laboriosam rem, sapiente maiores sit alias
-            ipsum!
+            {currVal.question}
           </Typography>
-        </Input>
+        </Question>
       </Box>
+      <Box sx={{ flexGrow: 1,mt:4}}>
+      <Grid container spacing={2} sx={{ml:2,mt:4}} >
+       {currVal.options.map((value)=>{ 
+         return <AnswerSection option={value.option} color={value.color}/>
+        })} 
+        
+          
+      </Grid>
+   
+    </Box>
+    <Box sx={{display: "flex", justifyContent: "center", mt: 3 }}>
+    <Button variant="contained" onClick={nextQuestionHandler}>Next</Button>
+    </Box>
     </>
   );
 };
