@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,forwardRef, useImperativeHandle,} from 'react'
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
@@ -13,28 +13,61 @@ import Button from "@mui/material/Button";
     mt: 3,
     width: "90%",
     color: theme.palette.text.secondary,
+    '&:hover': {
+      // cursor: pointer ,
+      width: "92%",
+      cursor: 'pointer'
+   },
+   
   }));
-const AnswerSection = (props) => {
+const AnswerSection = (props)=> {
   const [selectedColor,setSelectedColor]=useState(props.color)
-// if(props.checkClick===true){
-//   setSelectedColor(props.color)
-// }
+const[a,setA]=useState(props.index);
+  
+  // useImperativeHandle(ref, () => ({
+    
+  //   childFunction1(i) {
+  //     console.log(i)
+  //     console.log(props.index)
+  //     if(props.index===i){
+  //       setSelectedColor('#0317fc')
+  //     }
+     
+    //   console.log('click')
+    //   console.log(props.color)
+    //   console.log(props.index)
+    //   if(props.checkClick===false){
+    //     setSelectedColor('#E7AB79')
+    //     // props.checkClickHandler(props.index)
+    //  }
+    //  else if(props.checkClick===true){
+    //     // props.checkClickHandler(props.index)
+      
+    //     setSelectedColor('#0317fc')
+    //  }
+//}
+
+
+  // }));
+
 const selectHandler=()=>{
-  props.checkClickHandler(props.index)
-  // if(props.checkClick===false){
-  //   // setSelectedColor('#E7AB79')
- 
-  // }
-  // else if(props.checkClick===true){
-  //    props.checkClickHandler(props.index)
-  //   // setSelectedColor(props.color)
-  // }
+
+console.log(props.checkClick)
+  if(props.checkClick===true){
+      setSelectedColor('#E7AB79')
+     props.checkClickHandler(props.index)
+  }
+  else if(props.checkClick===false){
+     props.checkClickHandler(props.index)
+      setSelectedColor(props.color)
+  }
 }
   return (
     <Grid item xs={6}  onClick={selectHandler} >
       {/* <Item> */}
     <Box>
-    <Answer sx={{backgroundColor:selectedColor,}}>
+    <Answer sx={{backgroundColor:selectedColor}} >
+    {/* <Answer sx={{backgroundColor:selectedColor}}  > */}
     <Typography
           variant="h6"
           gutterBottom
@@ -45,7 +78,7 @@ const selectHandler=()=>{
             color: "#ffffff",
             fontWeight: "500",
           }}
-          
+         
         >
          {props.option} 
         </Typography>
@@ -55,6 +88,6 @@ const selectHandler=()=>{
     {/* </Item> */}
     </Grid>
   )
-}
+        }
 
 export default AnswerSection

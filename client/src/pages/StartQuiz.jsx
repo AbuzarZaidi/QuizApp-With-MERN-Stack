@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { useSelector } from "react-redux";
 import AnswerSection from "../components/startquiz/AnswerSection";
 import Timer from "../components/startquiz/Timer";
@@ -35,9 +35,10 @@ window.onbeforeunload = function () {
   }
 };
 const StartQuiz = () => {
-    const[clicked,setClicked]=useState(false);
+  const childRef = useRef(null);
+    const[clicked,setClicked]=useState(true);
     const[correct,setCorrect]=useState(0);
-    const [userSelected,setUserSelected]=useState("");
+    const [userSelected,setUserSelected]=useState(undefined);
     const quizArray = useSelector((state) => state.set.quiz);
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(quizArray.quizDetail.timeLimit);
@@ -52,19 +53,26 @@ const StartQuiz = () => {
   }, []);
  
   const nextQuestionHandler = () => {
-    setTimer(quizArray.quizDetail.timeLimit);
-    // setTimer(0);
-    // handler(timer);
-    setTimerSet(true)
-    if(userSelected==currVal.correctOpt){
+    
+    // setClicked(false)
+    setTimeout(() => {
+      //  childRef.current.childFunction1(userSelected);
+      setTimer(quizArray.quizDetail.timeLimit);
    
-      setCorrect(correct+1)
-     }
-    setCount(count + 1);
-    if (count < quizArray.quizQNA.length) {
-      setCurrVal(quizArray.quizQNA[count]);
+      // setTimer(0);
+      // handler(timer);
+      setTimerSet(true)
+      if(userSelected===currVal.correctOpt){
      
-      setClicked(true)}
+        setCorrect(correct+1)
+       }
+      setCount(count + 1);
+      if (count < quizArray.quizQNA.length) {
+        setCurrVal(quizArray.quizQNA[count]);
+       
+        setClicked(true)}
+    },2000);
+  
 
   };
 
@@ -82,7 +90,7 @@ const handler=()=>{
      }
      else if (timer > 0&&timerSet===false) {
         setTimer(timer-1);
-         console.log(timer)
+        //  console.log(timer)
       }
       
       else if (count < quizArray.quizQNA.length) {
@@ -91,7 +99,7 @@ const handler=()=>{
      setTimer(quizArray.quizDetail.timeLimit);
        
         setClicked(true)
-        if(userSelected==currVal.correctOpt){
+        if(userSelected===currVal.correctOpt){
           setCorrect(correct+1)
           
          }
@@ -102,8 +110,20 @@ const handler=()=>{
 handler(timer);
  
   const checkHandler=(ind)=>{
-    // console.log(ind);
+    // setClicked(true)
+    console.log(ind)
     setUserSelected(ind)
+     if(ind=userSelected)
+     {
+
+     }
+     if(clicked===false){
+      setClicked(true)
+     }
+     else if(clicked===true){
+      setClicked(false)
+     }
+    
     // if(ind===currVal.correctOpt){
     //     setCorrect(correct+1)
         
@@ -156,6 +176,7 @@ handler(timer);
                     key={ind}
                     checkClick={clicked}
                     checkClickHandler={checkHandler}
+                    ref={childRef}
                   />
                 );
               })}
