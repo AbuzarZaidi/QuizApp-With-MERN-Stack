@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AnswerSection from "../components/startquiz/AnswerSection";
+import Timer from "../components/startquiz/Timer";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -36,49 +37,83 @@ window.onbeforeunload = function () {
 const StartQuiz = () => {
     const[clicked,setClicked]=useState(false);
     const[correct,setCorrect]=useState(0);
+    const [userSelected,setUserSelected]=useState("");
     const quizArray = useSelector((state) => state.set.quiz);
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(quizArray.quizDetail.timeLimit);
   
   const [count, setCount] = useState(1);
   const [currVal, setCurrVal] = useState(quizArray.quizQNA[0]);
+  const [timerSet,setTimerSet]=useState(false);
   useEffect(() => {
-    // console.log(quizArray.quizDetail.timeLimit)
     setTimeout(() => {
       setShow(true);
     }, 500);
   }, []);
-
+ 
   const nextQuestionHandler = () => {
+    setTimer(quizArray.quizDetail.timeLimit);
+    // setTimer(0);
+    // handler(timer);
+    setTimerSet(true)
+    if(userSelected==currVal.correctOpt){
+   
+      setCorrect(correct+1)
+     }
     setCount(count + 1);
     if (count < quizArray.quizQNA.length) {
-    setTimeout(() => {
       setCurrVal(quizArray.quizQNA[count]);
-      setTimer(quizArray.quizDetail.timeLimit);
-      setClicked(false)
-    }, 100);}
+     
+      setClicked(true)}
+
   };
+
+  
+const handler=()=>{
   if (count <= quizArray.quizQNA.length) {
+  
     setTimeout(() => {
-      if (timer > 0) {
-        setTimer(timer - 1);
-      } else if (count < quizArray.quizQNA.length) {
+     if(timer>0&&timerSet){
+      setTimer(quizArray.quizDetail.timeLimit);
+      setTimeout(() => {
+        setTimerSet(false)
+      }, 200);
+      
+     }
+     else if (timer > 0&&timerSet===false) {
+        setTimer(timer-1);
+         console.log(timer)
+      }
+      
+      else if (count < quizArray.quizQNA.length) {
         setCount(count + 1);
         setCurrVal(quizArray.quizQNA[count]);
-        setTimer(quizArray.quizDetail.timeLimit);
-        setClicked(false)
+     setTimer(quizArray.quizDetail.timeLimit);
+       
+        setClicked(true)
+        if(userSelected==currVal.correctOpt){
+          setCorrect(correct+1)
+          
+         }
       }
     }, 1000);
   }
-  const checkHandler=(val,ind)=>{
-    if(ind===currVal.correctOpt){
-        setCorrect(correct+1)
+}
+handler(timer);
+ 
+  const checkHandler=(ind)=>{
+    // console.log(ind);
+    setUserSelected(ind)
+    // if(ind===currVal.correctOpt){
+    //     setCorrect(correct+1)
         
-       }
-  if(val===true){
-    setClicked(true)
-   
-  }
+    //    }
+  // if(val===true){
+  //   setClicked(true)
+  // }
+  // else if(val===false){
+  //   setClicked(false)
+  // }
   
   }
   return (
@@ -92,30 +127,7 @@ const StartQuiz = () => {
       ) : (
         <>
           {" "}
-          <Box
-            sx={{
-              backgroundColor: "#7b1fa2",
-              color: "#ffffff",
-              width: "100px",
-              height: "100px",
-              borderRadius: "55%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              mt: 2,
-              ml: 1,
-            }}
-          >
-            {" "}
-            <Typography
-              variant="h5"
-              gutterBottom
-              component="div"
-              sx={{ fontWeight: "bold", mt: 2, fontSize: 32 }}
-            >
-              {timer}{" "}
-            </Typography>
-          </Box>
+          <Timer timer={timerSet===true?quizArray.quizDetail.timeLimit:timer}/>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
             <Question>
               <Typography

@@ -27,8 +27,8 @@ export default function QuizCard(props) {
             alt="green iguana"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {props.title}
+            <Typography gutterBottom variant="h6" component="div">
+              {props.title.slice(0, 30)}...
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {props.description}

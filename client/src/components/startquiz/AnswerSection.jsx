@@ -16,13 +16,19 @@ import Button from "@mui/material/Button";
   }));
 const AnswerSection = (props) => {
   const [selectedColor,setSelectedColor]=useState(props.color)
+// if(props.checkClick===true){
+//   setSelectedColor(props.color)
+// }
 const selectHandler=()=>{
-  if(props.checkClick===false){
-    setSelectedColor('#E7AB79')
-  props.checkClickHandler(true,props.index)
-  }
-  
+  props.checkClickHandler(props.index)
+  // if(props.checkClick===false){
+  //   // setSelectedColor('#E7AB79')
  
+  // }
+  // else if(props.checkClick===true){
+  //    props.checkClickHandler(props.index)
+  //   // setSelectedColor(props.color)
+  // }
 }
   return (
     <Grid item xs={6}  onClick={selectHandler} >
