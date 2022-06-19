@@ -53,7 +53,7 @@ const StartQuiz = () => {
   }, []);
  
   const nextQuestionHandler = () => {
-    setClickOption(5)
+    
     // setClicked(false)
     setTimeout(() => {
       //  childRef.current.childFunction1(userSelected);
@@ -71,9 +71,10 @@ const StartQuiz = () => {
         setCurrVal(quizArray.quizQNA[count]);
        
         setClicked(true)}
+        setClickOption(5)
     },500);
   
-
+   
   };
 
   
@@ -110,6 +111,7 @@ const handler=()=>{
 handler(timer);
  
   const checkHandler=(ind)=>{
+    setUserSelected(ind)
     // setClicked(true)
     console.log(ind)
     setClickOption(ind);
