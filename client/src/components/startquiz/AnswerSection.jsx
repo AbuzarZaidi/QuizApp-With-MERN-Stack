@@ -55,7 +55,7 @@ const selectHandler=()=>{
 console.log(props.checkClick)
   // if(props.checkClick===true){
   //     setSelectedColor('#E7AB79')
-  //    props.checkClickHandler(props.index)
+     props.checkClickHandler(props.index)
   // }
   // else if(props.checkClick===false){
   //    props.checkClickHandler(props.index)
