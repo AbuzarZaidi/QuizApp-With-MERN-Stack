@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Modal from '@mui/material/Modal';
+import Divider from '@mui/material/Divider';
 import { Link } from "react-router-dom";
 const Question = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,7 +26,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
   bgcolor: 'background.paper',
   // border: '2px solid #000',
   boxShadow: 24,
@@ -120,14 +121,15 @@ const StartQuiz = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h2" component="h2">
-            Result
+            Result:
           </Typography> 
           <Typography id="modal-modal-description"variant="h4" sx={{ mt: 2 }}>
-          {correct}/{quizArray.quizQNA.length}
+        Congratulations! You have Scored {correct} out of {quizArray.quizQNA.length}.
           </Typography>
+          <Divider />
           <Box sx={{display: "flex", justifyContent: "center",}}>
           <Button variant="contained" to="/discover"
-              component={Link}>Back</Button>
+              component={Link} sx={{ mt: 4 }}>Back</Button>
           </Box>
         </Box>
       </Modal>
