@@ -18,15 +18,7 @@ const Question = styled(Paper)(({ theme }) => ({
   width: "70%",
   color: theme.palette.text.secondary,
 }));
-// const Answer = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#E22D3B",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   mt: 3,
-//   width: "40%",
-//   color: theme.palette.text.secondary,
-// }));
+
 
 window.onbeforeunload = function () {
   if (true) {
@@ -54,13 +46,12 @@ const StartQuiz = () => {
  
   const nextQuestionHandler = () => {
     
-    // setClicked(false)
+
     setTimeout(() => {
-      //  childRef.current.childFunction1(userSelected);
+     
       setTimer(quizArray.quizDetail.timeLimit);
    
-      // setTimer(0);
-      // handler(timer);
+     
       setTimerSet(true)
       if(userSelected===currVal.correctOpt){
      
@@ -91,10 +82,11 @@ const handler=()=>{
      }
      else if (timer > 0&&timerSet===false) {
         setTimer(timer-1);
-        //  console.log(timer)
+      
       }
       
       else if (count < quizArray.quizQNA.length) {
+        setClickOption(5)
         setCount(count + 1);
         setCurrVal(quizArray.quizQNA[count]);
      setTimer(quizArray.quizDetail.timeLimit);
@@ -112,32 +104,8 @@ handler(timer);
  
   const checkHandler=(ind)=>{
     setUserSelected(ind)
-    // setClicked(true)
     console.log(ind)
     setClickOption(ind);
-    // setUserSelected(ind)
-    //  if(ind=userSelected)
-    //  {
-
-    //  }
-    //  if(clicked===false){
-    //   setClicked(true)
-    //  }
-    //  else if(clicked===true){
-    //   setClicked(false)
-    //  }
-    
-    // if(ind===currVal.correctOpt){
-    //     setCorrect(correct+1)
-        
-    //    }
-  // if(val===true){
-  //   setClicked(true)
-  // }
-  // else if(val===false){
-  //   setClicked(false)
-  // }
-  
   }
   return (
     <>
