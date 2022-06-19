@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AnswerSection from "../components/startquiz/AnswerSection";
 import Timer from "../components/startquiz/Timer";
@@ -35,7 +35,6 @@ window.onbeforeunload = function () {
   }
 };
 const StartQuiz = () => {
-  const childRef = useRef(null);
     const[clicked,setClicked]=useState(true);
     const[correct,setCorrect]=useState(0);
     const [userSelected,setUserSelected]=useState(undefined);
@@ -46,6 +45,7 @@ const StartQuiz = () => {
   const [count, setCount] = useState(1);
   const [currVal, setCurrVal] = useState(quizArray.quizQNA[0]);
   const [timerSet,setTimerSet]=useState(false);
+  const[clickOption,setClickOption]=useState(5);
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
@@ -53,7 +53,7 @@ const StartQuiz = () => {
   }, []);
  
   const nextQuestionHandler = () => {
-    
+    setClickOption(5)
     // setClicked(false)
     setTimeout(() => {
       //  childRef.current.childFunction1(userSelected);
@@ -71,7 +71,7 @@ const StartQuiz = () => {
         setCurrVal(quizArray.quizQNA[count]);
        
         setClicked(true)}
-    },2000);
+    },500);
   
 
   };
@@ -112,17 +112,18 @@ handler(timer);
   const checkHandler=(ind)=>{
     // setClicked(true)
     console.log(ind)
-    setUserSelected(ind)
-     if(ind=userSelected)
-     {
+    setClickOption(ind);
+    // setUserSelected(ind)
+    //  if(ind=userSelected)
+    //  {
 
-     }
-     if(clicked===false){
-      setClicked(true)
-     }
-     else if(clicked===true){
-      setClicked(false)
-     }
+    //  }
+    //  if(clicked===false){
+    //   setClicked(true)
+    //  }
+    //  else if(clicked===true){
+    //   setClicked(false)
+    //  }
     
     // if(ind===currVal.correctOpt){
     //     setCorrect(correct+1)
@@ -171,12 +172,12 @@ handler(timer);
                 return (
                   <AnswerSection
                     option={value.option}
-                    color={value.color}
+                  color={value.color} 
                     index={ind}
                     key={ind}
                     checkClick={clicked}
                     checkClickHandler={checkHandler}
-                    ref={childRef}
+                   clickOpt={clickOption}
                   />
                 );
               })}

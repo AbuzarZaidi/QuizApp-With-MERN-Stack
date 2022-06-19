@@ -53,20 +53,21 @@ const[a,setA]=useState(props.index);
 const selectHandler=()=>{
 
 console.log(props.checkClick)
-  if(props.checkClick===true){
-      setSelectedColor('#E7AB79')
-     props.checkClickHandler(props.index)
-  }
-  else if(props.checkClick===false){
-     props.checkClickHandler(props.index)
-      setSelectedColor(props.color)
-  }
+  // if(props.checkClick===true){
+  //     setSelectedColor('#E7AB79')
+  //    props.checkClickHandler(props.index)
+  // }
+  // else if(props.checkClick===false){
+  //    props.checkClickHandler(props.index)
+  //     setSelectedColor(props.color)
+  // }
+  props.checkClickHandler(props.index)
 }
   return (
     <Grid item xs={6}  onClick={selectHandler} >
       {/* <Item> */}
     <Box>
-    <Answer sx={{backgroundColor:selectedColor}} >
+    <Answer sx={ props.clickOpt===props.index?{backgroundColor:'#E7AB79'}:{backgroundColor:props.color}} >
     {/* <Answer sx={{backgroundColor:selectedColor}}  > */}
     <Typography
           variant="h6"
