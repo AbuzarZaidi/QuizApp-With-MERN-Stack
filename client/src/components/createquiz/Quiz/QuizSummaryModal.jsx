@@ -206,8 +206,8 @@ const QuizSummaryModal = () => {
             <MenuItem value={"sports"}>Sports</MenuItem>
             <MenuItem value={"technival"}>Technival</MenuItem>
             <MenuItem value={"programming"}>Programming</MenuItem>
-            <MenuItem value={"generalknowledge"}>General Knowledge</MenuItem>
-            <MenuItem value={"interViewquestions"}>Interview Questions</MenuItem>
+            <MenuItem value={"eneral knowledge"}>General Knowledge</MenuItem>
+            <MenuItem value={"interview questions"}>Interview Questions</MenuItem>
             <MenuItem value={"other"}>other</MenuItem>
           </Select>
         </FormControl>
