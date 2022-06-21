@@ -40,11 +40,27 @@ export default function QuizCard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h5" component="h2">
+        <Typography id="modal-modal-title" variant="h5" component="h2" sx={{display: 'flex',justifyContent: 'center', textTransform: "capitalize",}}>
          Title:{props.title}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Description: {props.description}
+          <Typography id="modal-modal-description" sx={{ mt: 2, textTransform: "capitalize", }}>
+         <b> Description:</b> {props.description}
+          </Typography>
+          <Divider light />
+          <Typography id="modal-modal-description" sx={{ mt: 2, textTransform: "capitalize", }}>
+         <b> Type:</b> {props.quizType}
+          </Typography>
+          <Divider light />
+          <Typography id="modal-modal-description" sx={{ mt: 2, textTransform: "capitalize", }}>
+         <b> TimeLimit:</b> {props.timeLimit}sec
+          </Typography>
+          <Divider light />
+          <Typography id="modal-modal-description" sx={{ mt: 2, textTransform: "capitalize", }}>
+         <b> Visibility:</b> {props.visibility}
+          </Typography>
+          <Divider light />
+          <Typography id="modal-modal-description" sx={{ mt: 2, textTransform: "capitalize", }}>
+         <b> Category:</b> {props.category}
           </Typography>
           <Divider light />
           <Button variant="contained" to="/startquiz" component={Link} sx={{display: 'flex',justifyContent: 'center',mt:3}}onClick={startQuizHandler}>
@@ -62,10 +78,10 @@ export default function QuizCard(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              {props.title.slice(0, 30)}...
+             {props.title.slice(0, 30)}...
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {props.description.slice(0, 50)}...
+             {props.description.slice(0, 50)}...
             </Typography>
           </CardContent>
         </CardActionArea>

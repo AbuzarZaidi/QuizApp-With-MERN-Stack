@@ -209,7 +209,7 @@ const QuizSummaryModal = () => {
                 }}
                 onClick={handleClose}
               >
-                Exit
+                Cancel
               </Button>
               <ButtonHover>
                 <Button
@@ -223,7 +223,7 @@ const QuizSummaryModal = () => {
                   }}
                   onClick={saveInfoHandler}
                 >
-                  Save
+                  Done
                 </Button>
               </ButtonHover>
             </ButtonGroup>

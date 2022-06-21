@@ -31,7 +31,9 @@ const Discover = () => {
       {quizArr.map((ques,i) => {
            return(
             <Grid item xs={4} key={i}>
-             <QuizCard title={ques.quizDetail.title} description={ques.quizDetail.description} quiz={ques} id={ques._id}/>
+             <QuizCard quizType={ques.quizDetail.quizType} 
+timeLimit={ques.quizDetail.timeLimit} title={ques.quizDetail.title} description={ques.quizDetail.description} quiz={ques} id={ques._id} 
+visibility={ques.quizDetail.visibility} category={ques.quizDetail.category}/>
              </Grid>
             )
            })}
