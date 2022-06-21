@@ -1,12 +1,17 @@
-import React,{useState} from "react";
-import { useDispatch,useSelector  } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import {Box,Grid,Checkbox,TextField,Paper } from "../../../utlis/materialComponents"
+import {
+  Box,
+  Grid,
+  Checkbox,
+  TextField,
+  Paper,
+} from "../../../utlis/materialComponents";
 
- import { optionHandler,correctOptionHandler} from "../../../store/quizMcq";
- import { tfOptionHandler,tfCorrectOptionHandler} from "../../../store/truefalse";
-
+import { optionHandler, correctOptionHandler } from "../../../store/quizMcq";
+import { tfCorrectOptionHandler } from "../../../store/truefalse";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -15,26 +20,20 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   fontColor: "white",
 }));
-const QuizAnswers = ({indexj,opt,index}) => {
+const QuizAnswers = ({ indexj, opt, index }) => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
-  const [optionValue,setOptionValue]=useState(opt.option);
-  const optionValHandler=(value,i,j)=>{
-    // console.log(value)
-    // console.log(i)
-    // console.log(j)
-     dispatch(optionHandler({ value, i,j }));
-  }
-  const correctOptHandler=(i,j)=>{
-    if(quizType==='quiz'){
-      dispatch(correctOptionHandler({ i,j }));
+  const [optionValue, setOptionValue] = useState(opt.option);
+  const optionValHandler = (value, i, j) => {
+    dispatch(optionHandler({ value, i, j }));
+  };
+  const correctOptHandler = (i, j) => {
+    if (quizType === "quiz") {
+      dispatch(correctOptionHandler({ i, j }));
+    } else {
+      dispatch(tfCorrectOptionHandler({ i, j }));
     }
-    else{
-      dispatch(tfCorrectOptionHandler({ i,j }));
-    }
-     
-    // console.log("click")
-  }
+  };
   return (
     <Grid item xs={6}>
       <Item>
@@ -57,54 +56,47 @@ const QuizAnswers = ({indexj,opt,index}) => {
           </Item>
           <Item>
             {" "}
-            {quizType==='quiz'&&<TextField
-             onChange={(e) => {
-              setOptionValue(e.target.value);
-            }}
-            onBlur={(e) => {
-              optionValHandler(e.target.value, index,indexj);
-            }}
-            value={optionValue}
-              // fullWidth
-              placeholder={`Add Answer ${indexj+1}`}
-              id="fullWidth"
-              variant="standard"
-              sx={{
-                input: { width: "294px", height: "100px" },
-                pl: 2,
-                display: "flex",
+            {quizType === "quiz" && (
+              <TextField
+                onChange={(e) => {
+                  setOptionValue(e.target.value);
+                }}
+                onBlur={(e) => {
+                  optionValHandler(e.target.value, index, indexj);
+                }}
+                value={optionValue}
+                placeholder={`Add Answer ${indexj + 1}`}
+                id="fullWidth"
+                variant="standard"
+                sx={{
+                  input: { width: "294px", height: "100px" },
+                  pl: 2,
+                  display: "flex",
 
-                justifyContent: "center",
-              }}
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />}
-            {quizType==='trueFalse'&&<TextField
-            //  onChange={(e) => {
-            //   setOptionValue(e.target.value);
-            // }}
-            // onBlur={(e) => {
-            //   optionValHandler(e.target.value, index,indexj);
-            // }}
-             value={opt.color==="#3668CE"?'True':'False'}
-           
-              // fullWidth
-              
-              //  placeholder={opt.color==="#3668CE"?'True':'False'}
-              id="fullWidth"
-              variant="standard"
-              sx={{
-                input: { width: "294px", height: "100px" },
-                pl: 2,
-                display: "flex",
+                  justifyContent: "center",
+                }}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+              />
+            )}
+            {quizType === "trueFalse" && (
+              <TextField
+                value={opt.color === "#3668CE" ? "True" : "False"}
+                id="fullWidth"
+                variant="standard"
+                sx={{
+                  input: { width: "294px", height: "100px" },
+                  pl: 2,
+                  display: "flex",
 
-                justifyContent: "center",
-              }}
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />}
+                  justifyContent: "center",
+                }}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+              />
+            )}
           </Item>
           <Item
             sx={{
@@ -114,10 +106,9 @@ const QuizAnswers = ({indexj,opt,index}) => {
             }}
           >
             <Checkbox
-            onClick={(e) => {
-              correctOptHandler( index,indexj);
-            }}
-            
+              onClick={(e) => {
+                correctOptHandler(index, indexj);
+              }}
               {...label}
               sx={{
                 color: pink[800],

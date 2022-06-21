@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { quesHandler } from "../../store/quizMcq";
-import {tfQuesHandler } from '../../store/truefalse'
+import { tfQuesHandler } from "../../store/truefalse";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Quiz from "./Quiz/Quiz";
-// import TrueFalse from './truefalse/TrueFalse'
 
 import { MDBContainer } from "mdbreact";
 import "./Quiz/style.css";
@@ -17,22 +16,18 @@ const NewQuiz = () => {
   const quizType = useSelector((state) => state.detail.quizType);
   const [quizes, setQuizes] = useState(quizArray);
   useEffect(() => {
-    if(quizType==='quiz'){
+    if (quizType === "quiz") {
       setQuizes(quizArray);
-    }
-    else{
+    } else {
       setQuizes(truefalseArray);
     }
-    
-  }, [quizArray, quizes,quizType,truefalseArray]);
+  }, [quizArray, quizes, quizType, truefalseArray]);
   const questionHandler = (text, i) => {
-    if(quizType==='quiz'){
+    if (quizType === "quiz") {
       dispatch(quesHandler({ text, i }));
-    }
-    else{
+    } else {
       dispatch(tfQuesHandler({ text, i }));
     }
-    
   };
 
   const scrollContainerStyle = { width: "820px", maxHeight: "92vh" };
@@ -55,9 +50,6 @@ const NewQuiz = () => {
                 />
               );
             })}
-            {/* {quizType==='trueFalse'&&quizes.map((ques, i) => {
-             return (<TrueFalse />) 
-            })} */}
           </Box>
         </Container>
       </MDBContainer>

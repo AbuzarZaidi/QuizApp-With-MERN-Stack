@@ -6,13 +6,12 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  // Badge,
+  
   MenuItem,
   Menu,
   MenuIcon,
   AccountCircle,
-  // MailIcon,
-  // NotificationsIcon,
+
   Button,
   HomeOutlinedIcon,
   ExploreOutlinedIcon,

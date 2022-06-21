@@ -1,12 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import {updateTitle,updateDescription,updateVisibility,updateImgSrc} from
 import {
   updateTitle,
   updateDescription,
   updateVisibility,
-  updateCategory
+  updateCategory,
 } from "../../../store/quizSummary";
 import {
   Box,
@@ -21,7 +20,8 @@ import {
   FormControlLabel,
   FormControl,
   ButtonGroup,
-  Paper,Select,
+  Paper,
+  Select,
   InputLabel,
   MenuItem,
 } from "../../../utlis/materialComponents";
@@ -55,28 +55,26 @@ const styles = {
   },
 };
 const QuizSummaryModal = () => {
-  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   //handle data
   const [title, setTitle] = useState("");
-  const[category,setCategory]=useState("");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [visibility, setVisibility] = useState("private");
-  // const [title,setTitle]=useState("")
+
   const dispatch = useDispatch();
   const saveInfoHandler = () => {
     dispatch(updateTitle(title));
     dispatch(updateDescription(description));
     dispatch(updateVisibility(visibility));
-    dispatch(updateCategory(category)); 
-    //  setOpen(false);
+    dispatch(updateCategory(category));
+
     handleClose();
   };
-  const handleChangeCategory= (event) => {
+  const handleChangeCategory = (event) => {
     setCategory(event.target.value);
-   
   };
   return (
     <div>
@@ -108,7 +106,6 @@ const QuizSummaryModal = () => {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={7}>
-                {/* <Item> */}
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" component="h6" gutterBottom>
                     Title
@@ -136,7 +133,6 @@ const QuizSummaryModal = () => {
                     sx={{ width: 300 }}
                   />
                 </Box>
-                {/* </Item> */}
               </Grid>
               <Grid item xs={5}>
                 <Box sx={{ mt: 3 }}>
@@ -192,26 +188,34 @@ const QuizSummaryModal = () => {
                     </RadioGroup>
                   </FormControl>
                   <Box sx={{ minWidth: 120, mb: 2 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-             value={category}
-            label="Category"
-             onChange={handleChangeCategory}
-          >
-            <MenuItem value={"education"}>Education</MenuItem>
-            <MenuItem value={"entertainment"}>Entertainment</MenuItem>
-            <MenuItem value={"sports"}>Sports</MenuItem>
-            <MenuItem value={"technival"}>Technival</MenuItem>
-            <MenuItem value={"programming"}>Programming</MenuItem>
-            <MenuItem value={"eneral knowledge"}>General Knowledge</MenuItem>
-            <MenuItem value={"interview questions"}>Interview Questions</MenuItem>
-            <MenuItem value={"other"}>other</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Category
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={category}
+                        label="Category"
+                        onChange={handleChangeCategory}
+                      >
+                        <MenuItem value={"education"}>Education</MenuItem>
+                        <MenuItem value={"entertainment"}>
+                          Entertainment
+                        </MenuItem>
+                        <MenuItem value={"sports"}>Sports</MenuItem>
+                        <MenuItem value={"technival"}>Technival</MenuItem>
+                        <MenuItem value={"programming"}>Programming</MenuItem>
+                        <MenuItem value={"eneral knowledge"}>
+                          General Knowledge
+                        </MenuItem>
+                        <MenuItem value={"interview questions"}>
+                          Interview Questions
+                        </MenuItem>
+                        <MenuItem value={"other"}>other</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
@@ -219,7 +223,7 @@ const QuizSummaryModal = () => {
           <Box
             sx={{
               display: "flex",
-              // flexDirection: "column",
+
               justifyContent: "center",
               alignItems: "center",
               "& > *": {
@@ -242,7 +246,7 @@ const QuizSummaryModal = () => {
               >
                 Cancel
               </Button>
-              <ButtonHover >
+              <ButtonHover>
                 <Button
                   sx={{
                     fontWeight: "bold",
@@ -252,8 +256,7 @@ const QuizSummaryModal = () => {
                     backgroundColor: "#40890F",
                     color: "white",
                   }}
-                  onClick={saveInfoHandler }
-                 
+                  onClick={saveInfoHandler}
                 >
                   Done
                 </Button>

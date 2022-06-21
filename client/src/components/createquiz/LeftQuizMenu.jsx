@@ -1,11 +1,10 @@
 import * as React from "react";
-// import {useEffect} from "react"
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
- import {  useSelector,useDispatch  } from 'react-redux';
- import {addNewQuestion} from '../../store/quizMcq'
- import {tfAddNewQuestion} from '../../store/truefalse'
+import { useSelector, useDispatch } from "react-redux";
+import { addNewQuestion } from "../../store/quizMcq";
+import { tfAddNewQuestion } from "../../store/truefalse";
 import { styled } from "@mui/material/styles";
 const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -33,9 +32,6 @@ function Item(props) {
 }
 
 Item.propTypes = {
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
@@ -45,7 +41,7 @@ Item.propTypes = {
   ]),
 };
 
- const LeftQuizMenu = () => {
+const LeftQuizMenu = () => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
@@ -55,45 +51,36 @@ Item.propTypes = {
   const category = useSelector((state) => state.detail.category);
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
-  const saveInfoHandler=async()=>{
-    let quiz=[];
-    if(quizType==="quiz"){
-       quiz=quizArray;
+  const saveInfoHandler = async () => {
+    let quiz = [];
+    if (quizType === "quiz") {
+      quiz = quizArray;
+    } else {
+      quiz = truefalseArray;
     }
-    else{
-quiz=truefalseArray;
-    }
-    const newQuiz={
+    const newQuiz = {
       quizType,
       timeLimit,
       title,
       description,
       visibility,
-      category
-    }
-    const Quiz={
-      quizDetail:newQuiz,
-      quizQNA:quiz,
-    }
+      category,
+    };
+    const Quiz = {
+      quizDetail: newQuiz,
+      quizQNA: quiz,
+    };
     const result = await createNewQuiz(Quiz);
-   console.log(result)
-  }
-   const addQuestionHandler=()=>{
-    if(quizType==='quiz'){
+    console.log(result);
+  };
+  const addQuestionHandler = () => {
+    if (quizType === "quiz") {
       dispatch(addNewQuestion());
-    }
-    else{
+    } else {
       dispatch(tfAddNewQuestion());
     }
-     
-    }
-  //  useEffect(() => {
-  //   const addQuestionHandler=()=>{
-  //     dispatch(addNewQuestion());
-  //   }
-  //  }, [addQuestionHandler])
-   
- 
+  };
+
   return (
     <>
       <div style={{ width: "100%", height: 360 }}>
@@ -108,7 +95,7 @@ quiz=truefalseArray;
           <Item sx={{ gridColumn: "1", gridRow: "span 3" }}>
             <QuizSummaryModal />
             <Button
-            onClick={addQuestionHandler}
+              onClick={addQuestionHandler}
               variant="contained"
               sx={{
                 fontWeight: "bold",
@@ -121,7 +108,7 @@ quiz=truefalseArray;
               Add Question
             </Button>
           </Item>
-          {/* The second non-visible row has height of 40px */}
+
           <Item sx={{ gridColumn: "1", gridRow: "4/ 5" }}>
             <Box
               sx={{
@@ -149,7 +136,7 @@ quiz=truefalseArray;
                 </Button>
                 <ButtonHover>
                   <Button
-                  onClick={saveInfoHandler}
+                    onClick={saveInfoHandler}
                     sx={{
                       fontWeight: "bold",
                       textTransform: "capitalize",

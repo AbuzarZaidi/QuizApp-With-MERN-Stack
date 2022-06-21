@@ -1,7 +1,10 @@
 import React, { useState } from "react";
- import { useDispatch ,useSelector  } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import QuizAnswers from "./QuizAnswers";
-import {addMoreOptionHandler,removeMoreOptionHandler } from "../../../store/quizMcq";
+import {
+  addMoreOptionHandler,
+  removeMoreOptionHandler,
+} from "../../../store/quizMcq";
 import {
   TextField,
   Box,
@@ -21,13 +24,12 @@ const Quiz = ({ ques, index, questionHandler }) => {
   const moreOptionHandler = () => {
     if (moreOption === false) {
       setMoreOption(true);
-      dispatch(addMoreOptionHandler ({ index}));
+      dispatch(addMoreOptionHandler({ index }));
       setMoreOptionText("Remove addition answers");
-      // console.log(ques)
     } else {
       setMoreOption(false);
-      dispatch(removeMoreOptionHandler({ index}));
-      
+      dispatch(removeMoreOptionHandler({ index }));
+
       setMoreOptionText("Add more answers");
     }
   };
@@ -37,7 +39,6 @@ const Quiz = ({ ques, index, questionHandler }) => {
       <Box
         component="form"
         sx={{
-          // width: 500,
           maxWidth: "98%",
           bgcolor: "#fff",
           mt: 6,
@@ -47,7 +48,6 @@ const Quiz = ({ ques, index, questionHandler }) => {
         noValidate
         autoComplete="off"
       >
-        {/* <Typography> */}
         <TextField
           value={quesValue}
           onBlur={(e) => {
@@ -67,55 +67,54 @@ const Quiz = ({ ques, index, questionHandler }) => {
             p: 1,
             borderRadius: "40px",
             input: { textAlign: "center", fontSize: "20px" },
-           
           }}
         />
-        {/* </Typography> */}
       </Box>
 
-      <Box sx={{ flexGrow: 1, mt: 6, mr: 2 ,}}>
-        <Grid container spacing={1} sx={{mb:5}}>
-        {ques.options.map((op, j) => {
-         
-        return  <QuizAnswers key={j}  indexj={j} opt={op} index={index}/>
-        })}
-          {/* {moreOption && <QuizAnswers color="#50A4A4" count="5" key="5" />} */}
-          {/* {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />} */}
+      <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
+        <Grid container spacing={1} sx={{ mb: 5 }}>
+          {ques.options.map((op, j) => {
+            return <QuizAnswers key={j} indexj={j} opt={op} index={index} />;
+          })}
         </Grid>
 
-       {quizType==='quiz'&& <><Button
-          variant="outlined"
-          onClick={moreOptionHandler}
-          sx={{
-            fontWeight: "bold",
-            textTransform: "capitalize",
-            px: 3,
-             mt: 5,
-            mb: 2,
-            mr: 3,
-            color: "#3E8282 ",
-          }}
-        >
-          {" "}
-          <StarsRoundedIcon />
-          {moreOptionText}
-        </Button> 
-       
-        <Button
-          variant="outlined"
-          sx={{
-            fontWeight: "bold",
-            textTransform: "capitalize",
-            px: 3,
-            mt: 5,
-            mb: 2,
-            color: "#A13333 ",
-          }}
-        >
-          {" "}
-          <DeleteOutlineOutlinedIcon />
-          Delete
-        </Button></>}
+        {quizType === "quiz" && (
+          <>
+            <Button
+              variant="outlined"
+              onClick={moreOptionHandler}
+              sx={{
+                fontWeight: "bold",
+                textTransform: "capitalize",
+                px: 3,
+                mt: 5,
+                mb: 2,
+                mr: 3,
+                color: "#3E8282 ",
+              }}
+            >
+              {" "}
+              <StarsRoundedIcon />
+              {moreOptionText}
+            </Button>
+
+            <Button
+              variant="outlined"
+              sx={{
+                fontWeight: "bold",
+                textTransform: "capitalize",
+                px: 3,
+                mt: 5,
+                mb: 2,
+                color: "#A13333 ",
+              }}
+            >
+              {" "}
+              <DeleteOutlineOutlinedIcon />
+              Delete
+            </Button>
+          </>
+        )}
         <Divider />
       </Box>
     </>

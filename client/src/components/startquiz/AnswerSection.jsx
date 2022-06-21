@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 const Answer = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#E22D3B",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
@@ -19,7 +18,7 @@ const Answer = styled(Paper)(({ theme }) => ({
   width: "90%",
   color: theme.palette.text.secondary,
   "&:hover": {
-    // cursor: pointer ,
+
     width: "92%",
     cursor: "pointer",
   },
@@ -53,7 +52,7 @@ const AnswerSection = (props) => {
           </Typography>
         </Answer>
       </Box>
-      {/* </Item> */}
+      
     </Grid>
   );
 };

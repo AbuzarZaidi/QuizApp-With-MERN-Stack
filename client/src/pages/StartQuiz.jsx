@@ -28,7 +28,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 800,
   bgcolor: 'background.paper',
-  // border: '2px solid #000',
+
   boxShadow: 24,
   p: 4,
 };
@@ -40,8 +40,7 @@ window.onbeforeunload = function () {
 };
 const StartQuiz = () => {
   const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+
   const [clicked, setClicked] = useState(true);
   const [correct, setCorrect] = useState(0);
   const [userSelected, setUserSelected] = useState(undefined);
@@ -115,7 +114,7 @@ const StartQuiz = () => {
     <>
  <Modal
         open={open}
-        // onClose={handleClose}
+        
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

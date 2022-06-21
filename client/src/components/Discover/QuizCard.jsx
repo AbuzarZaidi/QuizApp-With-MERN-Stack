@@ -90,9 +90,7 @@ export default function QuizCard(props) {
           Start Quiz
         </Button>
         </Box>
-        {/* <Button variant="contained" to="/startquiz" component={Link} sx={{display: 'flex',justifyContent: 'center',}}onClick={startQuizHandler}>
-          Start Quiz
-        </Button> */}
+      
       </Card>
     </>
   );
