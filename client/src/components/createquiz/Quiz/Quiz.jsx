@@ -40,7 +40,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
           maxWidth: "98%",
           bgcolor: "#fff",
           mt: 6,
-
+          boxShadow: 3,
           borderRadius: 2,
         }}
         noValidate
@@ -66,6 +66,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
             p: 1,
             borderRadius: "40px",
             input: { textAlign: "center", fontSize: "20px" },
+           
           }}
         />
         {/* </Typography> */}
