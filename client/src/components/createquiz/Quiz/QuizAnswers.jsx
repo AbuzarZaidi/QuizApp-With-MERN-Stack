@@ -1,10 +1,12 @@
 import React,{useState} from "react";
-import { useDispatch  } from 'react-redux';
+import { useDispatch,useSelector  } from 'react-redux';
 import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import {Box,Grid,Checkbox,TextField,Paper } from "../../../utlis/materialComponents"
 
  import { optionHandler,correctOptionHandler} from "../../../store/quizMcq";
+ import { tfOptionHandler,tfCorrectOptionHandler} from "../../../store/truefalse";
+
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -15,6 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const QuizAnswers = ({indexj,opt,index}) => {
   const dispatch = useDispatch();
+  const quizType = useSelector((state) => state.detail.quizType);
   const [optionValue,setOptionValue]=useState(opt.option);
   const optionValHandler=(value,i,j)=>{
     // console.log(value)
@@ -23,7 +26,13 @@ const QuizAnswers = ({indexj,opt,index}) => {
      dispatch(optionHandler({ value, i,j }));
   }
   const correctOptHandler=(i,j)=>{
-     dispatch(correctOptionHandler({ i,j }));
+    if(quizType==='quiz'){
+      dispatch(correctOptionHandler({ i,j }));
+    }
+    else{
+      dispatch(tfCorrectOptionHandler({ i,j }));
+    }
+     
     // console.log("click")
   }
   return (
@@ -48,7 +57,7 @@ const QuizAnswers = ({indexj,opt,index}) => {
           </Item>
           <Item>
             {" "}
-            <TextField
+            {quizType==='quiz'&&<TextField
              onChange={(e) => {
               setOptionValue(e.target.value);
             }}
@@ -70,7 +79,32 @@ const QuizAnswers = ({indexj,opt,index}) => {
               InputProps={{
                 disableUnderline: true,
               }}
-            />
+            />}
+            {quizType==='trueFalse'&&<TextField
+            //  onChange={(e) => {
+            //   setOptionValue(e.target.value);
+            // }}
+            // onBlur={(e) => {
+            //   optionValHandler(e.target.value, index,indexj);
+            // }}
+             value={opt.color==="#3668CE"?'True':'False'}
+           
+              // fullWidth
+              
+              //  placeholder={opt.color==="#3668CE"?'True':'False'}
+              id="fullWidth"
+              variant="standard"
+              sx={{
+                input: { width: "294px", height: "100px" },
+                pl: 2,
+                display: "flex",
+
+                justifyContent: "center",
+              }}
+              InputProps={{
+                disableUnderline: true,
+              }}
+            />}
           </Item>
           <Item
             sx={{

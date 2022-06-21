@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
  import {  useSelector,useDispatch  } from 'react-redux';
  import {addNewQuestion} from '../../store/quizMcq'
+ import {tfAddNewQuestion} from '../../store/truefalse'
 import { styled } from "@mui/material/styles";
 const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -53,8 +54,15 @@ Item.propTypes = {
   const visibility = useSelector((state) => state.detail.visibility);
   const category = useSelector((state) => state.detail.category);
   const quizArray = useSelector((state) => state.mcq.quizQna);
+  const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler=async()=>{
-    
+    let quiz=[];
+    if(quizType==="quiz"){
+       quiz=quizArray;
+    }
+    else{
+quiz=truefalseArray;
+    }
     const newQuiz={
       quizType,
       timeLimit,
@@ -65,13 +73,19 @@ Item.propTypes = {
     }
     const Quiz={
       quizDetail:newQuiz,
-      quizQNA:quizArray,
+      quizQNA:quiz,
     }
     const result = await createNewQuiz(Quiz);
    console.log(result)
   }
    const addQuestionHandler=()=>{
+    if(quizType==='quiz'){
       dispatch(addNewQuestion());
+    }
+    else{
+      dispatch(tfAddNewQuestion());
+    }
+     
     }
   //  useEffect(() => {
   //   const addQuestionHandler=()=>{

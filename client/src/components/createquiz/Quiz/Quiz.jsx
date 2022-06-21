@@ -1,5 +1,5 @@
 import React, { useState } from "react";
- import { useDispatch  } from 'react-redux';
+ import { useDispatch ,useSelector  } from 'react-redux';
 import QuizAnswers from "./QuizAnswers";
 import {addMoreOptionHandler,removeMoreOptionHandler } from "../../../store/quizMcq";
 import {
@@ -14,6 +14,7 @@ import {
 
 const Quiz = ({ ques, index, questionHandler }) => {
   const dispatch = useDispatch();
+  const quizType = useSelector((state) => state.detail.quizType);
   const [moreOption, setMoreOption] = useState(false);
   const [moreOptionText, setMoreOptionText] = useState("Add more answers");
   const [quesValue, setQuesValue] = useState(ques.question);
@@ -72,8 +73,8 @@ const Quiz = ({ ques, index, questionHandler }) => {
         {/* </Typography> */}
       </Box>
 
-      <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
-        <Grid container spacing={1}>
+      <Box sx={{ flexGrow: 1, mt: 6, mr: 2 ,}}>
+        <Grid container spacing={1} sx={{mb:5}}>
         {ques.options.map((op, j) => {
          
         return  <QuizAnswers key={j}  indexj={j} opt={op} index={index}/>
@@ -82,14 +83,14 @@ const Quiz = ({ ques, index, questionHandler }) => {
           {/* {moreOption && <QuizAnswers color="#864CBF" count="6" key="6" />} */}
         </Grid>
 
-        <Button
+       {quizType==='quiz'&& <><Button
           variant="outlined"
           onClick={moreOptionHandler}
           sx={{
             fontWeight: "bold",
             textTransform: "capitalize",
             px: 3,
-            mt: 5,
+             mt: 5,
             mb: 2,
             mr: 3,
             color: "#3E8282 ",
@@ -98,7 +99,8 @@ const Quiz = ({ ques, index, questionHandler }) => {
           {" "}
           <StarsRoundedIcon />
           {moreOptionText}
-        </Button>
+        </Button> 
+       
         <Button
           variant="outlined"
           sx={{
@@ -113,7 +115,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
           {" "}
           <DeleteOutlineOutlinedIcon />
           Delete
-        </Button>
+        </Button></>}
         <Divider />
       </Box>
     </>
