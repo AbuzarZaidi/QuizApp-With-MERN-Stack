@@ -51,6 +51,7 @@ Item.propTypes = {
   const title = useSelector((state) => state.detail.title);
   const description = useSelector((state) => state.detail.description);
   const visibility = useSelector((state) => state.detail.visibility);
+  const category = useSelector((state) => state.detail.category);
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const saveInfoHandler=async()=>{
     
@@ -59,7 +60,8 @@ Item.propTypes = {
       timeLimit,
       title,
       description,
-      visibility
+      visibility,
+      category
     }
     const Quiz={
       quizDetail:newQuiz,

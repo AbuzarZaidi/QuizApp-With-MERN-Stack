@@ -5,7 +5,8 @@ timeLimit: 0,
 title: "",
 description: "",
 visibility: "",
-imgSrc: ""};
+imgSrc: "",
+category:""};
 const quizDetailSlice = createSlice({
   name: "QuizDetail",
   initialState: initialCounterState,
@@ -25,13 +26,16 @@ const quizDetailSlice = createSlice({
     updateVisibility(state, action) {
       state.visibility = action.payload;
     },
+    updateCategory(state, action) {
+      state.category = action.payload;
+    },
     updateImgSrc(state, action) {
       state.imgSrc = action.payload;
     } 
   },
 });
 
-export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc } = quizDetailSlice.actions
+export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory } = quizDetailSlice.actions
 export default quizDetailSlice.reducer;
 
 
