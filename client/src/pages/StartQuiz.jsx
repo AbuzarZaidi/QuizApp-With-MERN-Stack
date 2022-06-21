@@ -142,6 +142,12 @@ const StartQuiz = () => {
       ) : (
         <>
           {" "}
+          <Box sx={{ display: "flex", justifyContent: 'flex-end', mt: 3,mr:2, }}>
+            <Button variant="contained" onClick={nextQuestionHandler} sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5}}>
+             {clickOption===5?'skip':'Next'} 
+            </Button>
+          
+          </Box>
           <Timer
             timer={timerSet === true ? quizArray.quizDetail.timeLimit : timer}
           />
@@ -179,12 +185,7 @@ const StartQuiz = () => {
               })}
             </Grid>
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-            <Button variant="contained" onClick={nextQuestionHandler}>
-              Next
-            </Button>
           
-          </Box>
         </>
       )}
     </>
