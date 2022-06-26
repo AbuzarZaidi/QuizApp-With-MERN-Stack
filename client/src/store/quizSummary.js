@@ -31,11 +31,20 @@ const quizDetailSlice = createSlice({
     },
     updateImgSrc(state, action) {
       state.imgSrc = action.payload;
-    } 
+    } ,
+   resetDetailHandlers(state){
+    console.log("quiz Summary")
+  state.timeLimit= 0;
+  state.title= "";
+  state.description= "";
+  state.visibility= "";
+  state.imgSrc= "";
+  state.category="";
+}
   },
 });
 
-export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory } = quizDetailSlice.actions
+export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers } = quizDetailSlice.actions
 export default quizDetailSlice.reducer;
 
 

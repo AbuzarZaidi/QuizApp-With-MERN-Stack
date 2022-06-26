@@ -1,4 +1,6 @@
 import * as React from "react";
+import SignUp from "./authpages/SignUp";
+import Login from "./authpages/Login";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -6,7 +8,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  
   MenuItem,
   Menu,
   MenuIcon,
@@ -18,6 +19,7 @@ import {
   ListOutlinedIcon,
   LeaderboardOutlinedIcon,
   QuizOutlinedIcon,
+  Modal
 } from "../utlis/materialComponents";
 import { styled, alpha } from "@mui/material/styles";
 import Logo from "../logo1.png";
@@ -64,13 +66,18 @@ const Search = styled("div")(({ theme }) => ({
 // }));
 // export default function PrimarySearchAppBar() {
 const Navbar = () => {
-
+const [isLogin,setIsLogin]=React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [signUpOpen, setSignUpOpen] = React.useState(false);
+  const [loginOpen, setLoginOpen] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -167,6 +174,26 @@ const Navbar = () => {
   );
 
   return (
+    <>
+    <div>
+      {/* <Button onClick={handleSignUpOpen}>Open modal</Button> */}
+      <Modal
+        open={signUpOpen}
+        onClose={handleSignUpClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+       <SignUp openLogin={handleLoginOpen } closeSignup={handleSignUpClose}/>
+      </Modal>
+      <Modal
+        open={loginOpen}
+        onClose={handleLoginClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose}/>
+      </Modal>
+    </div>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
@@ -238,7 +265,7 @@ const Navbar = () => {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Button
+          {isLogin&&  <Button
               variant="contained"
               sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5 }}
               to="/createquiz"
@@ -246,8 +273,29 @@ const Navbar = () => {
             >
               <QuizOutlinedIcon />
               Create
-            </Button>
-
+            </Button>}
+            {!isLogin&&  <Button
+            onClick={handleSignUpOpen}
+              variant="contained"
+              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5, backgroundColor:"green",height:"40px",mt:2}}
+              
+            >
+              Sign up
+            </Button>}
+            <Button
+                       onClick={handleLoginOpen }
+                 
+                  sx={{
+                    my: 2,
+                    mr: 2,
+                    color: "#004d40",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+               
+                  }}
+                  to='/'
+                  component={Link}
+                >Login</Button>
             <IconButton
               size="large"
               edge="end"
@@ -265,6 +313,7 @@ const Navbar = () => {
       {renderMobileMenu}
       {renderMenu}
     </Box>
+    </>
   );
 }
 

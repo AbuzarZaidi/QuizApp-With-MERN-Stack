@@ -48,6 +48,20 @@ const quizMcqSlice = createSlice({
     },
     removeMoreOptionHandler(state,action){
       state.quizQna[action.payload.index].options.splice(4, 2)
+    },
+    resetQuizHandler(state){
+      state.quizQna=[
+        {
+          question: "",
+          correctOpt: "",
+          options: [
+            { option: "", color: "#E22D3B" },
+            { option: "", color: "#3668CE" },
+            { option: "", color: "#D89E14" },
+            { option: "", color: "#40890F" },
+          ],
+        },
+      ]
     }
   },
 });
@@ -58,6 +72,7 @@ export const {
   optionHandler,
   correctOptionHandler,
   addMoreOptionHandler,
-  removeMoreOptionHandler
+  removeMoreOptionHandler,
+  resetQuizHandler
 } = quizMcqSlice.actions;
 export default quizMcqSlice.reducer;

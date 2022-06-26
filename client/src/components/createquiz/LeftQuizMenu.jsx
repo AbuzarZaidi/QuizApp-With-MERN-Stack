@@ -1,10 +1,12 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
 import { useSelector, useDispatch } from "react-redux";
-import { addNewQuestion } from "../../store/quizMcq";
-import { tfAddNewQuestion } from "../../store/truefalse";
+import { addNewQuestion,resetQuizHandler } from "../../store/quizMcq";
+import { resetDetailHandlers} from "../../store/quizSummary";
+import { tfAddNewQuestion,tfResetHandler } from "../../store/truefalse";
 import { styled } from "@mui/material/styles";
 const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -70,8 +72,12 @@ const LeftQuizMenu = () => {
       quizDetail: newQuiz,
       quizQNA: quiz,
     };
+    dispatch(tfResetHandler());
+    dispatch(resetDetailHandlers());
+    dispatch(resetQuizHandler());
     const result = await createNewQuiz(Quiz);
     console.log(result);
+   
   };
   const addQuestionHandler = () => {
     if (quizType === "quiz") {
@@ -137,6 +143,8 @@ const LeftQuizMenu = () => {
                 <ButtonHover>
                   <Button
                     onClick={saveInfoHandler}
+                    to="/"
+              component={Link}
                     sx={{
                       fontWeight: "bold",
                       textTransform: "capitalize",
