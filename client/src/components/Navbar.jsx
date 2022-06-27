@@ -16,14 +16,12 @@ import {
   Menu,
   MenuIcon,
   AccountCircle,
-
   Button,
   HomeOutlinedIcon,
   ExploreOutlinedIcon,
   ListOutlinedIcon,
   LeaderboardOutlinedIcon,
   QuizOutlinedIcon,
-  Modal
 } from "../utlis/materialComponents";
 import { styled, alpha } from "@mui/material/styles";
 import Logo from "../logo1.png";
@@ -186,22 +184,12 @@ const Navbar = () => {
     <>
     <div>
       {/* <Button onClick={handleSignUpOpen}>Open modal</Button> */}
-      <Modal
-        open={signUpOpen}
-        onClose={handleSignUpClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-       <SignUp openLogin={handleLoginOpen } closeSignup={handleSignUpClose}/>
-      </Modal>
-      <Modal
-        open={loginOpen}
-        onClose={handleLoginClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose} />
-      </Modal>
+     
+       <SignUp openLogin={handleLoginOpen } closeSignup={handleSignUpClose} openSignup={signUpOpen} handleClose={handleSignUpClose}/>
+      
+     
+       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose}  openLogin={loginOpen} handleClose={handleLoginClose}/>
+    
     </div>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar

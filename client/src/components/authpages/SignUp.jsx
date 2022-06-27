@@ -4,6 +4,7 @@ import {
     Typography,
     TextField,   
     Button,
+    Modal
   } from "../../utlis/materialComponents";
   const { signup } = require("../../functions/users");
   
@@ -33,6 +34,12 @@ password
     props.closeSignup()
   }
   return (
+    <Modal
+    open={props.openSignup}
+    onClose={props.handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
     <Box sx={style}>
           <Typography id="modal-modal-title" variant="h4" component="h4" sx={{display: 'flex',justifyContent: 'center',mb:4}}>
            Create an account
@@ -63,6 +70,7 @@ password
       </Box>
       
         </Box>
+        </Modal>
   )
 }
 

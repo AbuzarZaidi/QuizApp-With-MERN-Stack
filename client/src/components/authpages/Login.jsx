@@ -8,6 +8,7 @@ import {
     Typography,
     TextField,   
     Button,
+    Modal
   } from "../../utlis/materialComponents";
   const {login}=require("../../functions/users")
   const style = {
@@ -41,6 +42,12 @@ const Login = (props) => {
       props.closeLogin()
   }
   return (
+    <Modal
+    open={props.openLogin}
+    onClose={props.handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
     <Box sx={style}>
     <Typography id="modal-modal-title" variant="h4" component="h4" sx={{display: 'flex',justifyContent: 'center',mb:4}}>
      Log In
@@ -64,6 +71,7 @@ const Login = (props) => {
 </Box>
 
   </Box>
+  </Modal>
   )
 }
 
