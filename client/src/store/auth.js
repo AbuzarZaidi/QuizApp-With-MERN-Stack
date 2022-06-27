@@ -11,10 +11,14 @@ const authSlice = createSlice({
           setIdHandler(state, action) {
             state.id=action.payload;
           },
-
+setlogoutHandler(state){
+  state.token="";
+  state.id="";
+  state.isLogin=false;
+}
     }
 })
 export const {
-    setTokenHandler, setIdHandler
+    setTokenHandler, setIdHandler,setlogoutHandler
   } = authSlice.actions;
 export default authSlice.reducer;

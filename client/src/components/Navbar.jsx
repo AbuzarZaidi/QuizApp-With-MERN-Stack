@@ -1,8 +1,11 @@
 import * as React from "react";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
 import { Link } from "react-router-dom";
+import {
+  setlogoutHandler
+} from "../store/auth";
 import {
   AppBar,
   Box,
@@ -67,7 +70,7 @@ const Search = styled("div")(({ theme }) => ({
 // }));
 // export default function PrimarySearchAppBar() {
 const Navbar = () => {
-  // const isLogin = useSelector((state) => state.authData.token);
+  const dispatch = useDispatch();
   const isLogin= useSelector((state) => state.authData.isLogin);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -80,6 +83,10 @@ const Navbar = () => {
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+  const handleLogout=()=>{
+  localStorage.removeItem('userData')
+  dispatch(setlogoutHandler());
+  }
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -298,6 +305,20 @@ const Navbar = () => {
                   to='/'
                   component={Link}
                 >Login</Button>}
+                {isLogin&& <Button
+                       onClick={handleLogout}
+                 
+                  sx={{
+                    my: 2,
+                    mr: 2,
+                    color: "#004d40",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+               
+                  }}
+                  to='/'
+                  component={Link}
+                >Logout</Button>}
             <IconButton
               size="large"
               edge="end"
