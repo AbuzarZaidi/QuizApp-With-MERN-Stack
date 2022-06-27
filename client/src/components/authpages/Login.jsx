@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+import { useDispatch } from "react-redux";
+import {
+  setTokenHandler, setIdHandler
+} from "../../store/auth";
 import {
     Box,
     Typography,
@@ -18,17 +22,23 @@ import {
     p: 4,
   };
 const Login = (props) => {
+  const dispatch = useDispatch();
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
   const userLoginHandler=async()=>{
     const user={
       email,
       password
-      }
+    }
       console.log("page")
       console.log(user);
       const result = await login(user);
+      dispatch(setTokenHandler(result.token));
+      dispatch(setIdHandler(result.userId));
+      localStorage.setItem('userData',JSON.stringify({token:result.token,userId:result.userId}))
+      console.log("Checkit")
       console.log(result)
+      props.closeLogin()
   }
   return (
     <Box sx={style}>

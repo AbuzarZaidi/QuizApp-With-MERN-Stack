@@ -30,6 +30,7 @@ password
 }
     const result = await signup(user);
     console.log(result)
+    props.closeSignup()
   }
   return (
     <Box sx={style}>

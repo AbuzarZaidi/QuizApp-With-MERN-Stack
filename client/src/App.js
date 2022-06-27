@@ -1,4 +1,10 @@
+import React,{useEffect} from 'react'
+import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { useSelector} from "react-redux";
+import {
+  setTokenHandler, setIdHandler
+} from "./store/auth";
 import Navbar from './components/Navbar'
 import CreateQuiz from './pages/CreateQuiz';
 import Home from './pages/Home';
@@ -8,12 +14,23 @@ import Reports from './pages/Reports';
 import StartQuiz from "./pages/StartQuiz";
 // import Footer from './components/Footer';
 function App() {
+  const dispatch = useDispatch();
+  const isLogin= useSelector((state) => state.authData.isLogin);
+  useEffect(() => {
+    const userData=JSON.parse(localStorage.getItem('userData'))
+    if(userData&&userData.token){
+      dispatch(setTokenHandler(userData.token));
+      dispatch(setIdHandler(userData.userId));
+    }
+   
+  }, [dispatch ])
+  
   return (
     <div className="App">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/createquiz" element={<CreateQuiz/>} />
+       { isLogin&& <Route path="/createquiz" element={<CreateQuiz/>} />}
         <Route path="/discover" element={<Discover/>} />
         <Route path="/library" element={<Library/>} />
         <Route path="/reports" element={<Reports/>} />

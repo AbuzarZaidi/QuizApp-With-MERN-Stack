@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector} from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
 import { Link } from "react-router-dom";
@@ -66,7 +67,8 @@ const Search = styled("div")(({ theme }) => ({
 // }));
 // export default function PrimarySearchAppBar() {
 const Navbar = () => {
-const [isLogin,setIsLogin]=React.useState(false);
+  // const isLogin = useSelector((state) => state.authData.token);
+  const isLogin= useSelector((state) => state.authData.isLogin);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [signUpOpen, setSignUpOpen] = React.useState(false);
@@ -191,7 +193,7 @@ const [isLogin,setIsLogin]=React.useState(false);
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose}/>
+       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose} />
       </Modal>
     </div>
     <Box sx={{ flexGrow: 1 }}>
@@ -282,7 +284,7 @@ const [isLogin,setIsLogin]=React.useState(false);
             >
               Sign up
             </Button>}
-            <Button
+            {!isLogin&& <Button
                        onClick={handleLoginOpen }
                  
                   sx={{
@@ -295,7 +297,7 @@ const [isLogin,setIsLogin]=React.useState(false);
                   }}
                   to='/'
                   component={Link}
-                >Login</Button>
+                >Login</Button>}
             <IconButton
               size="large"
               edge="end"
