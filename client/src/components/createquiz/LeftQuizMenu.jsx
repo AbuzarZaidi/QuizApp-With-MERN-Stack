@@ -152,6 +152,10 @@ const LeftQuizMenu = () => {
 
                       backgroundColor: "#40890F",
                       color: "white",
+                      '&:hover': {
+                        backgroundColor: '#669900',
+                        color:'#ffffff',
+                    }
                     }}
                   >
                     Save
