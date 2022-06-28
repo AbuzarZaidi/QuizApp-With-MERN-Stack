@@ -18,12 +18,15 @@ function App() {
   const isLogin= useSelector((state) => state.authData.isLogin);
   useEffect(() => {
     const userData=JSON.parse(localStorage.getItem('userData'))
-    if(userData&&userData.token){
+    if(userData&&userData.token&&new Date(userData.expiration)>new Date()){
       dispatch(setTokenHandler(userData.token));
       dispatch(setIdHandler(userData.userId));
     }
+    
    
   }, [dispatch ])
+ 
+  
   
   return (
     <div className="App">

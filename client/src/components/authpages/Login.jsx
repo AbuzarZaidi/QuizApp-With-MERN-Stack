@@ -36,9 +36,8 @@ const Login = (props) => {
       const result = await login(user);
       dispatch(setTokenHandler(result.token));
       dispatch(setIdHandler(result.userId));
-      localStorage.setItem('userData',JSON.stringify({token:result.token,userId:result.userId}))
-      console.log("Checkit")
-      console.log(result)
+      const tokenExpirationDate=new Date(new Date().getTime()+1000*60*60)
+      localStorage.setItem('userData',JSON.stringify({token:result.token,userId:result.userId,expiration:tokenExpirationDate.toISOString()}))
       props.closeLogin()
   }
   return (
