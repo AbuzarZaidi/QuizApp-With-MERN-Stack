@@ -7,6 +7,7 @@ import {
   updateVisibility,
   updateCategory,
 } from "../../../store/quizSummary";
+import CoverImage from "./CoverImage";
 import {
   Box,
   Button,
@@ -20,7 +21,6 @@ import {
   FormControlLabel,
   FormControl,
   ButtonGroup,
-  Paper,
   Select,
   InputLabel,
   MenuItem,
@@ -44,16 +44,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const styles = {
-  paperContainer: {
-    backgroundImage: `url(images/background.jpg)`,
-    height: 194,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-};
+
 const QuizSummaryModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -139,22 +130,7 @@ const QuizSummaryModal = () => {
                   <Typography variant="h6" component="h6" gutterBottom>
                     Cover Image
                   </Typography>
-
-                  <Paper style={styles.paperContainer}>
-                    <Box>
-                      <Button
-                        variant="contained"
-                        sx={{
-                          fontWeight: "bold",
-                          textTransform: "capitalize",
-                          px: 2,
-                          py: 1,
-                        }}
-                      >
-                        Change
-                      </Button>
-                    </Box>
-                  </Paper>
+                  <CoverImage id="image" errorText="Please provide an image."/>
                   <Typography
                     variant="h6"
                     component="h6"
