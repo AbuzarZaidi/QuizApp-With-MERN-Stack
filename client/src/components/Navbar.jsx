@@ -265,10 +265,13 @@ const Navbar = () => {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
           {isLogin&&  <Button
               variant="contained"
-              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2 ,  backgroundColor:"green", '&:hover': {
-                backgroundColor: '#669900',
+              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2 ,
+                // backgroundColor:"green",
+                 '&:hover': {
+                // backgroundColor: '#669900',
                 color:'#ffffff',
-            },}}
+            },
+          }}
               to="/createquiz"
               component={Link}
             >
@@ -279,12 +282,13 @@ const Navbar = () => {
             onClick={handleSignUpOpen}
               variant="contained"
             
-              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5, backgroundColor:"green",height:"40px",mt:2, 
+              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2, 
               '&:hover': {
                 color:'#ffffff',
-                backgroundColor: '#669900',
+                //  backgroundColor: '#669900',
                
-            },}}
+            },
+          }}
               
             >
               Sign up
