@@ -1,8 +1,9 @@
 import * as React from "react";
+import  {useState} from "react";
 import { useSelector,useDispatch} from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
-import { Link } from "react-router-dom";
+import { NavLink ,Link} from "react-router-dom";
 import {
   setlogoutHandler
 } from "../store/auth";
@@ -75,6 +76,7 @@ const Navbar = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [signUpOpen, setSignUpOpen] = React.useState(false);
   const [loginOpen, setLoginOpen] = React.useState(false);
+  const [isActive,setIsActive]=useState(0);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   
@@ -180,7 +182,9 @@ const Navbar = () => {
       <MenuItem onClick={handleMenuClose}>Reports</MenuItem>
     </Menu>
   );
-
+  const handleCloseNavMenu=(ind)=>{
+    setIsActive(ind);
+  }
   return (
     <>
     <div>
@@ -231,19 +235,31 @@ const Navbar = () => {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               justifyContent: "flex-end",
+             
             }}
           >
+        
             {pages.map((page,ind) => (
               
                <Button
                   key={ind}
-                  // onClick={handleCloseNavMenu}
+                   onClick={()=>handleCloseNavMenu(ind)}
                   sx={{
                     my: 2,
+                   
                     mr: 2,
                     color: "#004d40",
                     fontWeight: "bold",
+                    borderBottom: "3 ",
                     textTransform: "capitalize",
+                    
+                    ...(ind=== isActive && {
+                      color:'#ffffff',
+                      backgroundColor:'#3C76D2',
+                      // color:"#3C76D2",
+                      // borderBottom: 3
+                    }),
+                  
                   }}
                   to={`/${page === "Home" ? "" : page}`}
                   component={Link}
@@ -266,9 +282,9 @@ const Navbar = () => {
           {isLogin&&  <Button
               variant="contained"
               sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2 ,
-                // backgroundColor:"green",
+                
                  '&:hover': {
-                // backgroundColor: '#669900',
+                
                 color:'#ffffff',
             },
           }}
@@ -285,7 +301,7 @@ const Navbar = () => {
               sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2, 
               '&:hover': {
                 color:'#ffffff',
-                //  backgroundColor: '#669900',
+                
                
             },
           }}
