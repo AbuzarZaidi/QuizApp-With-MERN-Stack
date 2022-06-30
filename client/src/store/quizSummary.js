@@ -6,7 +6,8 @@ title: "",
 description: "",
 visibility: "",
 imgSrc: "",
-category:""};
+category:"",
+creator:""};
 const quizDetailSlice = createSlice({
   name: "QuizDetail",
   initialState: initialCounterState,
@@ -19,6 +20,9 @@ const quizDetailSlice = createSlice({
     },
     updateTitle(state, action) {
       state.title = action.payload;
+    },
+    updateCreator(state, action) {
+      state.creator = action.payload;
     },
     updateDescription(state, action) {
       state.description = action.payload;
@@ -40,11 +44,12 @@ const quizDetailSlice = createSlice({
   state.visibility= "";
   state.imgSrc= "";
   state.category="";
+  state.creator="";
 }
   },
 });
 
-export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers } = quizDetailSlice.actions
+export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers,updateCreator } = quizDetailSlice.actions
 export default quizDetailSlice.reducer;
 
 

@@ -6,6 +6,7 @@ import {
   updateDescription,
   updateVisibility,
   updateCategory,
+  updateCreator,
 } from "../../../store/quizSummary";
 import CoverImage from "./CoverImage";
 import {
@@ -51,6 +52,7 @@ const QuizSummaryModal = () => {
   const handleClose = () => setOpen(false);
   //handle data
   const [title, setTitle] = useState("");
+  const [creator, setCreator] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [visibility, setVisibility] = useState("private");
@@ -61,6 +63,7 @@ const QuizSummaryModal = () => {
     dispatch(updateDescription(description));
     dispatch(updateVisibility(visibility));
     dispatch(updateCategory(category));
+    dispatch(updateCreator(creator));
 
     handleClose();
   };
@@ -120,7 +123,20 @@ const QuizSummaryModal = () => {
                     id="outlined-multiline-static"
                     label="Quiz Description"
                     multiline
-                    rows={7}
+                    rows={4}
+                    sx={{ width: 300 }}
+                  />
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <Typography variant="h6" component="h6" gutterBottom>
+                    Creator
+                  </Typography>
+                  <TextField
+                    value={creator}
+                    onChange={(e) => setCreator(e.target.value)}
+                    id="outlined-basic"
+                    label="Enter Creator Name Here."
+                    variant="outlined"
                     sx={{ width: 300 }}
                   />
                 </Box>

@@ -29,7 +29,7 @@ const TopPicks = (props) => {
       <Typography variant="body1" gutterBottom component="div" sx={{mt:1,ml:1}}>
    {props.creator}
       </Typography>
-      <Typography variant="body1" gutterBottom component="div" sx={{mr:1,mt:1}}>
+      <Typography variant="body1" gutterBottom component="div" sx={{mr:1,mt:1,fontWeight: "bold"}}>
    {props.play} plays
       </Typography>
       </Box>

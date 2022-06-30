@@ -45,11 +45,13 @@ Item.propTypes = {
 
 const LeftQuizMenu = () => {
   const dispatch = useDispatch();
+  const token= useSelector((state) => state.authData.token);
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
   const title = useSelector((state) => state.detail.title);
   const description = useSelector((state) => state.detail.description);
   const visibility = useSelector((state) => state.detail.visibility);
+  const creator = useSelector((state) => state.detail.creator);
   const category = useSelector((state) => state.detail.category);
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
@@ -67,6 +69,7 @@ const LeftQuizMenu = () => {
       description,
       visibility,
       category,
+      creator
     };
     const Quiz = {
       quizDetail: newQuiz,
@@ -75,7 +78,11 @@ const LeftQuizMenu = () => {
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers());
     dispatch(resetQuizHandler());
-    const result = await createNewQuiz(Quiz);
+    const result = await createNewQuiz(Quiz,{
+      headers: {
+          Authorization:token
+      }
+    });
     console.log(result);
    
   };
