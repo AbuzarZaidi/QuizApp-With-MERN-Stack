@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QuizCard from "../components/Discover/QuizCard";
-import { Box, Grid } from "../utlis/materialComponents";
+import { Box, Grid,Typography,Divider } from "../utlis/materialComponents";
 import CircularProgress from "@mui/material/CircularProgress";
 const { readQuiz } = require("../functions/readQuiz");
 
@@ -19,6 +19,13 @@ const Discover = () => {
   }, [setQuizArr]);
   return (
     <>
+     <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE"}}>
+    <Typography variant="h2" gutterBottom component="div">
+       Discover
+      </Typography>
+      
+    </Box>
+    <Divider />
       <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
         {show === false ? (
           <Box>

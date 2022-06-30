@@ -11,6 +11,8 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const SingleQuizpart = (props) => {
+ console.log("1st")
+ console.log(props.id)
   return (
     <>
       <Box></Box>
@@ -91,7 +93,7 @@ const SingleQuizpart = (props) => {
                   aria-label="account of current user"
                   // aria-controls={menuId}
                   aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
+                  onClick={()=>{props.deleteHandler(props.id)}}
                   sx={{ color: "red" }}
                 >
                   <DeleteIcon />

@@ -16,3 +16,15 @@ export const readQuiz = async () => {
       console.log(error);
     }
   };
+  export const deleteQuiz=async(id)=>{
+    
+    try {
+      console.log("3rd")
+      console.log(id)  
+        await api.deleteQuiz(id);
+       
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
