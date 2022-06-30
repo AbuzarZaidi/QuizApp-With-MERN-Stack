@@ -46,6 +46,7 @@ Item.propTypes = {
 const LeftQuizMenu = () => {
   const dispatch = useDispatch();
   const token= useSelector((state) => state.authData.token);
+  const id= useSelector((state) => state.authData.id);
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
   const title = useSelector((state) => state.detail.title);
@@ -74,6 +75,7 @@ const LeftQuizMenu = () => {
     const Quiz = {
       quizDetail: newQuiz,
       quizQNA: quiz,
+      creatorId:id,
     };
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers());
