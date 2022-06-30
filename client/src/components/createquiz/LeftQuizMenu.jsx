@@ -57,6 +57,7 @@ const LeftQuizMenu = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler = async () => {
+    
     let quiz = [];
     if (quizType === "quiz") {
       quiz = quizArray;
@@ -80,13 +81,15 @@ const LeftQuizMenu = () => {
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers());
     dispatch(resetQuizHandler());
-    const result = await createNewQuiz(Quiz,{
+    
+    
+     await createNewQuiz(Quiz,{
       headers: {
           Authorization:token
       }
     });
-    console.log(result);
    
+
   };
   const addQuestionHandler = () => {
     if (quizType === "quiz") {

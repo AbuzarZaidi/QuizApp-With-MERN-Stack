@@ -80,13 +80,14 @@ const Navbar = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   
-  const handleSignUpOpen = () => setSignUpOpen(true);
-  const handleSignUpClose = () => setSignUpOpen(false);
-  const handleLoginOpen = () => setLoginOpen(true);
-  const handleLoginClose = () => setLoginOpen(false);
+  const handleSignUpOpen = () => {setSignUpOpen(true); setIsActive("")};
+  const handleSignUpClose = () => {setSignUpOpen(false); setIsActive("")};
+  const handleLoginOpen = () => {setLoginOpen(true); setIsActive("")};
+  const handleLoginClose = () => {setLoginOpen(false) ; setIsActive("")};
   const handleLogout=()=>{
   localStorage.removeItem('userData')
   dispatch(setlogoutHandler());
+   setIsActive("")
   }
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -280,6 +281,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
           {isLogin&&  <Button
+          onClick={()=>setIsActive(9)}
               variant="contained"
               sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2 ,
                 

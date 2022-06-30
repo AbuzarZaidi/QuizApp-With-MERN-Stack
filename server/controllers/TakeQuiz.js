@@ -22,7 +22,7 @@ const readUserQuizes = async (req, res) => {
 const deleteUserQuizes = async (req, res) => {
     try {
         const _id = req.params.id;
-        console.log(_id)
+       
         const data = await Quiz.findByIdAndRemove(_id);
         if (!_id) {
           return res.status(400).send();

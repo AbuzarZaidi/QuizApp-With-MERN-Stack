@@ -11,8 +11,6 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const SingleQuizpart = (props) => {
- console.log("1st")
- console.log(props.id)
   return (
     <>
       <Box></Box>

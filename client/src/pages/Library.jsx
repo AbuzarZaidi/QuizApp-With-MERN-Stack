@@ -17,15 +17,19 @@ const Library = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await readUserQuizes(userId);
-      console.log(result)
       setShow(true);
       setUserQuizArr(result);
     };
     fetchData();
-  }, [setUserQuizArr,userId,userQuizArr]);
+  }, [setUserQuizArr,userId,]);
+
+  
   const quizDeleteHandler=async(id)=>{
-    const result = await deleteQuiz(id);
-    userQuizArr(result)
+    setShow(false);
+        await deleteQuiz(id);
+         const result= await readUserQuizes(userId);
+     setUserQuizArr(result)
+    setShow(true);
   }
   return (
     <>

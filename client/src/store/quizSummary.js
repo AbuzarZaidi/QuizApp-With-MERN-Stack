@@ -37,7 +37,6 @@ const quizDetailSlice = createSlice({
       state.imgSrc = action.payload;
     } ,
    resetDetailHandlers(state){
-    console.log("quiz Summary")
   state.timeLimit= 0;
   state.title= "";
   state.description= "";
