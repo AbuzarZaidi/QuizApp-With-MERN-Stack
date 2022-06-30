@@ -13,6 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 const CreateQuiz = () => {
+  document.title = "Creator-QuizWorld";
   return (
     <Box sx={{ flexGrow: 1, mt: 0.5, height: "95vh", bgcolor: "#F2F2F1" }}>
       <Grid container spacing={0.1}>

@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AnswerSection from "../components/startquiz/AnswerSection";
 import Timer from "../components/startquiz/Timer";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
-import Modal from '@mui/material/Modal';
-import Divider from '@mui/material/Divider';
 import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import {
+  Grid,
+  Typography,
+  Divider,
+  Box,
+  Paper,
+  Button,
+  Modal,
+} from "../utlis/materialComponents";
+
 const Question = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -22,12 +25,12 @@ const Question = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 800,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
 
   boxShadow: 24,
   p: 4,
@@ -39,6 +42,7 @@ window.onbeforeunload = function () {
   }
 };
 const StartQuiz = () => {
+  document.title = "StartQuiz-QuizWorld";
   const [open, setOpen] = React.useState(false);
 
   const [clicked, setClicked] = useState(true);
@@ -71,9 +75,8 @@ const StartQuiz = () => {
         setCurrVal(quizArray.quizQNA[count]);
 
         setClicked(true);
-      }
-      else{
-        setOpen(true)
+      } else {
+        setOpen(true);
       }
       setClickOption(5);
     }, 500);
@@ -112,23 +115,29 @@ const StartQuiz = () => {
   };
   return (
     <>
- <Modal
+      <Modal
         open={open}
-        
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h2" component="h2">
             Result:
-          </Typography> 
-          <Typography id="modal-modal-description"variant="h4" sx={{ mt: 2 }}>
-        Congratulations! You have Scored {correct} out of {quizArray.quizQNA.length}.
+          </Typography>
+          <Typography id="modal-modal-description" variant="h4" sx={{ mt: 2 }}>
+            Congratulations! You have Scored {correct} out of{" "}
+            {quizArray.quizQNA.length}.
           </Typography>
           <Divider />
-          <Box sx={{display: "flex", justifyContent: "center",}}>
-          <Button variant="contained" to="/discover"
-              component={Link} sx={{ mt: 4 }}>Back</Button>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              variant="contained"
+              to="/discover"
+              component={Link}
+              sx={{ mt: 4 }}
+            >
+              Back
+            </Button>
           </Box>
         </Box>
       </Modal>
@@ -141,11 +150,16 @@ const StartQuiz = () => {
       ) : (
         <>
           {" "}
-          <Box sx={{ display: "flex", justifyContent: 'flex-end', mt: 3,mr:2, }}>
-            <Button variant="contained" onClick={nextQuestionHandler} sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5}}>
-             {clickOption===5?'skip':'Next'} 
+          <Box
+            sx={{ display: "flex", justifyContent: "flex-end", mt: 3, mr: 2 }}
+          >
+            <Button
+              variant="contained"
+              onClick={nextQuestionHandler}
+              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5 }}
+            >
+              {clickOption === 5 ? "skip" : "Next"}
             </Button>
-          
           </Box>
           <Timer
             timer={timerSet === true ? quizArray.quizDetail.timeLimit : timer}
@@ -184,7 +198,6 @@ const StartQuiz = () => {
               })}
             </Grid>
           </Box>
-          
         </>
       )}
     </>

@@ -1,15 +1,5 @@
-// import React, {
-//   useState,
-//   useEffect,
-//   forwardRef,
-//   useImperativeHandle,
-// } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+import { Box, Paper, Grid, Typography } from "../../utlis/materialComponents";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-// import Button from "@mui/material/Button";
 const Answer = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -18,7 +8,6 @@ const Answer = styled(Paper)(({ theme }) => ({
   width: "90%",
   color: theme.palette.text.secondary,
   "&:hover": {
-
     width: "92%",
     cursor: "pointer",
   },
@@ -52,7 +41,6 @@ const AnswerSection = (props) => {
           </Typography>
         </Answer>
       </Box>
-      
     </Grid>
   );
 };

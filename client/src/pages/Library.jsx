@@ -1,12 +1,27 @@
 import SingleQuizpart from "../components/library/SingleQuizpart";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Box,
   Typography,
   Divider
 //   Checkbox,
 } from "../utlis/materialComponents";
+import CircularProgress from "@mui/material/CircularProgress";
+const { readUserQuizes } = require("../functions/readQuiz");
 const Library = () => {
+  const userId = useSelector((state) => state.authData.id);
+  document.title = "Library-QuizWorld";
+  const [userQuizArr, setUserQuizArr] = useState(null);
+   const [show, setShow] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await readUserQuizes(userId);
+      setShow(true);
+      setUserQuizArr(result);
+    };
+    fetchData();
+  }, [setUserQuizArr,userId]);
   return (
     <>
     <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE"}}>
@@ -16,10 +31,12 @@ const Library = () => {
       
     </Box>
     <Divider />
-   < SingleQuizpart/>
-   < SingleQuizpart/>
-   < SingleQuizpart/>
-   < SingleQuizpart/>
+    {!show&&  <Box sx={{display: "flex", justifyContent: "center",}}>
+            <CircularProgress />
+          </Box>}
+    {show&&userQuizArr.map((ques, i) => {
+ return < SingleQuizpart title={ques.quizDetail.title.slice(0, 30)} creator={ques.quizDetail.creator}/>
+    })}
     </>
   );
 };

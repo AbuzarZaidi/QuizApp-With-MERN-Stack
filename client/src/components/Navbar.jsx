@@ -254,10 +254,10 @@ const Navbar = () => {
                     textTransform: "capitalize",
                     
                     ...(ind=== isActive && {
-                      color:'#ffffff',
-                      backgroundColor:'#3C76D2',
-                      // color:"#3C76D2",
-                      // borderBottom: 3
+                      // color:'#ffffff',
+                      // backgroundColor:'#3C76D2',
+                      color:"#3C76D2",
+                      borderBottom: 3
                     }),
                   
                   }}

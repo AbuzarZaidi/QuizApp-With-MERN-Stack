@@ -34,6 +34,8 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
-
-export {AppBar,Box,Toolbar,IconButton,Typography,Badge,MenuItem,Menu,MenuIcon,AccountCircle,MailIcon,NotificationsIcon ,Button,HomeOutlinedIcon,ExploreOutlinedIcon,ListOutlinedIcon,LeaderboardOutlinedIcon,QuizOutlinedIcon,Paper,Grid,ButtonGroup,InputLabel,FormControl,Select,Divider,TimerOutlinedIcon,CategoryIcon,TextField,DeleteOutlineOutlinedIcon,StarsRoundedIcon,Checkbox,Modal,SettingsOutlinedIcon,Radio,RadioGroup,FormControlLabel };
+import Container from "@mui/material/Container";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+export {AppBar,Box,Toolbar,IconButton,Typography,Badge,MenuItem,Menu,MenuIcon,AccountCircle,MailIcon,NotificationsIcon ,Button,HomeOutlinedIcon,ExploreOutlinedIcon,ListOutlinedIcon,LeaderboardOutlinedIcon,QuizOutlinedIcon,Paper,Grid,ButtonGroup,InputLabel,FormControl,Select,Divider,TimerOutlinedIcon,CategoryIcon,TextField,DeleteOutlineOutlinedIcon,StarsRoundedIcon,Checkbox,Modal,SettingsOutlinedIcon,Radio,RadioGroup,FormControlLabel,Container,CardContent,Card,CardMedia };

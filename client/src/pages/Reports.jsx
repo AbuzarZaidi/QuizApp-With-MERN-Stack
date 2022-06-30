@@ -28,6 +28,7 @@ const rows = [
 ];
 
 const Reports = () => {
+  document.title = "Reports-QuizWorld";
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {

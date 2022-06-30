@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { quesHandler } from "../../store/quizMcq";
 import { tfQuesHandler } from "../../store/truefalse";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import {
+  Box,
+  Container
+} from "../../utlis/materialComponents";
 import Quiz from "./Quiz/Quiz";
 
 import { MDBContainer } from "mdbreact";

@@ -7,3 +7,12 @@ export const readQuiz = async () => {
       console.log(error);
     }
   };
+
+  export const readUserQuizes = async (userId) => {
+    try {
+      const { data } = await api.readUserQuizes(userId);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
