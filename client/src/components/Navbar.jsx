@@ -3,7 +3,7 @@ import  {useState} from "react";
 import { useSelector,useDispatch} from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
-import { NavLink ,Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import {
   setlogoutHandler
 } from "../store/auth";
