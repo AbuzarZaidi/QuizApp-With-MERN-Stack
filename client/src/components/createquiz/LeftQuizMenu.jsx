@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addNewQuestion,resetQuizHandler } from "../../store/quizMcq";
 import { resetDetailHandlers} from "../../store/quizSummary";
 import { tfAddNewQuestion,tfResetHandler } from "../../store/truefalse";
+import { setActiveHandler } from "../../store/auth";
 import { styled } from "@mui/material/styles";
 const { createNewQuiz } = require("../../functions/createQuiz");
 const ButtonHover = styled("div")(({ theme }) => ({
@@ -57,7 +58,7 @@ const LeftQuizMenu = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler = async () => {
-    
+    dispatch(setActiveHandler());
     let quiz = [];
     if (quizType === "quiz") {
       quiz = quizArray;
@@ -81,6 +82,7 @@ const LeftQuizMenu = () => {
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers());
     dispatch(resetQuizHandler());
+   
     
     
      await createNewQuiz(Quiz,{

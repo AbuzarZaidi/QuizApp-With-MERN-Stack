@@ -1,12 +1,10 @@
 import * as React from "react";
-import  {useState} from "react";
-import { useSelector,useDispatch} from "react-redux";
+import { useState,useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
-import { Link} from "react-router-dom";
-import {
-  setlogoutHandler
-} from "../store/auth";
+import { Link } from "react-router-dom";
+import { setlogoutHandler } from "../store/auth";
 import {
   AppBar,
   Box,
@@ -71,24 +69,42 @@ const Search = styled("div")(({ theme }) => ({
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const isLogin= useSelector((state) => state.authData.isLogin);
+  const isLogin = useSelector((state) => state.authData.isLogin);
+  const active = useSelector((state) => state.authData.active);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [signUpOpen, setSignUpOpen] = React.useState(false);
   const [loginOpen, setLoginOpen] = React.useState(false);
-  const [isActive,setIsActive]=useState(0);
+  const [isActive, setIsActive] = useState(active);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+useEffect(() => {
   
-  const handleSignUpOpen = () => {setSignUpOpen(true); setIsActive("")};
-  const handleSignUpClose = () => {setSignUpOpen(false); setIsActive("")};
-  const handleLoginOpen = () => {setLoginOpen(true); setIsActive("")};
-  const handleLoginClose = () => {setLoginOpen(false) ; setIsActive("")};
-  const handleLogout=()=>{
-  localStorage.removeItem('userData')
-  dispatch(setlogoutHandler());
-   setIsActive("")
-  }
+  setIsActive(0)
+  console.log(active)
+}, [active])
+
+  const handleSignUpOpen = () => {
+    setSignUpOpen(true);
+    setIsActive("");
+  };
+  const handleSignUpClose = () => {
+    setSignUpOpen(false);
+    setIsActive("");
+  };
+  const handleLoginOpen = () => {
+    setLoginOpen(true);
+    setIsActive("");
+  };
+  const handleLoginClose = () => {
+    setLoginOpen(false);
+    setIsActive(0);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    dispatch(setlogoutHandler());
+    setIsActive(0);
+  };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -177,187 +193,223 @@ const Navbar = () => {
         </IconButton>
         <p>Profile</p>
       </MenuItem> */}
-       <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Home</MenuItem>
       <MenuItem onClick={handleMenuClose}>Discover</MenuItem>
       <MenuItem onClick={handleMenuClose}>Library</MenuItem>
       <MenuItem onClick={handleMenuClose}>Reports</MenuItem>
     </Menu>
   );
-  const handleCloseNavMenu=(ind)=>{
+  const handleCloseNavMenu = (ind) => {
     setIsActive(ind);
-  }
+  };
   return (
     <>
-    <div>
-      {/* <Button onClick={handleSignUpOpen}>Open modal</Button> */}
-     
-       <SignUp openLogin={handleLoginOpen } closeSignup={handleSignUpClose} openSignup={signUpOpen} handleClose={handleSignUpClose}/>
-      
-     
-       <Login openSignup={handleSignUpOpen} closeLogin={handleLoginClose}  openLogin={loginOpen} handleClose={handleLoginClose}/>
-    
-    </div>
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ bgcolor: "background.paper", color: "#46178F" }}
-      >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2, display: { xs: "flex", md: "none" } }}
-            onClick={handleMobileMenuOpen}
-          >
-            <MenuIcon  />
-          </IconButton>
+      <div>
+        {/* <Button onClick={handleSignUpOpen}>Open modal</Button> */}
 
-          <Search>
-            <Typography
-              variant="h6"
-              noWrap
-              // component="div"
-              sx={{ fontWeight: "bold", textTransform: "capitalize" }}
-              to="/"
-              component={Link}
-            >
-              <img
-                src={Logo}
-                alt="Logo.png"
-                style={{ height: "70px", width: "100px" }}
-              />
-              {/* Quiz World */}
-            </Typography>
-          </Search>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-             
-            }}
-          >
-        
-            {pages.map((page,ind) => (
-              
-               <Button
-                  key={ind}
-                   onClick={()=>handleCloseNavMenu(ind)}
-                  sx={{
-                    my: 2,
-                   
-                    mr: 2,
-                    color: "#004d40",
-                    fontWeight: "bold",
-                    borderBottom: "3 ",
-                    textTransform: "capitalize",
-                    
-                    ...(ind=== isActive && {
-                      // color:'#ffffff',
-                      // backgroundColor:'#3C76D2',
-                      color:"#3C76D2",
-                      borderBottom: 3
-                    }),
-                  
-                  }}
-                  to={`/${page === "Home" ? "" : page}`}
-                  component={Link}
-                >
-                  {page === "Home" && <HomeOutlinedIcon sx={{ mr: 1 }}  />}
-                  {page === "Discover" && (
-                    <ExploreOutlinedIcon sx={{ mr: 1 }} />
-                  )}
-                  {page === "Library" && <ListOutlinedIcon sx={{ mr: 1 }} />}
-                  {page === "Reports" && (
-                    <LeaderboardOutlinedIcon sx={{ mr: 1 }} />
-                  )}
-                  {page}
-                </Button>
-              
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          {isLogin&&  <Button
-          onClick={()=>setIsActive(9)}
-              variant="contained"
-              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2 ,
-                
-                 '&:hover': {
-                
-                color:'#ffffff',
-            },
-          }}
-              to="/createquiz"
-              component={Link}
-            >
-              <QuizOutlinedIcon />
-              Create
-            </Button>}
-            {!isLogin&&  <Button
-            onClick={handleSignUpOpen}
-              variant="contained"
-            
-              sx={{ fontWeight: "bold", textTransform: "capitalize", px: 5,height:"40px",mt:2, 
-              '&:hover': {
-                color:'#ffffff',
-                
-               
-            },
-          }}
-              
-            >
-              Sign up
-            </Button>}
-            {!isLogin&& <Button
-                       onClick={handleLoginOpen }
-                 
-                  sx={{
-                    my: 2,
-                    mr: 2,
-                    color: "#004d40",
-                    fontWeight: "bold",
-                    textTransform: "capitalize",
-               
-                  }}
-                  to='/'
-                  component={Link}
-                >Login</Button>}
-                {isLogin&& <Button
-                       onClick={handleLogout}
-                 
-                  sx={{
-                    my: 2,
-                    mr: 2,
-                    color: "#004d40",
-                    fontWeight: "bold",
-                    textTransform: "capitalize",
-               
-                  }}
-                  to='/'
-                  component={Link}
-                >Logout</Button>}
+        <SignUp
+          openLogin={handleLoginOpen}
+          closeSignup={handleSignUpClose}
+          openSignup={signUpOpen}
+          handleClose={handleSignUpClose}
+        />
+
+        <Login
+          openSignup={handleSignUpOpen}
+          closeLogin={handleLoginClose}
+          openLogin={loginOpen}
+          handleClose={handleLoginClose}
+        />
+      </div>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar
+          position="static"
+          sx={{ bgcolor: "background.paper", color: "#46178F" }}
+        >
+          <Toolbar>
             <IconButton
               size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              sx={{ color: "#EFA51C" }}
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2, display: { xs: "flex", md: "none" } }}
+              onClick={handleMobileMenuOpen}
             >
-              <AccountCircle sx={{ fontSize: "30px" }} />
+              <MenuIcon />
             </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+
+            <Search>
+              <Typography
+                variant="h6"
+                noWrap
+                // component="div"
+                sx={{ fontWeight: "bold", textTransform: "capitalize" }}
+                to="/"
+                component={Link}
+              >
+                <img
+                  src={Logo}
+                  alt="Logo.png"
+                  style={{ height: "70px", width: "100px" }}
+                />
+                {/* Quiz World */}
+              </Typography>
+            </Search>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+              }}
+            >
+              {isLogin &&
+                pages.map((page, ind) => (
+                  <Button
+                    key={ind}
+                    onClick={() => handleCloseNavMenu(ind)}
+                    sx={{
+                      my: 2,
+
+                      mr: 2,
+                      color: "#004d40",
+                      fontWeight: "bold",
+                      borderBottom: "3 ",
+                      textTransform: "capitalize",
+
+                      ...(ind === isActive && {
+                        // color:'#ffffff',
+                        // backgroundColor:'#3C76D2',
+                        color: "#3C76D2",
+                        borderBottom: 3,
+                      }),
+                    }}
+                    to={`/${page === "Home" ? "" : page}`}
+                    component={Link}
+                  >
+                    {page === "Home" && <HomeOutlinedIcon sx={{ mr: 1 }} />}
+                    {page === "Discover" && (
+                      <ExploreOutlinedIcon sx={{ mr: 1 }} />
+                    )}
+                    {page === "Library" && <ListOutlinedIcon sx={{ mr: 1 }} />}
+                    {page === "Reports" && (
+                      <LeaderboardOutlinedIcon sx={{ mr: 1 }} />
+                    )}
+                    {page}
+                  </Button>
+                ))}
+            </Box>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+             {!isLogin && <Button
+                sx={{
+                  my: 2,
+
+                  mr: 2,
+                  // color: "#004d40",
+                  fontWeight: "bold",
+                  // borderBottom: "3 ",
+                  textTransform: "capitalize",
+
+                  color: "#3C76D2",
+                  borderBottom: 3,
+                }}
+                to={"/"}
+                component={Link}
+              >
+                <HomeOutlinedIcon sx={{ mr: 1 }} />
+                Home
+              </Button>}
+              {isLogin && (
+                <Button
+                  onClick={() => setIsActive(9)}
+                  variant="contained"
+                  sx={{
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                    px: 5,
+                    height: "40px",
+                    mt: 2,
+
+                    "&:hover": {
+                      color: "#ffffff",
+                    },
+                  }}
+                  to="/createquiz"
+                  component={Link}
+                >
+                  <QuizOutlinedIcon />
+                  Create
+                </Button>
+              )}
+              {!isLogin && (
+                <Button
+                  onClick={handleSignUpOpen}
+                  variant="contained"
+                  sx={{
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                    px: 5,
+                    height: "40px",
+                    mt: 2,
+                    "&:hover": {
+                      color: "#ffffff",
+                    },
+                  }}
+                >
+                  Sign up
+                </Button>
+              )}
+              {!isLogin && (
+                <Button
+                  onClick={handleLoginOpen}
+                  sx={{
+                    my: 2,
+                    mr: 2,
+                    color: "#004d40",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                  }}
+                  to="/"
+                  component={Link}
+                >
+                  Login
+                </Button>
+              )}
+              {isLogin && (
+                <Button
+                  onClick={handleLogout}
+                  sx={{
+                    my: 2,
+                    mr: 2,
+                    color: "#004d40",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                  }}
+                  to="/"
+                  component={Link}
+                >
+                  Logout
+                </Button>
+              )}
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                sx={{ color: "#EFA51C" }}
+              >
+                <AccountCircle sx={{ fontSize: "30px" }} />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
     </>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

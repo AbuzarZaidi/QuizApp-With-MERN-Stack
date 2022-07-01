@@ -38,7 +38,7 @@ const User = require("../models/users");
   }
 }
 const login=async(req, res)=>{
-   console.log("controller for login")
+   
     let token;
   const { email, password } = req.body;
   if (!email || !password) {
@@ -57,9 +57,7 @@ if(userExist){
     res.status(400).json({ error: "Either password or email is invalid!" });
   } else {
     token=await userExist.generateAuthToken();
-  //   console.log("here")
-  //  console.log(token)
-  //  console.log(userExist)
+ 
   res.status(200).json({userId:userExist._id,email:userExist.email,token:token})
   }
     //   res.cookie('jwtoken',token,{

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = {  token:"",id:"",isLogin:false};
+const initialCounterState = {  token:"",id:"",isLogin:false,active:0};
 const authSlice = createSlice({
     name: "auth",
     initialState: initialCounterState,
@@ -15,10 +15,13 @@ setlogoutHandler(state){
   state.token="";
   state.id="";
   state.isLogin=false;
+},
+setActiveHandler(state){
+state.active=Math.floor(Math.random() * 10);
 }
     }
 })
 export const {
-    setTokenHandler, setIdHandler,setlogoutHandler
+    setTokenHandler, setIdHandler,setlogoutHandler,setActiveHandler
   } = authSlice.actions;
 export default authSlice.reducer;
