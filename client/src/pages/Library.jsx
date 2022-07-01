@@ -26,10 +26,9 @@ const Library = () => {
   
   const quizDeleteHandler=async(id)=>{
     setShow(false);
-        await deleteQuiz(id);
-         const result= await readUserQuizes(userId);
-     setUserQuizArr(result)
-    setShow(true);
+    const result=  await deleteQuiz(userId,id);
+ setUserQuizArr(result)
+setShow(true);
   }
   return (
     <>

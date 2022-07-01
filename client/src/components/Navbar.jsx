@@ -79,9 +79,7 @@ const Navbar = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 useEffect(() => {
-  
-  setIsActive(0)
-  console.log(active)
+    setIsActive(0)
 }, [active])
 
   const handleSignUpOpen = () => {

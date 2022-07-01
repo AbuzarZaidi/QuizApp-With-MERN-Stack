@@ -28,8 +28,6 @@ const Login = (props) => {
       email,
       password,
     };
-    console.log("page");
-    console.log(user);
     const result = await login(user);
     dispatch(setTokenHandler(result.token));
     dispatch(setIdHandler(result.userId));

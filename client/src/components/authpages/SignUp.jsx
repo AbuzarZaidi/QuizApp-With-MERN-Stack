@@ -28,8 +28,7 @@ const SignUp = (props) => {
       email,
       password,
     };
-    const result = await signup(user);
-    console.log(result);
+     await signup(user);
     props.closeSignup();
     props.openLogin();
   };

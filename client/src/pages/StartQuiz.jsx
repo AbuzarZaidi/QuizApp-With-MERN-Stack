@@ -110,7 +110,6 @@ const StartQuiz = () => {
 
   const checkHandler = (ind) => {
     setUserSelected(ind);
-    console.log(ind);
     setClickOption(ind);
   };
   return (

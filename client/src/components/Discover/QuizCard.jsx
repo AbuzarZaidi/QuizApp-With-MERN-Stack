@@ -29,7 +29,6 @@ export default function QuizCard(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const startQuizHandler = () => {
-    console.log("quiz start");
     dispatch(setnHandler(props.quiz));
   };
   return (

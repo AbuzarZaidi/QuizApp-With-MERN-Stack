@@ -20,19 +20,21 @@ const readUserQuizes = async (req, res) => {
   }
 };
 const deleteUserQuizes = async (req, res) => {
-    try {
-        const _id = req.params.id;
-       
-        const data = await Quiz.findByIdAndRemove(_id);
-        if (!_id) {
-          return res.status(400).send();
-        } else {
-          res.status(200).send(data);
-        }
-      } catch (error) {
-        res.status(500).send(error);
-      }
-  };
+  try {
+    const id = req.params.id;
+    const userid = id.split("~")[0];
+    const _id = id.split("~")[1];
+    await Quiz.findByIdAndRemove(_id);
+    const quiz = await Quiz.find({ creatorId: userid });
+    if (!_id) {
+      return res.status(400).send();
+    } else {
+      res.status(200).send(quiz);
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 exports.readQuiz = readQuiz;
 exports.deleteUserQuizes = deleteUserQuizes;
