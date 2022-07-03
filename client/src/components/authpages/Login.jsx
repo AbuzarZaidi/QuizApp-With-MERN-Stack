@@ -23,24 +23,38 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [showError,setShowError]=useState(false);
+   const [errorMessage,setErrorMessage]=useState("");
   const userLoginHandler = async () => {
-    const user = {
-      email,
-      password,
-    };
-    const result = await login(user);
-    dispatch(setTokenHandler(result.token));
-    dispatch(setIdHandler(result.userId));
-    const tokenExpirationDate = new Date(new Date().getTime() + 1000 * 60 * 60);
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({
-        token: result.token,
-        userId: result.userId,
-        expiration: tokenExpirationDate.toISOString(),
-      })
-    );
-    props.closeLogin();
+    if(email&&password){
+      const user = {
+        email,
+        password,
+      };
+      const result = await login(user);
+     
+      dispatch(setTokenHandler(result.token));
+      dispatch(setIdHandler(result.userId));
+      const tokenExpirationDate = new Date(new Date().getTime() + 1000 * 60 * 60);
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          token: result.token,
+          userId: result.userId,
+          expiration: tokenExpirationDate.toISOString(),
+        })
+      );
+      props.closeLogin();
+    }
+    else{
+      setShowError(true)
+      setErrorMessage("Please Fill The Form.")
+      setTimeout(() => {
+        setShowError(false)
+      }, 2000);
+     
+    }
+   
   };
   return (
     <Modal
@@ -101,7 +115,23 @@ const Login = (props) => {
         >
           Login
         </Button>
+        <Box  sx={{ display: "flex", justifyContent: "center" }}>
+       {showError&& <Typography
+            variant="body1"
+            gutterBottom
+            sx={{
+              fontWeight: "regular",
+              color: "#EB4747",
+              fontSize: 16,
+              mt: 1,
+            }}
+          >
+            {errorMessage}
+          </Typography>}
+        </Box>
+      
         <Box sx={{ display: "flex", justifyContent: "center" }}>
+        
           <Typography
             variant="body1"
             gutterBottom
@@ -124,6 +154,7 @@ const Login = (props) => {
           >
             Sign Up
           </Button>
+
         </Box>
       </Box>
     </Modal>

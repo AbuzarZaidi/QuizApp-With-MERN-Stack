@@ -22,15 +22,36 @@ const SignUp = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const registerUserHandler = async () => {
-    const user = {
-      name,
-      email,
-      password,
-    };
-     await signup(user);
-    props.closeSignup();
-    props.openLogin();
+    if (name && email && password) {
+      const user = {
+        name,
+        email,
+        password,
+      };
+      const data = await signup(user);
+
+      if (data.response) {
+        if (data.response.status === 422) {
+          setShowError(true);
+          setErrorMessage(data.response.data.error);
+          setTimeout(() => {
+            setShowError(false);
+          }, 2000);
+        }
+      } else {
+        props.closeSignup();
+        props.openLogin();
+      }
+    } else {
+      setShowError(true);
+      setErrorMessage("Please Fill The Form.");
+      setTimeout(() => {
+        setShowError(false);
+      }, 2000);
+    }
   };
   return (
     <Modal
@@ -75,9 +96,9 @@ const SignUp = (props) => {
           Email
         </Typography>
         <Typography
-          variant="body1"
+          variant="subtitle1"
           gutterBottom
-          sx={{ fontWeight: "regular", color: "#686868", fontSize: 16 }}
+          sx={{ fontWeight: "regular", color: "#686868", fontSize: 12 }}
         >
           Emails are collected only for password resets and are one-way hashed
           at time of collection
@@ -99,7 +120,13 @@ const SignUp = (props) => {
         >
           Password
         </Typography>
-
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          sx={{ fontWeight: "regular", color: "#686868", fontSize: 12 }}
+        >
+          Password should contain atleast 6 character
+        </Typography>
         <TextField
           id="outlined-basic"
           label="Password"
@@ -116,6 +143,22 @@ const SignUp = (props) => {
         >
           Signup
         </Button>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          {showError && (
+            <Typography
+              variant="body1"
+              gutterBottom
+              sx={{
+                fontWeight: "regular",
+                color: "#EB4747",
+                fontSize: 16,
+                mt: 1,
+              }}
+            >
+              {errorMessage}
+            </Typography>
+          )}
+        </Box>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography
             variant="body1"
