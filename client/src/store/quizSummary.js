@@ -36,14 +36,14 @@ const quizDetailSlice = createSlice({
     updateImgSrc(state, action) {
       state.imgSrc = action.payload;
     } ,
-   resetDetailHandlers(state){
-  state.timeLimit= 0;
-  state.title= "";
-  state.description= "";
-  state.visibility= "";
-  state.imgSrc= "";
-  state.category="";
-  state.creator="";
+   resetDetailHandlers(state,action){
+  state.timeLimit= action.payload;
+  state.title= action.payload;
+  state.description= action.payload;
+  state.visibility= action.payload;
+  state.imgSrc= action.payload;
+  state.category=action.payload;
+  state.creator=action.payload;
 }
   },
 });

@@ -4,12 +4,14 @@ import QuizSummaryModal from "./Quiz/QuizSummaryModal";
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
 import { useSelector, useDispatch } from "react-redux";
-import { addNewQuestion,resetQuizHandler } from "../../store/quizMcq";
-import { resetDetailHandlers} from "../../store/quizSummary";
-import { tfAddNewQuestion,tfResetHandler } from "../../store/truefalse";
+import { addNewQuestion, resetQuizHandler } from "../../store/quizMcq";
+import { resetDetailHandlers } from "../../store/quizSummary";
+import { tfAddNewQuestion, tfResetHandler } from "../../store/truefalse";
 import { setActiveHandler } from "../../store/auth";
 import { styled } from "@mui/material/styles";
+import SubmitModel from "./SubmitModel";
 const { createNewQuiz } = require("../../functions/createQuiz");
+
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
   "&:hover": {
@@ -46,8 +48,8 @@ Item.propTypes = {
 
 const LeftQuizMenu = () => {
   const dispatch = useDispatch();
-  const token= useSelector((state) => state.authData.token);
-  const id= useSelector((state) => state.authData.id);
+  const token = useSelector((state) => state.authData.token);
+  const id = useSelector((state) => state.authData.id);
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
   const title = useSelector((state) => state.detail.title);
@@ -72,26 +74,22 @@ const LeftQuizMenu = () => {
       description,
       visibility,
       category,
-      creator
+      creator,
     };
     const Quiz = {
       quizDetail: newQuiz,
       quizQNA: quiz,
-      creatorId:id,
+      creatorId: id,
     };
-    dispatch(tfResetHandler());
-    dispatch(resetDetailHandlers());
-    dispatch(resetQuizHandler());
-   
-    
-    
-     await createNewQuiz(Quiz,{
+   const result= await createNewQuiz(Quiz, {
       headers: {
-          Authorization:token
-      }
+        Authorization: token,
+      },
     });
-   
-
+    console.log(result)
+    dispatch(tfResetHandler());
+    dispatch(resetDetailHandlers(""));
+    dispatch(resetQuizHandler());
   };
   const addQuestionHandler = () => {
     if (quizType === "quiz") {
@@ -142,6 +140,8 @@ const LeftQuizMenu = () => {
             >
               <ButtonGroup variant="outlined">
                 <Button
+                  to="/"
+                  component={Link}
                   variant="outlined"
                   sx={{
                     fontWeight: "bold",
@@ -154,11 +154,25 @@ const LeftQuizMenu = () => {
                 >
                   Exit
                 </Button>
+                <SubmitModel
+                  saveHandler={saveInfoHandler}
+                  newQuiz={quizArray}
+                  newTrueFalse={truefalseArray}
+                  detail={{
+                    quizType,
+                    timeLimit,
+                    title,
+                    description,
+                    visibility,
+                    category,
+                    creator,
+                  }}
+                />
                 <ButtonHover>
-                  <Button
-                    onClick={saveInfoHandler}
-                    to="/"
-              component={Link}
+                  {/* <Button
+                    // onClick={saveInfoHandler}
+              //       to="/"
+              // component={Link}
                     sx={{
                       fontWeight: "bold",
                       textTransform: "capitalize",
@@ -173,7 +187,7 @@ const LeftQuizMenu = () => {
                     }}
                   >
                     Save
-                  </Button>
+                  </Button> */}
                 </ButtonHover>
               </ButtonGroup>
             </Box>
