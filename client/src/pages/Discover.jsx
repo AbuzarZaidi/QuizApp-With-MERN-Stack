@@ -9,7 +9,7 @@ const { readQuiz } = require("../functions/readQuiz");
 
 const Discover = () => {
   document.title = "Discover-QuizWorld";
-  const [found, setFound] = useState("");
+  const [type, setType] = useState("");
   const [checkcategory, setCheckCategory] = useState(false);
   const [quizArr, setQuizArr] = useState(null);
   const [show, setShow] = useState(false);
@@ -22,7 +22,7 @@ const Discover = () => {
     setCheckCategory(true);
     setShow(false);
     setTimeout(() => {
-      setFound(value);
+      setType(value);
       setShow(true);
     }, 1000);
 
@@ -82,6 +82,7 @@ const Discover = () => {
             Filters
           </Typography>
         </Button>
+       
         <Menu
           id="demo-positioned-menu"
           aria-labelledby="demo-positioned-button"
@@ -155,13 +156,25 @@ const Discover = () => {
           </MenuItem>
         </Menu>
       </Box>
+      <Box sx={{ display: "flex", justifyContent: "flex-start",ml:3,mt:1}}>
+      {checkcategory&&<Typography
+            variant="h6"
+            component="div"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              color: "#000000",
+              fontWeight: "bold",
+              textTransform: "capitalize",
+            }}
+          >
+          Category: {type}
+          </Typography>}
+          </Box>
       <Divider />
       <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
-        {/* {!show&&
-        <Box>
-          <CircularProgress />
-        </Box> */}
-        {/* } */}
+        
+      
         {!show ? (
           <Box>
             <CircularProgress />
@@ -171,7 +184,7 @@ const Discover = () => {
             <Grid container spacing={2}>
               {/* {quizArr.map((ques, i) => { */}
               {checkcategory&&quizArr
-                .filter((val) => val.quizDetail.category === found)
+                .filter((val) => val.quizDetail.category === type)
                 .map((ques) => {
                   return (
                     <Grid item xs={4} key={ques}>
