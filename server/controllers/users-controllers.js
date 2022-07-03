@@ -56,25 +56,7 @@ const login = async (req, res) => {
           token: token,
         });
       }
-      //   res.cookie('jwtoken',token,{
-      //     expires:new Date(Date.now()+3600),
-      //     httpOnly:true,
-      // })
-      //   res.cookie("jwtoken","Hello world")
-      //   res.status(201).json({ message: "User signin" });
-      // }
-
-      // localStorage.setItem("userData",JSON.stringify({
-      //   token:token
-      // }))
-      // res
-      // .cookie("test", token, {
-      //    httpOnly: true,
-      // })
-      // res.cookie('jwtoken',token,{
-      //     expires:new Date(Date.now()+3600),
-      //     httpOnly:true,
-      // })
+  
     } else {
       res.status(400).json({ error: "Either password or email is invalid!" });
     }

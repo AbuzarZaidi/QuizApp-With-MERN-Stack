@@ -32,19 +32,31 @@ const Login = (props) => {
         password,
       };
       const result = await login(user);
+      
+      if (result.response) {
+        if (result.response.status === 422||result.response.status === 400) {
+          setShowError(true);
+          setErrorMessage(result.response.data.error);
+          setTimeout(() => {
+            setShowError(false);
+          }, 2000);
+        }
+      } else {
+        dispatch(setTokenHandler(result.token));
+        dispatch(setIdHandler(result.userId));
+        const tokenExpirationDate = new Date(new Date().getTime() + 1000 * 60 * 60);
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            token: result.token,
+            userId: result.userId,
+            expiration: tokenExpirationDate.toISOString(),
+          })
+        );
+        props.closeLogin();
+      }
      
-      dispatch(setTokenHandler(result.token));
-      dispatch(setIdHandler(result.userId));
-      const tokenExpirationDate = new Date(new Date().getTime() + 1000 * 60 * 60);
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          token: result.token,
-          userId: result.userId,
-          expiration: tokenExpirationDate.toISOString(),
-        })
-      );
-      props.closeLogin();
+    
     }
     else{
       setShowError(true)
