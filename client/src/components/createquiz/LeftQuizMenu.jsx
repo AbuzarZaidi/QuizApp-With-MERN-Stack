@@ -52,6 +52,7 @@ const LeftQuizMenu = () => {
   const id = useSelector((state) => state.authData.id);
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
+  const imgSrc = useSelector((state) => state.detail.imgSrc);
   const title = useSelector((state) => state.detail.title);
   const description = useSelector((state) => state.detail.description);
   const visibility = useSelector((state) => state.detail.visibility);
@@ -67,26 +68,24 @@ const LeftQuizMenu = () => {
     } else {
       quiz = truefalseArray;
     }
-    const newQuiz = {
-      quizType,
-      timeLimit,
-      title,
-      description,
-      visibility,
-      category,
-      creator,
-    };
-    const Quiz = {
-      quizDetail: newQuiz,
-      quizQNA: quiz,
-      creatorId: id,
-    };
-   const result= await createNewQuiz(Quiz, {
+    
+    const formData = new FormData();
+    formData.append('image', imgSrc);
+    formData.append( 'quizQNA',JSON.stringify(quiz));
+    formData.append( 'timeLimit',timeLimit);
+    formData.append( 'quizType',quizType);
+    formData.append( 'title',title);
+    formData.append( 'description',description);
+    formData.append( 'visibility',visibility);
+    formData.append( 'category',category);
+    formData.append( 'creator',creator);
+    formData.append( 'id',id);
+    await createNewQuiz(formData, {
       headers: {
+       "Content-Type": "multipart/form-data",
         Authorization: token,
       },
     });
-    console.log(result)
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers(""));
     dispatch(resetQuizHandler());

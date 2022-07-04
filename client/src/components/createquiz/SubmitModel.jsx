@@ -86,7 +86,7 @@ else{
                         // backgroundColor: '#669900',
                         color:'#ffffff',
                     }}}  
-                 component={Link} to="/library">Yes
+                 component={Link} to="/">Yes
                 </Button>}
                 {error&& <Button onClick={clickHandler} autoFocus variant="contained" sx={{ fontWeight: "bold",}}  
                 >Ok

@@ -103,7 +103,8 @@ export default function QuizCard(props) {
           <CardMedia
             component="img"
             height="140"
-            image="images/quiz.jpg"
+            // image="images/quiz.jpg"
+            image={`http://localhost:5000/${props.img}`}
             alt="green iguana"
           />
           <CardContent>

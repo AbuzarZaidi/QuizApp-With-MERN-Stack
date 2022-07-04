@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
@@ -78,9 +78,9 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState(active);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-useEffect(() => {
-    setIsActive(0)
-}, [active])
+  useEffect(() => {
+    setIsActive(0);
+  }, [active]);
 
   const handleSignUpOpen = () => {
     setSignUpOpen(true);
@@ -191,10 +191,68 @@ useEffect(() => {
         </IconButton>
         <p>Profile</p>
       </MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>Home</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Discover</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Library</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Reports</MenuItem>
+      {isLogin && (
+        <MenuItem onClick={handleMenuClose} to="/createquiz" component={Link}>
+          <Button variant="contained">CreateQuiz</Button>
+        </MenuItem>
+      )}
+      {isLogin && (
+        <MenuItem onClick={handleMenuClose} to="/" component={Link}>
+          Home
+        </MenuItem>
+      )}
+      {isLogin && (
+        <MenuItem onClick={handleMenuClose} to="/Discover" component={Link}>
+          Discover
+        </MenuItem>
+      )}
+      {isLogin && (
+        <MenuItem onClick={handleMenuClose} to="/Library" component={Link}>
+          Library
+        </MenuItem>
+      )}
+      {isLogin && (
+        <MenuItem onClick={handleMenuClose} to="/Reports" component={Link}>
+          Reports
+        </MenuItem>
+      )}
+
+      {isLogin && (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            handleLogout();
+          }}
+          to="/"
+          component={Link}
+        >
+          Login Out
+        </MenuItem>
+      )}
+      {!isLogin && (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            handleLoginOpen();
+          }}
+          to="/"
+          component={Link}
+        >
+          Login
+        </MenuItem>
+      )}
+      {!isLogin && (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            handleSignUpOpen();
+          }}
+          to="/"
+          component={Link}
+        >
+          SignUp
+        </MenuItem>
+      )}
     </Menu>
   );
   const handleCloseNavMenu = (ind) => {
@@ -298,25 +356,27 @@ useEffect(() => {
             </Box>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-             {!isLogin && <Button
-                sx={{
-                  my: 2,
+              {!isLogin && (
+                <Button
+                  sx={{
+                    my: 2,
 
-                  mr: 2,
-                  // color: "#004d40",
-                  fontWeight: "bold",
-                  // borderBottom: "3 ",
-                  textTransform: "capitalize",
+                    mr: 2,
+                    // color: "#004d40",
+                    fontWeight: "bold",
+                    // borderBottom: "3 ",
+                    textTransform: "capitalize",
 
-                  color: "#3C76D2",
-                  borderBottom: 3,
-                }}
-                to={"/"}
-                component={Link}
-              >
-                <HomeOutlinedIcon sx={{ mr: 1 }} />
-                Home
-              </Button>}
+                    color: "#3C76D2",
+                    borderBottom: 3,
+                  }}
+                  to={"/"}
+                  component={Link}
+                >
+                  <HomeOutlinedIcon sx={{ mr: 1 }} />
+                  Home
+                </Button>
+              )}
               {isLogin && (
                 <Button
                   onClick={() => setIsActive(9)}

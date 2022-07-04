@@ -197,6 +197,7 @@ const Discover = () => {
                         id={ques._id}
                         visibility={ques.quizDetail.visibility}
                         category={ques.quizDetail.category}
+                        img={ques.image}
                       />
                     </Grid>
                   );
@@ -213,6 +214,7 @@ const Discover = () => {
                       id={ques._id}
                       visibility={ques.quizDetail.visibility}
                       category={ques.quizDetail.category}
+                      img={ques.image}
                     />
                   </Grid>
                 );

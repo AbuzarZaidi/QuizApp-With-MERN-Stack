@@ -1,4 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import {
+  updateImgSrc
+} from "../../../store/quizSummary";
 import {
     Box,
     Button,
@@ -15,6 +19,7 @@ import {
     },
   };
 const CoverImage = (props) => {
+  const dispatch = useDispatch();
     const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
@@ -37,13 +42,14 @@ const CoverImage = (props) => {
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
       setFile(pickedFile);
+      dispatch( updateImgSrc(pickedFile));
       setIsValid(true);
       fileIsValid = true;
     } else {
       setIsValid(false);
       fileIsValid = false;
+      console.log(fileIsValid)
     }
-    props.onInput(props.id, pickedFile, fileIsValid);
   };
 
   const pickImageHandler = () => {
@@ -57,7 +63,7 @@ const CoverImage = (props) => {
     backgroundSize: '297px 209px',
     }}>
     <Box>
-    {/* <img src={previewUrl} alt="Preview" /> */}
+
     <input
         id={props.id}
         ref={filePickerRef}
