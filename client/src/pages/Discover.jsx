@@ -172,7 +172,7 @@ const Discover = () => {
           </Typography>}
           </Box>
       <Divider />
-      <Box sx={{ display: "flex", justifyContent: "center", height: "100vh" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", height: "120vh",mb:3 }}>
         
       
         {!show ? (
@@ -180,7 +180,7 @@ const Discover = () => {
             <CircularProgress />
           </Box>
         ) : (
-          <Box sx={{ flexGrow: 1, mt: 3, ml: 5 }}>
+          <Box sx={{ flexGrow: 1, mt: 3, ml: 5,mb:3 }}>
             <Grid container spacing={2}>
               {/* {quizArr.map((ques, i) => { */}
               {checkcategory&&quizArr

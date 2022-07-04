@@ -30,8 +30,9 @@ const SingleQuizpart = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={2}>
               {/* <Checkbox {...label} /> */}
+              
               <img
-                src={"/images/quiz.jpg"}
+                src={`http://localhost:5000/${props.img}`}
                 alt=""
                 height="125px"
                 width="150px"

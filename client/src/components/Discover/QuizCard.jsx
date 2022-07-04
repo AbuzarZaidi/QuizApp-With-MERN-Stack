@@ -98,7 +98,7 @@ export default function QuizCard(props) {
           </Button>
         </Box>
       </Modal>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345,mb:3  }}>
         <CardActionArea>
           <CardMedia
             component="img"
