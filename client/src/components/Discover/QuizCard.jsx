@@ -91,9 +91,12 @@ export default function QuizCard(props) {
             variant="contained"
             to="/startquiz"
             component={Link}
-            sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+            sx={{ display: "flex", justifyContent: "center", mt: 3,'&:hover': {
+              color:'#ffffff',
+          } }}
             onClick={startQuizHandler}
           >
+            
             Start Quiz
           </Button>
         </Box>

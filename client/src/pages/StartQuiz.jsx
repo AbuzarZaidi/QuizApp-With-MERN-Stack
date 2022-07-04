@@ -128,12 +128,14 @@ const StartQuiz = () => {
             {quizArray.quizQNA.length}.
           </Typography>
           <Divider />
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center" ,}}>
             <Button
               variant="contained"
               to="/discover"
               component={Link}
-              sx={{ mt: 4 }}
+              sx={{ mt: 4 ,'&:hover': { 
+                color:'#ffffff',
+            }}}
             >
               Back
             </Button>

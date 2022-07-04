@@ -10,7 +10,6 @@ import {
   } from "../../../utlis/materialComponents";
   const styles = {
     paperContainer: {
-    //   backgroundImage: `url(images/background.jpg)`,
       height: 194,
       display: "flex",
       flexDirection: "column",
@@ -59,7 +58,6 @@ const CoverImage = (props) => {
     <Paper style={styles.paperContainer} sx={{backgroundImage:`url(${previewUrl})`,backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
-    // backgroundSize: 'auto',
     backgroundSize: '297px 209px',
     }}>
     <Box>
