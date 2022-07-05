@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid } from "../../utlis/materialComponents";
 import { styled } from "@mui/material/styles";
-const TopPicksTitle = styled("Typography")(({ theme }) => ({
+const Title = styled("div")(({ theme }) => ({
   // padding: theme.spacing(1),
 
   [theme.breakpoints.down("md")]: {
@@ -22,7 +22,7 @@ const Images= styled("img")(({ theme }) => ({
   // },
 }));
 
-const TopPicksCreator = styled("Box")(({ theme }) => ({
+const Creator = styled("div")(({ theme }) => ({
 
   [theme.breakpoints.down("md")]: {
     justifyContent: "space-around",
@@ -50,7 +50,7 @@ const TopPicks = (props) => {
         </Grid>
         <Grid item xs={10}>
          
-            <TopPicksTitle>
+            <Title>
             <Typography
               variant="body1"
               gutterBottom
@@ -59,8 +59,8 @@ const TopPicks = (props) => {
             >
               {props.title}
             </Typography>
-            </TopPicksTitle>
-            <TopPicksCreator  sx={{
+            </Title>
+            < Creator   sx={{
                 backgroundColor: "#CCCCCC",
                 ml: 3,
                 mt: 3,
@@ -87,7 +87,7 @@ const TopPicks = (props) => {
                 {props.play} plays
               </Typography>
             
-            </TopPicksCreator>
+            </ Creator >
         
         </Grid>
       </Grid>

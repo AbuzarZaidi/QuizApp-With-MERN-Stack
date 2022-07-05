@@ -10,7 +10,7 @@ import {
   Button,
   Divider,
 } from "../utlis/materialComponents";
-const Cards = styled("Box")(({ theme }) => ({
+const Cards = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 
   [theme.breakpoints.down("md")]: {
@@ -23,14 +23,14 @@ const Cards = styled("Box")(({ theme }) => ({
     textAlign: "center",
   },
 }));
-const Image = styled("Box")(({ theme }) => ({
+const Image = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 
   [theme.breakpoints.down("md")]: {
    display:"none",
   },
 }));
-const HeroSection = styled("Box")(({ theme }) => ({
+const HeroSection = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 
   [theme.breakpoints.down("md")]: {
