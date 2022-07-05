@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { setnHandler } from "../../store/startQuiz";
 import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import {
   Button,
   Card,
@@ -21,8 +22,15 @@ const style = {
   width: 800,
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  p: 4, 
 };
+const Center = styled("Box")(({ theme }) => ({
+  padding: theme.spacing(1),
+
+  [theme.breakpoints.down("md")]: {
+    width: 350,
+  },
+}));
 export default function QuizCard(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -39,7 +47,7 @@ export default function QuizCard(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Center sx={style}>
           <Typography
             id="modal-modal-title"
             variant="h5"
@@ -99,7 +107,7 @@ export default function QuizCard(props) {
             
             Start Quiz
           </Button>
-        </Box>
+        </Center>
       </Modal>
       <Card sx={{ maxWidth: 345,mb:3  }}>
         <CardActionArea>

@@ -25,22 +25,6 @@ const Discover = () => {
       setType(value);
       setShow(true);
     }, 1000);
-
-    //  setValue(evalue)
-    // console.log(value)
-    // console.log(quizArr)
-    // setShow(false);
-    // const result= await quizArr.filter(ques => ques.quizDetail.category===value)
-    // if(result.length<1){
-    //   setFound("none")
-    // }
-    // else{
-    //   setQuizArr(result);
-    //   setTimeout(() => {
-    //     setShow(true);
-    //   }, 1000);
-    // }
-
     setAnchorEl(null);
   };
   useEffect(() => {
@@ -54,11 +38,6 @@ const Discover = () => {
   }, [setQuizArr]);
   return (
     <>
-      {/* <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE"}}>
-    <Typography variant="h2" gutterBottom component="div">
-       Discover
-      </Typography>
-    </Box> */}
       <Box sx={{ display: "flex", justifyContent: "flex-start", ml: 3, mt: 3 }}>
         <Button
           id="demo-positioned-button"
@@ -82,7 +61,7 @@ const Discover = () => {
             Filters
           </Typography>
         </Button>
-       
+
         <Menu
           id="demo-positioned-menu"
           aria-labelledby="demo-positioned-button"
@@ -156,8 +135,9 @@ const Discover = () => {
           </MenuItem>
         </Menu>
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-start",ml:3,mt:1}}>
-      {checkcategory&&<Typography
+      <Box sx={{ display: "flex", justifyContent: "flex-start", ml: 3, mt: 1 }}>
+        {checkcategory && (
+          <Typography
             variant="h6"
             component="div"
             sx={{
@@ -168,26 +148,51 @@ const Discover = () => {
               textTransform: "capitalize",
             }}
           >
-          Category: {type}
-          </Typography>}
-          </Box>
+            Category: {type}
+          </Typography>
+        )}
+      </Box>
       <Divider />
-      <Box sx={{ display: "flex", justifyContent: "center", height: "120vh",mb:3 }}>
-        
-      
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          height: "120vh",
+          mb: 3,
+        }}
+      >
         {!show ? (
           <Box>
             <CircularProgress />
           </Box>
         ) : (
-          <Box sx={{ flexGrow: 1, mt: 3, ml: 5,mb:3 }}>
+          <Box sx={{ flexGrow: 1, mt: 3, ml: 5, mb: 3 }}>
             <Grid container spacing={2}>
               {/* {quizArr.map((ques, i) => { */}
-              {checkcategory&&quizArr
-                .filter((val) => val.quizDetail.category === type)
-                .map((ques) => {
+              {checkcategory &&
+                quizArr
+                  .filter((val) => val.quizDetail.category === type)
+                  .map((ques) => {
+                    return (
+                      <Grid item xs={10} md={4} key={ques}>
+                        <QuizCard
+                          quizType={ques.quizDetail.quizType}
+                          timeLimit={ques.quizDetail.timeLimit}
+                          title={ques.quizDetail.title}
+                          description={ques.quizDetail.description}
+                          quiz={ques}
+                          id={ques._id}
+                          visibility={ques.quizDetail.visibility}
+                          category={ques.quizDetail.category}
+                          img={ques.image}
+                        />
+                      </Grid>
+                    );
+                  })}
+              {!checkcategory &&
+                quizArr.map((ques, i) => {
                   return (
-                    <Grid item xs={4} key={ques}>
+                    <Grid item xs={10} md={4} key={i}>
                       <QuizCard
                         quizType={ques.quizDetail.quizType}
                         timeLimit={ques.quizDetail.timeLimit}
@@ -202,23 +207,6 @@ const Discover = () => {
                     </Grid>
                   );
                 })}
-              {!checkcategory&&quizArr.map((ques, i) => {
-                return (
-                  <Grid item xs={4} key={i}>
-                    <QuizCard
-                      quizType={ques.quizDetail.quizType}
-                      timeLimit={ques.quizDetail.timeLimit}
-                      title={ques.quizDetail.title}
-                      description={ques.quizDetail.description}
-                      quiz={ques}
-                      id={ques._id}
-                      visibility={ques.quizDetail.visibility}
-                      category={ques.quizDetail.category}
-                      img={ques.image}
-                    />
-                  </Grid>
-                );
-              })}
             </Grid>
           </Box>
         )}
