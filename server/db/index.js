@@ -1,6 +1,7 @@
 const mongoose=require( 'mongoose');
-mongoose
-  .connect("mongodb://localhost:27017/QuizWorld")
+const DB=process.env.DATABASE
+
+mongoose.connect("mongodb://localhost:27017/QuizWorld")
   .then(() => {
     console.log("Connection Successfull");
   })

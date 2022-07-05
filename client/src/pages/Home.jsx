@@ -1,5 +1,6 @@
 import React from "react";
 import TopPicks from "../components/home/TopPicks";
+import { styled } from "@mui/material/styles";
 import {
   Box,
   Paper,
@@ -9,7 +10,33 @@ import {
   Button,
   Divider,
 } from "../utlis/materialComponents";
+const Cards = styled("Box")(({ theme }) => ({
+  padding: theme.spacing(1),
 
+  [theme.breakpoints.down("md")]: {
+    display: "flex",
+    justifyContent: "center",
+    mt: 3,
+    mb: 3,
+    flexWrap: "wrap",
+    flexDirection: "column",
+    textAlign: "center",
+  },
+}));
+const Image = styled("Box")(({ theme }) => ({
+  padding: theme.spacing(1),
+
+  [theme.breakpoints.down("md")]: {
+   display:"none",
+  },
+}));
+const HeroSection = styled("Box")(({ theme }) => ({
+  padding: theme.spacing(1),
+
+  [theme.breakpoints.down("md")]: {
+    textAlign:"center"
+  },
+}));
 const Home = () => {
   return (
     <>
@@ -20,6 +47,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
+        <HeroSection>
         <Box>
           <Typography
             variant="h4"
@@ -70,99 +98,109 @@ const Home = () => {
             Discover
           </Button>
         </Box>
+        </HeroSection>
+        <Image>
         <img
           src={"/images/Header2Img.png"}
           alt=""
-          height="500px"
+          // height="100px"
           style={{ filter: "drop-shadow(15px 5px 1px #bee0ec)" }}
         />
-        <Box></Box>
+       </Image>
       </Box>
-      <Box
-        sx={{ display: "flex", justifyContent: "space-around", mt: 3, mb: 3 }}
-      >
-        <Card sx={{ minWidth: 275 }}>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <img src={"/icons/writing.png"} alt="" height="50px" width="50px" />
-          </Box>
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                color: "#3668CE",
-              }}
-            >
-              Easy Quiz Creation
-            </Typography>
 
-            <Typography variant="body2">
-              Here You can create free gamified quizzes
-            </Typography>
-            <Typography variant="body2">
-              for your students to check their knowledge
-            </Typography>
-          </CardContent>
-        </Card>
-
-        <Card
-          sx={{ minWidth: 275, backgroundColor: "#3668CE", color: "white" }}
+      <Box>
+        <Cards
+          sx={{ display: "flex", justifyContent: "space-around", mt: 3, mb: 3 }}
         >
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <img src={"/icons/goal.png"} alt="" height="50px" width="50px" />
-          </Box>
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
-              Easy Quiz Creation
-            </Typography>
+          <Card sx={{ minWidth: 275,mb:2 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <img
+                src={"/icons/writing.png"}
+                alt=""
+                height="50px"
+                width="50px"
+              />
+            </Box>
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  color: "#3668CE",
+                }}
+              >
+                Easy Quiz Creation
+              </Typography>
 
-            <Typography variant="body2">
-              Here You can find different type of
-            </Typography>
-            <Typography variant="body2">
-              quizes according to your taste.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ minWidth: 275 }}>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <img
-              src={"/icons/clipboard.png"}
-              alt=""
-              height="50px"
-              width="50px"
-            />
-          </Box>
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                color: "#3668CE",
-              }}
-            >
-              Mange with the results
-            </Typography>
+              <Typography variant="body2">
+                Here You can create free gamified quizzes
+              </Typography>
+              <Typography variant="body2">
+                for your students to check their knowledge
+              </Typography>
+            </CardContent>
+          </Card>
 
-            <Typography variant="body2">
-              You can also Track record of your Quiz
-            </Typography>
-            <Typography variant="body2">
-              Like how much students takes your
-            </Typography>
-            <Typography variant="body2">
-              quizes and how scores the most
-            </Typography>
-          </CardContent>
-        </Card>
+          <Card
+            sx={{ minWidth: 275, backgroundColor: "#3668CE", color: "white" }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <img src={"/icons/goal.png"} alt="" height="50px" width="50px" />
+            </Box>
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                Easy Quiz Creation
+              </Typography>
+
+              <Typography variant="body2">
+                Here You can find different type of
+              </Typography>
+              <Typography variant="body2">
+                quizes according to your taste.
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card sx={{ minWidth: 275 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <img
+                src={"/icons/clipboard.png"}
+                alt=""
+                height="50px"
+                width="50px"
+              />
+            </Box>
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  color: "#3668CE",
+                }}
+              >
+                Mange with the results
+              </Typography>
+
+              <Typography variant="body2">
+                You can also Track record of your Quiz
+              </Typography>
+              <Typography variant="body2">
+                Like how much students takes your
+              </Typography>
+              <Typography variant="body2">
+                quizes and how scores the most
+              </Typography>
+            </CardContent>
+          </Card>
+        </Cards>
       </Box>
 
       <Box
@@ -174,7 +212,7 @@ const Home = () => {
           "& > :not(style)": {
             m: 1,
             width: 632,
-            height: 445,
+            height: 480,
           },
         }}
       >

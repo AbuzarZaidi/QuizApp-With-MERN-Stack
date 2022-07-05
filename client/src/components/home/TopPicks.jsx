@@ -1,39 +1,72 @@
 import React from "react";
 import { Box, Typography, Grid } from "../../utlis/materialComponents";
+import { styled } from "@mui/material/styles";
+const TopPicksTitle = styled("Typography")(({ theme }) => ({
+  // padding: theme.spacing(1),
 
+  [theme.breakpoints.down("md")]: {
+     textAlign:"center",
+  },
+}));
+const Images= styled("img")(({ theme }) => ({
+  // padding: theme.spacing(1),
+
+  [theme.breakpoints.down("md")]: {
+    width:"85px",
+  },
+  // [theme.breakpoints.up('md')]: {
+  //   width:"95px",
+  // },
+}));
+
+const TopPicksCreator = styled("Box")(({ theme }) => ({
+
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "space-around",
+    backgroundColor: "#ffffff",
+  },
+}));
 const TopPicks = (props) => {
   return (
     <Box sx={{ border: 1, mt: 2, mx: 2, borderColor: "#CCCCCC" }}>
       <Grid container>
         <Grid item xs={2}>
-          <Box sx={{}}>
-            <img
+          {/* <Images sx={{maxWidth: '90%',}}> */}
+            <Images
               src={"/images/quiz.jpg"}
               alt=""
-              height="80px"
+              // height="80px"
+               sx={{  
+                width:"122px",
+                height: '100%',
+                padding: 0,
+                margin: 0,
+              }}
             />
-          </Box>
+          {/* </Images> */}
         </Grid>
         <Grid item xs={10}>
-          <Box sx={{}}>
+         
+            <TopPicksTitle>
             <Typography
               variant="body1"
               gutterBottom
               component="div"
-              sx={{ ml: 3, fontWeight: "bold" }}
+              sx={{ ml: 3, fontWeight: "bold", }}
             >
               {props.title}
             </Typography>
-            <Box
-              sx={{
+            </TopPicksTitle>
+            <TopPicksCreator  sx={{
                 backgroundColor: "#CCCCCC",
                 ml: 3,
                 mt: 3,
-                height: "30px",
+                height: "32px",
                 display: "flex",
+               
                 justifyContent: "space-between",
-              }}
-            >
+              }}>
+           
               <Typography
                 variant="body1"
                 gutterBottom
@@ -50,8 +83,9 @@ const TopPicks = (props) => {
               >
                 {props.play} plays
               </Typography>
-            </Box>
-          </Box>
+            
+            </TopPicksCreator>
+        
         </Grid>
       </Grid>
     </Box>
