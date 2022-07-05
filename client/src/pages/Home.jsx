@@ -38,6 +38,7 @@ const HeroSection = styled("div")(({ theme }) => ({
   },
 }));
 const Home = () => {
+  document.title = "Home-QuizWorld";
   return (
     <>
       <Box

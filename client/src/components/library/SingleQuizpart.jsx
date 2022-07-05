@@ -1,9 +1,14 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,updateCreator } from "../../store/quizSummary";
+import {updateHandler} from '../../store/quizMcq'
 import {
   Box,
   IconButton,
   Typography,
   Paper,
+  Button,
   Grid,
 } from "../../utlis/materialComponents";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,6 +16,20 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const SingleQuizpart = (props) => {
+  const dispatch = useDispatch();
+  const handleEdit=()=>{
+    console.log(props.quiz.quizQNA)
+  
+    dispatch(updateQuizType(props.quiz.quizDetail.quizType));
+    dispatch(updateTimeLimit(props.quiz.quizDetail.timeLimit));
+    dispatch(updateTitle(props.quiz.quizDetail.title));
+    dispatch(updateDescription(props.quiz.quizDetail.description));
+    dispatch(updateVisibility(props.quiz.quizDetail.visibility));
+    dispatch(updateImgSrc(props.quiz.quizDetail.imgSrc));
+    dispatch(updateCategory(props.quiz.quizDetail.category));
+    dispatch(updateCreator(props.quiz.quizDetail.creator));
+    dispatch(updateHandler(props.quiz.quizQNA));
+  }
   return (
     <>
       <Box></Box>
@@ -75,17 +94,21 @@ const SingleQuizpart = (props) => {
               sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
             >
               <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Button  component={Link} to="/createquiz">
                 <IconButton
                   size="large"
                   edge="end"
                   aria-label="account of current user"
                   // aria-controls={menuId}
                   aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
+                   onClick={handleEdit}
                   sx={{ color: "#fffff" }}
+                 
                 >
+                  
                   <ModeEditIcon />
                 </IconButton>
+                </Button>
                 <IconButton
                   size="large"
                   edge="end"

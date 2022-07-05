@@ -30,6 +30,9 @@ const quizMcqSlice = createSlice({
       });
       // console.log(state.quizQna)
     },
+    updateHandler(state,action){
+      state.quizQna=action.payload;
+    },
     quesHandler(state, action) {
       state.quizQna[action.payload.i].question = action.payload.text;
     },
@@ -73,6 +76,7 @@ export const {
   correctOptionHandler,
   addMoreOptionHandler,
   removeMoreOptionHandler,
-  resetQuizHandler
+  resetQuizHandler,
+  updateHandler
 } = quizMcqSlice.actions;
 export default quizMcqSlice.reducer;

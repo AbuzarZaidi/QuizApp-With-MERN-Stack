@@ -43,7 +43,7 @@ setShow(true);
             <CircularProgress />
           </Box>}
     {show&&userQuizArr.map((ques, i) => {
- return < SingleQuizpart key={ques._id} id={ques._id} deleteHandler={quizDeleteHandler} title={ques.quizDetail.title.slice(0, 30)} creator={ques.quizDetail.creator} img={ques.image}/>
+ return < SingleQuizpart key={ques._id} quiz={ques} id={ques._id} deleteHandler={quizDeleteHandler} title={ques.quizDetail.title.slice(0, 30)} creator={ques.quizDetail.creator} img={ques.image}/>
     })}
     </>
   );

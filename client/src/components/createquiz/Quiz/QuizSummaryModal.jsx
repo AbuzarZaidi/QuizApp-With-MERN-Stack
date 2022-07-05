@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import {
   updateTitle,
   updateDescription,
@@ -51,11 +51,19 @@ const QuizSummaryModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   //handle data
-  const [title, setTitle] = useState("");
-  const [creator, setCreator] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [visibility, setVisibility] = useState("private");
+  
+  // const imgSrc = useSelector((state) => state.detail.imgSrc);
+  const Title = useSelector((state) => state.detail.title);
+  const Description = useSelector((state) => state.detail.description);
+  const Visibility = useSelector((state) => state.detail.visibility);
+  const Creator = useSelector((state) => state.detail.creator);
+  const Category = useSelector((state) => state.detail.category);
+
+  const [title, setTitle] = useState(Title);
+  const [creator, setCreator] = useState(Creator);
+  const [category, setCategory] = useState(Category );
+  const [description, setDescription] = useState(Description);
+  const [visibility, setVisibility] = useState(Visibility);
 
   const dispatch = useDispatch();
   const saveInfoHandler = () => {
@@ -162,7 +170,7 @@ const QuizSummaryModal = () => {
                       name="row-radio-buttons-group"
                     >
                       <FormControlLabel
-                        value="private"
+                        value={visibility}
                         control={<Radio />}
                         label="Private"
                         onClick={() => {

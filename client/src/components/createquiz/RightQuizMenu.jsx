@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from 'react-redux';
+import {useSelector,  useDispatch } from 'react-redux';
 import {updateQuizType,updateTimeLimit,} from 
 '../../store/quizSummary'
 import {
@@ -16,8 +16,10 @@ import {
 
 const RightQuizMenu = () => {
   const dispatch = useDispatch();
-  const [quiz, setQuiz] = React.useState("");
-  const [timer, setTimer] = React.useState("");
+  const quizType = useSelector((state) => state.detail.quizType);
+   const timeLimit = useSelector((state) => state.detail.timeLimit);
+  const [quiz, setQuiz] = React.useState(quizType);
+  const [timer, setTimer] = React.useState(timeLimit);
   const handleChangeQuiz = (event) => {
     setQuiz(event.target.value);
     dispatch(updateQuizType(event.target.value)); 
