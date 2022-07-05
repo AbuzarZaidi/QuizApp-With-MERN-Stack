@@ -14,6 +14,9 @@ const Images= styled("img")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     width:"85px",
   },
+  [theme.breakpoints.down("sm")]: {
+    width:"75px",
+  },
   // [theme.breakpoints.up('md')]: {
   //   width:"95px",
   // },
