@@ -111,7 +111,7 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
                 correctOptHandler(index, indexj);
               }}
               {...label}
-              checked=  {correct===indexj?true:""}
+              checked=  {correct===indexj?true:false}
               
               sx={{
                 color: pink[800],

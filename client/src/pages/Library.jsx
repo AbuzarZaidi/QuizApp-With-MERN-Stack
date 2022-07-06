@@ -39,12 +39,15 @@ setShow(true);
       
     </Box>
     <Divider />
+   
     {!show&&  <Box sx={{display: "flex", justifyContent: "center",}}>
             <CircularProgress />
           </Box>}
+         
     {show&&userQuizArr.map((ques, i) => {
  return < SingleQuizpart key={ques._id} quiz={ques} id={ques._id} deleteHandler={quizDeleteHandler} title={ques.quizDetail.title.slice(0, 30)} creator={ques.quizDetail.creator} img={ques.image}/>
     })}
+    {/* < SingleQuizpart key={123}  title={"Science Quiz"} creator={"abuzar"} /> */}
     </>
   );
 };
