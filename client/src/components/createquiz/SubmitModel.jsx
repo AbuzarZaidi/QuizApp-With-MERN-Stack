@@ -17,6 +17,7 @@ const SubmitModel = (props) => {
         const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
       
         const handleClickOpen = () => {
+          console.log(props.detail.imgSrc)
             if(props.newQuiz[0].question===""&&props.newTrueFalse[0].question===""){
                     setError(true)
                     setErrorMessage("All questions need to be completed before you can createQuiz.")
@@ -25,7 +26,7 @@ const SubmitModel = (props) => {
               setError(true)
               setErrorMessage("Please select a option.to create a quiz.")
       }
-          else  if(props.detail.quizType===""||props.detail.timeLimit===""||props.detail.title===""||props.detail.description===""||props.detail.visibility===""||props.detail.category===""||props.detail.creator===""){
+          else  if(props.detail.quizType===""||props.detail.timeLimit===""||props.detail.title===""||props.detail.description===""||props.detail.visibility===""||props.detail.category===""||props.detail.creator===""||props.detail.imgSrc===null){
                 setError(true)
                 setErrorMessage("Please add full detail before you can createQuiz.")
             }

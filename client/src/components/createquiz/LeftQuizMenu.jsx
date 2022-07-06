@@ -187,6 +187,7 @@ const exitHandler=()=>{
                     visibility,
                     category,
                     creator,
+                    imgSrc
                   }}
                 />
                 <ButtonHover>

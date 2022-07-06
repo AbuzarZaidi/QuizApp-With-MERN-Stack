@@ -6,7 +6,7 @@ timeLimit: 30,
 title: "",
 description: "",
 visibility: "public",
-imgSrc: {},
+imgSrc: null,
 category:"",
 creator:""};
 const quizDetailSlice = createSlice({
