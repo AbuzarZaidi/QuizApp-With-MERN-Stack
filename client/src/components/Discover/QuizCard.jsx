@@ -24,7 +24,7 @@ const style = {
   boxShadow: 24,
   p: 4, 
 };
-const Center = styled("Box")(({ theme }) => ({
+const Center = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 
   [theme.breakpoints.down("md")]: {

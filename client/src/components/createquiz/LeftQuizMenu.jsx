@@ -114,7 +114,11 @@ const LeftQuizMenu = () => {
       dispatch(tfAddNewQuestion());
     }
   };
-
+const exitHandler=()=>{
+  dispatch(tfResetHandler());
+  dispatch(resetDetailHandlers(""));
+  dispatch(resetQuizHandler());
+}
   return (
     <>
       <div style={{ width: "100%", height: 360 }}>
@@ -167,6 +171,7 @@ const LeftQuizMenu = () => {
                     color: "#A13333 ",
                     backgroundColor: "#F2F2F2",
                   }}
+                  onClick={exitHandler}
                 >
                   Exit
                 </Button>
