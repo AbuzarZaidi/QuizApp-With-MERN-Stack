@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,updateCreator } from "../../store/quizSummary";
+import { updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,updateCreator,updateQuizId } from "../../store/quizSummary";
 import {updateHandler} from '../../store/quizMcq'
+import {updatetfHandler} from '../../store/truefalse'
 import {
   Box,
   IconButton,
@@ -18,7 +19,8 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 const SingleQuizpart = (props) => {
   const dispatch = useDispatch();
   const handleEdit=()=>{
-    console.log(props.quiz.quizQNA)
+    console.log("single Quiz Part")
+    console.log(props.quiz._id)
   
     dispatch(updateQuizType(props.quiz.quizDetail.quizType));
     dispatch(updateTimeLimit(props.quiz.quizDetail.timeLimit));
@@ -28,7 +30,15 @@ const SingleQuizpart = (props) => {
     dispatch(updateImgSrc(props.quiz.quizDetail.imgSrc));
     dispatch(updateCategory(props.quiz.quizDetail.category));
     dispatch(updateCreator(props.quiz.quizDetail.creator));
-    dispatch(updateHandler(props.quiz.quizQNA));
+    dispatch(updateQuizId(props.quiz._id));
+    if(props.quiz.quizDetail.quizType==="quiz"){
+      dispatch(updateHandler(props.quiz.quizQNA));
+    }
+   else{
+    dispatch(updatetfHandler(props.quiz.quizQNA));
+   }
+    
+
   }
   return (
     <>

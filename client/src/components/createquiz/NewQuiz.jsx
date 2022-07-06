@@ -16,13 +16,20 @@ const NewQuiz = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const quizType = useSelector((state) => state.detail.quizType);
-  const [quizes, setQuizes] = useState(quizArray);
+  // if (quizType === "quiz") {
+  // const [quizes, setQuizes] = useState(quizArray);
+  // }else{
+  //   const [quizes, setQuizes] = useState(truefalseArray);
+  // }
+  const [quizes, setQuizes] = useState("");
+  const [show, setShow] = useState(false);
   useEffect(() => {
     if (quizType === "quiz") {
       setQuizes(quizArray);
     } else {
       setQuizes(truefalseArray);
     }
+    setShow(true)
   }, [quizArray, quizes, quizType, truefalseArray]);
   const questionHandler = (text, i) => {
     if (quizType === "quiz") {
@@ -42,7 +49,7 @@ const NewQuiz = () => {
             className="scrollbar scrollbar-primary"
             style={scrollContainerStyle}
           >
-            {quizes.map((ques, i) => {
+            {show&&quizes.map((ques, i) => {
               return (
                 <Quiz
                   key={i}

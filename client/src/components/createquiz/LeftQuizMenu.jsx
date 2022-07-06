@@ -10,7 +10,7 @@ import { tfAddNewQuestion, tfResetHandler } from "../../store/truefalse";
 import { setActiveHandler } from "../../store/auth";
 import { styled } from "@mui/material/styles";
 import SubmitModel from "./SubmitModel";
-const { createNewQuiz } = require("../../functions/createQuiz");
+const { createNewQuiz,updateQuiz } = require("../../functions/createQuiz");
 
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
@@ -54,6 +54,7 @@ const LeftQuizMenu = () => {
   const timeLimit = useSelector((state) => state.detail.timeLimit);
   const imgSrc = useSelector((state) => state.detail.imgSrc);
   const title = useSelector((state) => state.detail.title);
+  const quizId = useSelector((state) => state.detail.quizId);
   const description = useSelector((state) => state.detail.description);
   const visibility = useSelector((state) => state.detail.visibility);
   const creator = useSelector((state) => state.detail.creator);
@@ -61,6 +62,7 @@ const LeftQuizMenu = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler = async () => {
+ 
     dispatch(setActiveHandler());
     let quiz = [];
     if (quizType === "quiz") {
@@ -80,12 +82,24 @@ const LeftQuizMenu = () => {
     formData.append( 'category',category);
     formData.append( 'creator',creator);
     formData.append( 'id',id);
-    await createNewQuiz(formData, {
-      headers: {
-       "Content-Type": "multipart/form-data",
-        Authorization: token,
-      },
-    });
+    if(quizId===""){
+      await createNewQuiz(formData, {
+        headers: {
+         "Content-Type": "multipart/form-data",
+          Authorization: token,
+        },
+      });
+    }else{
+      // console.log('leftQuiz')
+      // console.log(quizId)
+      await updateQuiz(quizId,formData, {
+        headers: {
+         "Content-Type": "multipart/form-data",
+          Authorization: token,
+        },
+      });
+    }
+   
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers(""));
     dispatch(resetQuizHandler());

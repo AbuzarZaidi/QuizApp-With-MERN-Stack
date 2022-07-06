@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialCounterState = { 
   quizType: "quiz",
-timeLimit: 0,
+  quizId:"",
+timeLimit: 30,
 title: "",
 description: "",
 visibility: "",
@@ -17,6 +18,9 @@ const quizDetailSlice = createSlice({
     },
     updateTimeLimit(state, action) {
       state.timeLimit = action.payload;
+    },
+    updateQuizId(state, action) {
+      state.quizId = action.payload;
     },
     updateTitle(state, action) {
       state.title = action.payload;
@@ -37,7 +41,7 @@ const quizDetailSlice = createSlice({
       state.imgSrc = action.payload;
     } ,
    resetDetailHandlers(state,action){
-  state.timeLimit= action.payload;
+  state.timeLimit= 30;
   state.title= action.payload;
   state.description= action.payload;
   state.visibility= action.payload;
@@ -48,7 +52,7 @@ const quizDetailSlice = createSlice({
   },
 });
 
-export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers,updateCreator } = quizDetailSlice.actions
+export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers,updateCreator,updateQuizId } = quizDetailSlice.actions
 export default quizDetailSlice.reducer;
 
 
