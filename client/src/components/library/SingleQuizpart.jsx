@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   Box,
   IconButton,
-  Typography,
+  // Typography,
   Paper,
   Button,
   Grid,
@@ -131,9 +131,9 @@ const SingleQuizpart = (props) => {
                   fontWeight:"bold",
                 }}
               >
-                
-               {/* {props.title.slice(0, 30)} */}
-               {props.title.slice(0, 50)}
+              
+               {props.title.slice(0, 25)}
+               {/* {props.title.slice(0, 50)} */}
               </Text >
               <Text 
                 // variant="h6"
@@ -141,7 +141,7 @@ const SingleQuizpart = (props) => {
                 component="div"
                 sx={{ mt: 3,ml:3,fontSize: '1rem' }}
               >
-              <AccountCircleIcon/> {props.creator} 
+              <AccountCircleIcon sx={{color:"#3C76D2"}}/> {props.creator} 
               </Text >
             </Grid>
             <Grid
