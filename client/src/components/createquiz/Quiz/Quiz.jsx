@@ -74,7 +74,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
       <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
         <Grid container spacing={1} sx={{ mb: 5 }}>
           {ques.options.map((op, j) => {
-            return <QuizAnswers key={j} indexj={j} opt={op} index={index} />;
+            return <QuizAnswers correct={ques.correctOpt} key={j} indexj={j} opt={op} index={index} />;
           })}
         </Grid>
 

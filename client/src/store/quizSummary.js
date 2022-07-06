@@ -45,7 +45,7 @@ const quizDetailSlice = createSlice({
   state.title= action.payload;
   state.description= action.payload;
   state.visibility= action.payload;
-  state.imgSrc= action.payload;
+  state.imgSrc= null;
   state.category=action.payload;
   state.creator=action.payload;
 }

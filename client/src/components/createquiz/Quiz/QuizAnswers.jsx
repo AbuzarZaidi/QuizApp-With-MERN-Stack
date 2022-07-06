@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   fontColor: "white",
 }));
-const QuizAnswers = ({ indexj, opt, index }) => {
+const QuizAnswers = ({ indexj, opt, index,correct }) => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
   const [optionValue, setOptionValue] = useState(opt.option);
@@ -106,10 +106,13 @@ const QuizAnswers = ({ indexj, opt, index }) => {
             }}
           >
             <Checkbox
+
               onClick={(e) => {
                 correctOptHandler(index, indexj);
               }}
               {...label}
+              checked=  {correct===indexj?true:""}
+              
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
