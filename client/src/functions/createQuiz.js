@@ -8,11 +8,10 @@ export const createNewQuiz = async (newQuiz,header) => {
       console.log(error);
     }
   };
-  export const updateQuiz=async(id,data)=>{
+  export const updateQuiz=async(id,data,header)=>{
     try {
-      console.log("function")
-      console.log(id)
-        const result=await api.updateQuiz(id,data);
+    
+        const result=await api.updateQuiz(id,data,header);
         return result;
     } catch (error) {
         console.log(error);

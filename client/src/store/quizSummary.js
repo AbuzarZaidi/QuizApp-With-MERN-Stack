@@ -5,7 +5,7 @@ const initialCounterState = {
 timeLimit: 30,
 title: "",
 description: "",
-visibility: "",
+visibility: "public",
 imgSrc: {},
 category:"",
 creator:""};

@@ -170,7 +170,7 @@ const QuizSummaryModal = () => {
                       name="row-radio-buttons-group"
                     >
                       <FormControlLabel
-                        value={visibility}
+                        // value={visibility}
                         control={<Radio />}
                         label="Private"
                         onClick={() => {

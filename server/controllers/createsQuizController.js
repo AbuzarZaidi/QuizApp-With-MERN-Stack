@@ -28,7 +28,7 @@ const createQuiz=async(req,res,next)=>{
     };
   const newQuiz=new CreateQuiz(Quiz);
   try{
-    console.log(newQuiz)
+    // console.log(newQuiz)
      await  newQuiz.save();
      res.status(201).json(newQuiz);
   }catch(error){

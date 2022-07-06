@@ -19,8 +19,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 const SingleQuizpart = (props) => {
   const dispatch = useDispatch();
   const handleEdit=()=>{
-    console.log("single Quiz Part")
-    console.log(props.quiz._id)
+  
   
     dispatch(updateQuizType(props.quiz.quizDetail.quizType));
     dispatch(updateTimeLimit(props.quiz.quizDetail.timeLimit));

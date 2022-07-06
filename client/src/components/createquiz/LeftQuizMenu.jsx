@@ -89,20 +89,23 @@ const LeftQuizMenu = () => {
           Authorization: token,
         },
       });
+      dispatch(tfResetHandler());
+      dispatch(resetDetailHandlers(""));
+      dispatch(resetQuizHandler());
     }else{
-      // console.log('leftQuiz')
-      // console.log(quizId)
+   
       await updateQuiz(quizId,formData, {
         headers: {
          "Content-Type": "multipart/form-data",
           Authorization: token,
         },
       });
+      dispatch(tfResetHandler());
+      dispatch(resetDetailHandlers(""));
+      dispatch(resetQuizHandler());
     }
    
-    dispatch(tfResetHandler());
-    dispatch(resetDetailHandlers(""));
-    dispatch(resetQuizHandler());
+ 
   };
   const addQuestionHandler = () => {
     if (quizType === "quiz") {
