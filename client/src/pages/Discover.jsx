@@ -171,7 +171,7 @@ const Discover = () => {
               {/* {quizArr.map((ques, i) => { */}
               {checkcategory &&
                 quizArr
-                  .filter((val) => val.quizDetail.category === type)
+                  .filter((val) => val.quizDetail.category === type&&val.quizDetail.visibility==="public")
                   .map((ques) => {
                     return (
                       <Grid item xs={10} md={4} key={ques}>
@@ -190,7 +190,7 @@ const Discover = () => {
                     );
                   })}
               {!checkcategory &&
-                quizArr.map((ques, i) => {
+                quizArr.filter((val) => val.quizDetail.visibility==="public").map((ques, i) => {
                   return (
                     <Grid item xs={10} md={4} key={i}>
                       <QuizCard
