@@ -64,7 +64,6 @@ const QuizSummaryModal = () => {
   const [category, setCategory] = useState(Category );
   const [description, setDescription] = useState(Description);
   const [visibility, setVisibility] = useState(Visibility);
-
   const dispatch = useDispatch();
   const saveInfoHandler = () => {
     dispatch(updateTitle(title));
@@ -168,9 +167,10 @@ const QuizSummaryModal = () => {
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
+                       value={visibility}
                     >
                       <FormControlLabel
-                        // value={visibility}
+                         value="private"
                         control={<Radio />}
                         label="Private"
                         onClick={() => {
