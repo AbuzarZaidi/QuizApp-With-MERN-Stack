@@ -34,9 +34,12 @@ const Reports = () => {
   const [attemptsShow, setAttemptsShow] = useState(false);
   const [attempts,setAttempts]=useState([]);
   const setIndexHandler=(index)=>{
-    setAttempts(userQuizArr[index].attempts)
-    setShow(false);
-    setAttemptsShow(true)
+    if(userQuizArr.length>0){
+      setAttempts(userQuizArr[index].attempts)
+      setShow(false);
+      setAttemptsShow(true)
+    }
+    
   }
   const resetIndexHandler=(val)=>{
     setAttempts([])
@@ -46,8 +49,11 @@ const Reports = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await readUserQuizes(userId);
-      setShow(true);
-      setUserQuizArr(result);
+      if(result.length>0){
+        setShow(true);
+        setUserQuizArr(result);
+      }
+      
     };
     fetchData();
   },[setUserQuizArr,userId,]);

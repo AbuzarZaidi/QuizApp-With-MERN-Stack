@@ -49,10 +49,9 @@ const StartQuiz = () => {
   const [correct, setCorrect] = useState(0);
   const [userSelected, setUserSelected] = useState(undefined);
   const quizArray = useSelector((state) => state.set.quiz);
-  const name = useSelector((state) => state.authData.userName);
+  const userData=JSON.parse(localStorage.getItem('userData'))
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(quizArray.quizDetail.timeLimit);
-
   const [count, setCount] = useState(1);
   const [currVal, setCurrVal] = useState(quizArray.quizQNA[0]);
   const [timerSet, setTimerSet] = useState(false);
@@ -114,16 +113,17 @@ const StartQuiz = () => {
     setClickOption(ind);
   };
   const attemptHandler=async()=>{
-
+// console.log(userName)
     const date=Date().slice(0, 15);
     
     let attempts=quizArray.attempts;
     const attempArr=[...attempts,{
-      userName:name,
+      userName:userData.userName,
      CorrectAnswer: correct,
      Date: date,
      TotalQuestion: quizArray.quizQNA.length,
     }]  
+    console.log(userData.userName)
    await newPlayer(quizArray._id,attempArr);
     
   }
