@@ -115,7 +115,8 @@ const StartQuiz = () => {
   };
   const attemptHandler=async()=>{
 
-    const date=Date();
+    const date=Date().slice(0, 15);
+    
     let attempts=quizArray.attempts;
     const attempArr=[...attempts,{
       userName:name,
