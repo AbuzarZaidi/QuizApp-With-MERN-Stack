@@ -47,6 +47,9 @@ setShow(true);
     {show&&userQuizArr.map((ques, i) => {
  return < SingleQuizpart key={ques._id} quiz={ques} id={ques._id} deleteHandler={quizDeleteHandler} title={ques.quizDetail.title.slice(0, 30)} creator={ques.quizDetail.creator} img={ques.image}/>
     })}
+    {show&&userQuizArr.length===0?<Box sx={{display: "flex", justifyContent: "center"}}> <Typography variant="h6" >
+       Nothing to show
+      </Typography></Box>:""}
     {/* < SingleQuizpart key={123}  title={"Science Quiz"} creator={"abuzar"} /> */}
     </>
   );

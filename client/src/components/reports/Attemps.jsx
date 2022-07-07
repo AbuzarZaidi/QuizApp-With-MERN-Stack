@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from '@mui/material/Button';
-const Attemps = ({data,reset}) => {
+const Attemps = ({data,reset,show}) => {
   // console.log(data[0].Date)
    
   
@@ -18,7 +18,7 @@ const Attemps = ({data,reset}) => {
     <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <TableContainer component={Paper} sx={{ width: "95%" }}>
           <Table sx={{ minWidth: 850 }} size="small" aria-label="a dense table">
-            <TableHead >
+            {show&&<TableHead >
            
 
 
@@ -41,13 +41,13 @@ const Attemps = ({data,reset}) => {
                   </Typography>
                 </TableCell>
               </TableRow>
-            </TableHead>
+            </TableHead>}
             <TableBody>
               {data.map((val,ind) =>{
                 
              
            return (<TableRow
-            key={val.name}
+            key={ind}
             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
           >
             <TableCell component="th" scope="row">
@@ -67,9 +67,9 @@ const Attemps = ({data,reset}) => {
             </TableContainer>
            
             </Box>
-            <Box  sx={{display: "flex", justifyContent: "center",mt:3,}}>
+            {show&&<Box  sx={{display: "flex", justifyContent: "center",mt:3,}}>
             <Button variant="contained" sx={{width:"25%"}} onClick={()=>reset()}>Back</Button>
-            </Box>
+            </Box>}
     </>
   )
 }

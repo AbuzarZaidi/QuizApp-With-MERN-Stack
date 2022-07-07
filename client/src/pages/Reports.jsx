@@ -29,17 +29,24 @@ const Reports = () => {
   document.title = "Reports-QuizWorld";
   const userId = useSelector((state) => state.authData.id);
   const [checked, setChecked] = React.useState(true);
-  const [userQuizArr, setUserQuizArr] = useState(null);
+  const [userQuizArr, setUserQuizArr] = useState([]);
   const [show, setShow] = useState(false);
   const [attemptsShow, setAttemptsShow] = useState(false);
   const [attempts,setAttempts]=useState([]);
   const setIndexHandler=(index)=>{
-    if(userQuizArr.length>0){
+    console.log(userQuizArr)
+    setShow(false);
+    setAttemptsShow(true)
       setAttempts(userQuizArr[index].attempts)
-      setShow(false);
-      setAttemptsShow(true)
-    }
+      
     
+    // setTimeout(() => {
+    //   console.log(show)
+    //   console.log(attemptsShow)
+     
+     
+    // }, 5000);
+   
   }
   const resetIndexHandler=(val)=>{
     setAttempts([])
@@ -53,7 +60,6 @@ const Reports = () => {
         setShow(true);
         setUserQuizArr(result);
       }
-      
     };
     fetchData();
   },[setUserQuizArr,userId,]);
@@ -62,6 +68,7 @@ const Reports = () => {
     setChecked(event.target.checked);
  
   };
+ 
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -121,17 +128,18 @@ const Reports = () => {
        
        
       </Box>
-      {!show&&!attemptsShow?  <Box sx={{display: "flex", justifyContent: "center",}}>
+      {!show&&!attemptsShow&&userQuizArr.length!==0?  <Box sx={{display: "flex", justifyContent: "center",}}>
             <CircularProgress />
           </Box>:""}
-      {show&&!attempts&&userQuizArr.length===0? <Box sx={{display:"flex",justifyContent:"center",}}><Typography
+      {!show&&!attemptsShow&&userQuizArr.length===0? <Box sx={{display:"flex",justifyContent:"center",}}><Typography
         
         sx={{  textTransform: "capitalize",}}
       >
        It looks very empty in here, go ahead and create a kahoot.
       </Typography></Box>:""}
 
-      {!show&&attempts&&<Attemps  data={attempts} reset={resetIndexHandler}/>}
+      {!show&&attempts?<Attemps  data={attempts} reset={resetIndexHandler} show={attemptsShow}/>:""}
+      
     </>
   );
 };
