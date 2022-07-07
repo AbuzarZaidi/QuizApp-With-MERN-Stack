@@ -19,12 +19,14 @@ const createQuiz=async(req,res,next)=>{
       creator,
       
     };
+    const date = new Date();
     var quizArr = JSON.parse(quizQNA);
     const Quiz = {
       quizDetail: newquiz,
       quizQNA: quizArr,
       creatorId: id,
       image:req.file.path,
+      creationDate:date
     };
   const newQuiz=new CreateQuiz(Quiz);
   try{
@@ -64,6 +66,7 @@ const updateQuizById =async(req,res)=>{
   try {
 
     const data = await CreateQuiz.findByIdAndUpdate(_id, Quiz)
+
     if (!_id) {
       return res.status(400).send();
     } else {
@@ -74,5 +77,22 @@ const updateQuizById =async(req,res)=>{
     res.status(500).send(error);
    }
   }
+  const playerAttempt=async(req,res)=>{
+const _id = req.params.uid;
+const attemptArray=req.body;
+    try {
+
+      const data = await CreateQuiz.findByIdAndUpdate(_id, {attempts:attemptArray})
+      if (!_id) {
+        return res.status(400).send();
+      } else {
+        res.status(200).send(data);
+      }
+    }
+     catch (error) {
+      res.status(500).send(error);
+     }
+  }
 exports.createQuiz = createQuiz;
 exports.updateQuizById = updateQuizById;
+exports.playerAttempt = playerAttempt;

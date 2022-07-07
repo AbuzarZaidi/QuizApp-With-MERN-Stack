@@ -49,11 +49,11 @@ const login = async (req, res) => {
         res.status(400).json({ error: "Either password or email is invalid!" });
       } else {
         token = await userExist.generateAuthToken();
-
         res.status(200).json({
           userId: userExist._id,
           email: userExist.email,
           token: token,
+          name:userExist.name
         });
       }
   

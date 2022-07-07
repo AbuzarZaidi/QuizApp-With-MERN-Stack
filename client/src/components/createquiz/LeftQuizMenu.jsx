@@ -89,6 +89,7 @@ const LeftQuizMenu = () => {
           Authorization: token,
         },
       });
+      
       dispatch(tfResetHandler());
       dispatch(resetDetailHandlers(""));
       dispatch(resetQuizHandler());

@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
+import SingleQuizRow from "../components/reports/SingleQuizRow";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,6 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
 // import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -14,22 +19,25 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import Checkbox from "@mui/material/Checkbox";
+const { readUserQuizes } = require("../functions/readQuiz");
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+
 
 const Reports = () => {
   document.title = "Reports-QuizWorld";
+  const userId = useSelector((state) => state.authData.id);
   const [checked, setChecked] = React.useState(true);
+  const [userQuizArr, setUserQuizArr] = useState(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await readUserQuizes(userId);
+      setShow(true);
+      setUserQuizArr(result);
+    };
+    fetchData();
+  },[setUserQuizArr,userId,]);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -37,7 +45,7 @@ const Reports = () => {
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Stack spacing={1} sx={{ width: 200, mr: 3, mt: 3 }}>
+        <Stack spacing={1} sx={{ width: 300, mr: 3, mt: 3 }}>
           <Autocomplete
             freeSolo
             id="free-solo-2-demo"
@@ -56,56 +64,45 @@ const Reports = () => {
         </Stack>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-        <TableContainer component={Paper} sx={{ width: "70%" }}>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
+        <TableContainer component={Paper} sx={{ width: "95%" }}>
+          <Table sx={{ minWidth: 850 }} size="small" aria-label="a dense table">
+            <TableHead >
            
 
 
               <TableRow>
-                <TableCell>
-                  <Typography SX={{ fontWeight: "bold" }}>
+                <TableCell >
+                  <Typography SX={{ fontWeight: "bold", }} >
                     <Checkbox
                       checked={checked}
                       onChange={handleChange}
                       inputProps={{ "aria-label": "controlled" }}
                     />{" "}
-                    NAME
+                   <b> Name</b>
                   </Typography>
                 </TableCell>
                 <TableCell align="right" >
-                  <Typography SX={{ fontWeight: "bold" }}>Date</Typography>
+                  <Typography  SX={{ fontWeight: "bold",fontSize: '2.4rem', }} ><b> Date</b></Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography SX={{ fontWeight: "bold" }}>Game Mode</Typography>
+                  <Typography SX={{ fontWeight: "bold" }}><b>Game Mode</b></Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography SX={{ fontWeight: "bold" }}>
-                    No. of Player
+                  <b> No. of Player</b>
                   </Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-              <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleChange}
-                      inputProps={{ "aria-label": "controlled" }}
-                    />{" "}
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  {/* <TableCell align="right">{row.protein}</TableCell> */}
-                </TableRow>
-              ))}
+            {!show&&  <Box sx={{display: "flex", justifyContent: "center",}}>
+            <CircularProgress />
+          </Box>}
+            {show&&userQuizArr.map((ques) => 
+            { 
+              return  <SingleQuizRow name={ques.quizDetail.title} mode={ques.quizDetail.quizType} players={ques.attempts.length} 
+              date={ques.creationDate}/>
+})}
             </TableBody>
           </Table>
         </TableContainer>

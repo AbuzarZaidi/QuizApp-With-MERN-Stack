@@ -18,3 +18,12 @@ export const createNewQuiz = async (newQuiz,header) => {
         
     }
 }
+export const newPlayer=async(id,data)=>{
+  try {
+      const result=await api.playerAttempt(id,data);
+      return result;
+  } catch (error) {
+      console.log(error);
+      
+  }
+}

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { useSelector} from "react-redux";
 import {
-  setTokenHandler, setIdHandler
+  setTokenHandler, setIdHandler,setNameHandler
 } from "./store/auth";
 import Navbar from './components/Navbar'
 import CreateQuiz from './pages/CreateQuiz';
@@ -21,8 +21,10 @@ function App() {
     if(userData&&userData.token&&new Date(userData.expiration)>new Date()){
       dispatch(setTokenHandler(userData.token));
       dispatch(setIdHandler(userData.userId));
+      dispatch(setNameHandler(userData.userName));
     }
-    
+    // console.log("App.js")
+    // console.log(userData.userName)
    
   }, [dispatch ])
  

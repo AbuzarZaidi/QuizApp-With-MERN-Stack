@@ -5,6 +5,7 @@ import Timer from "../components/startquiz/Timer";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+
 import {
   Grid,
   Typography,
@@ -14,7 +15,7 @@ import {
   Button,
   Modal,
 } from "../utlis/materialComponents";
-
+const { newPlayer } = require("../functions/createQuiz");
 const Question = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -44,11 +45,11 @@ window.onbeforeunload = function () {
 const StartQuiz = () => {
   document.title = "StartQuiz-QuizWorld";
   const [open, setOpen] = React.useState(false);
-
   const [clicked, setClicked] = useState(true);
   const [correct, setCorrect] = useState(0);
   const [userSelected, setUserSelected] = useState(undefined);
   const quizArray = useSelector((state) => state.set.quiz);
+  const name = useSelector((state) => state.authData.userName);
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(quizArray.quizDetail.timeLimit);
 
@@ -112,6 +113,19 @@ const StartQuiz = () => {
     setUserSelected(ind);
     setClickOption(ind);
   };
+  const attemptHandler=async()=>{
+
+    const date=Date();
+    let attempts=quizArray.attempts;
+    const attempArr=[...attempts,{
+      userName:name,
+     CorrectAnswer: correct,
+     Date: date,
+     TotalQuestion: quizArray.quizQNA.length,
+    }]  
+   await newPlayer(quizArray._id,attempArr);
+    
+  }
   return (
     <>
       <Modal
@@ -133,6 +147,7 @@ const StartQuiz = () => {
               variant="contained"
               to="/discover"
               component={Link}
+              onClick={attemptHandler}
               sx={{ mt: 4 ,'&:hover': { 
                 color:'#ffffff',
             }}}
