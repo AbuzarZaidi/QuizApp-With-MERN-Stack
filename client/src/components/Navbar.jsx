@@ -206,7 +206,7 @@ const Navbar = () => {
           Discover
         </MenuItem>
       )}
-      {!isLogin && (
+      {isLogin && (
         <MenuItem onClick={handleMenuClose} to="/Library" component={Link}>
           Library
         </MenuItem>

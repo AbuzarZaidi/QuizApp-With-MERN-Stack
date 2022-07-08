@@ -5,7 +5,7 @@ const createQuizSchema = new Schema({
     quizQNA:{type:Array,required:true},
     creatorId:{type:String,required:true},
     image:{type:Object},
-    creationDate:{type:Date},
+    creationDate:{type:String},
     attempts:{type:Array}
 });
 

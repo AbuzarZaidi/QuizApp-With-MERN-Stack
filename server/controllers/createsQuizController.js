@@ -19,14 +19,18 @@ const createQuiz=async(req,res,next)=>{
       creator,
       
     };
-    const date = new Date();
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    let currDate=`${date}-${month}-${year}`
     var quizArr = JSON.parse(quizQNA);
     const Quiz = {
       quizDetail: newquiz,
       quizQNA: quizArr,
       creatorId: id,
       image:req.file.path,
-      creationDate:date
+      creationDate:currDate
     };
   const newQuiz=new CreateQuiz(Quiz);
   try{

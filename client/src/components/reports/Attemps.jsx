@@ -58,7 +58,7 @@ const Attemps = ({data,reset,show}) => {
             <TableCell align="right">{val.Date}</TableCell>
             <TableCell align="right" sx={{textTransform: "capitalize"}}>{val.CorrectAnswer}</TableCell>
             <TableCell align="right">{val.TotalQuestion}</TableCell>
-            {/* <TableCell align="right"><Button variant="contained" onClick={()=>props.openQuizAttempts(props.no)}>Open</Button></TableCell> */}
+           
             
           </TableRow>
            )} )}
