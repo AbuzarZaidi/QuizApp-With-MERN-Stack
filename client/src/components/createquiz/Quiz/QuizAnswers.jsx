@@ -25,12 +25,11 @@ const Answers = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   [theme.breakpoints.down("md")]: {
-    // input: { width: "194px", height: "100px" },
     width: "220px",
-    backgroundColor:"#ffffff"
+    backgroundColor: "#ffffff",
   },
 }));
-const QuizAnswers = ({ indexj, opt, index,correct }) => {
+const QuizAnswers = ({ indexj, opt, index, correct }) => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
   const [optionValue, setOptionValue] = useState(opt.option);
@@ -45,30 +44,29 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
     }
   };
   return (
-    <Grid item xs={7} md={6} >
+    <Grid item xs={7} md={6}>
       {/* <Item> */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-
-          }}
-        >
-          <Item>
-            {" "}
-            <Box
-              sx={{
-                width: "40px",
-                height: "109px",
-                backgroundColor: opt.color,
-                borderRadius: 1,
-              }}
-            ></Box>
-          </Item>
-          <Answers>
-            {" "}
-            {quizType === "quiz" && (
-              <TextField
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <Item>
+          {" "}
+          <Box
+            sx={{
+              width: "40px",
+              height: "109px",
+              backgroundColor: opt.color,
+              borderRadius: 1,
+            }}
+          ></Box>
+        </Item>
+        <Answers>
+          {" "}
+          {quizType === "quiz" && (
+            <TextField
               onChange={(e) => {
                 setOptionValue(e.target.value);
               }}
@@ -90,50 +88,47 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
                 disableUnderline: true,
               }}
             />
-            )}
-            {quizType === "trueFalse" && (
-              <TextField
-                value={opt.color === "#3668CE" ? "True" : "False"}
-                id="fullWidth"
-                variant="standard"
-                sx={{
-                  input: { width: "294px", height: "100px" },
-                  pl: 2,
-                  display: "flex",
-
-                  justifyContent: "center",
-                }}
-                InputProps={{
-                  disableUnderline: true,
-                }}
-              />
-            )}
-          </Answers>
-          <Item
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <Checkbox
-
-              onClick={(e) => {
-                correctOptHandler(index, indexj);
-              }}
-              {...label}
-              checked=  {correct===indexj?true:false}
-              
+          )}
+          {quizType === "trueFalse" && (
+            <TextField
+              value={opt.color === "#3668CE" ? "True" : "False"}
+              id="fullWidth"
+              variant="standard"
               sx={{
-                color: pink[800],
-                "&.Mui-checked": {
-                  color: pink[600],
-                },
+                input: { width: "294px", height: "100px" },
+                pl: 2,
+                display: "flex",
+
+                justifyContent: "center",
+              }}
+              InputProps={{
+                disableUnderline: true,
               }}
             />
-          </Item>
-        </Box>
-      {/* </Item> */}
+          )}
+        </Answers>
+        <Item
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Checkbox
+            onClick={(e) => {
+              correctOptHandler(index, indexj);
+            }}
+            {...label}
+            checked={correct === indexj ? true : false}
+            sx={{
+              color: pink[800],
+              "&.Mui-checked": {
+                color: pink[600],
+              },
+            }}
+          />
+        </Item>
+      </Box>
     </Grid>
   );
 };

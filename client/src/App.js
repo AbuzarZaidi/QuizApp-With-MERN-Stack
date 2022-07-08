@@ -23,8 +23,6 @@ function App() {
       dispatch(setIdHandler(userData.userId));
       dispatch(setNameHandler(userData.userName));
     }
-    // console.log("App.js")
-    // console.log(userData.userName)
    
   }, [dispatch ])
  
@@ -42,9 +40,6 @@ function App() {
         <Route path="/startquiz" element={<StartQuiz/>} />
       </Routes>
      
-     
-     
-     {/* <Footer/> */}
     </div>
   );
 }

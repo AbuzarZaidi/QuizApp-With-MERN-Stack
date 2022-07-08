@@ -1,7 +1,6 @@
 import React from "react";
-import {useSelector,  useDispatch } from 'react-redux';
-import {updateQuizType,updateTimeLimit,} from 
-'../../store/quizSummary'
+import { useSelector, useDispatch } from "react-redux";
+import { updateQuizType, updateTimeLimit } from "../../store/quizSummary";
 import {
   Box,
   InputLabel,
@@ -17,16 +16,16 @@ import {
 const RightQuizMenu = () => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
-   const timeLimit = useSelector((state) => state.detail.timeLimit);
+  const timeLimit = useSelector((state) => state.detail.timeLimit);
   const [quiz, setQuiz] = React.useState(quizType);
   const [timer, setTimer] = React.useState(timeLimit);
   const handleChangeQuiz = (event) => {
     setQuiz(event.target.value);
-    dispatch(updateQuizType(event.target.value)); 
+    dispatch(updateQuizType(event.target.value));
   };
   const handleChangeTimer = (event) => {
     setTimer(event.target.value);
-    dispatch(updateTimeLimit(event.target.value)); 
+    dispatch(updateTimeLimit(event.target.value));
   };
 
   return (
@@ -38,8 +37,16 @@ const RightQuizMenu = () => {
       >
         <CategoryIcon /> Question Type
       </Typography>
-      <Box sx={{ minWidth: 120,ml:1, mb: 2,width:"90%", display: "flex",
-    justifyContent: "center", }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          ml: 1,
+          mb: 2,
+          width: "90%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Quiz</InputLabel>
           <Select
@@ -62,8 +69,16 @@ const RightQuizMenu = () => {
       >
         <TimerOutlinedIcon /> Time Limit
       </Typography>
-      <Box sx={{ minWidth: 120,ml:1, mb: 2,width:"90%", display: "flex",
-    justifyContent: "center", }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          ml: 1,
+          mb: 2,
+          width: "90%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Timer</InputLabel>
           <Select

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ResultModal = () => {
-  return (
-    <div>ResultModal</div>
-  )
-}
+  return <div>ResultModal</div>;
+};
 
-export default ResultModal
+export default ResultModal;

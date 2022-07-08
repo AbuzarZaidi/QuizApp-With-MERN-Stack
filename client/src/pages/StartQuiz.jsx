@@ -113,7 +113,6 @@ const StartQuiz = () => {
     setClickOption(ind);
   };
   const attemptHandler=async()=>{
-// console.log(userName)
     const date=Date().slice(0, 15);
     
     let attempts=quizArray.attempts;

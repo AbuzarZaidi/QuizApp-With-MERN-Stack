@@ -41,32 +41,6 @@ const Search = styled("div")(({ theme }) => ({
     width: "auto",
   },
 }));
-
-// const SearchIconWrapper = styled('div')(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }));
-
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: 'inherit',
-//   '& .MuiInputBase-input': {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     // vertical padding + font size from searchIcon
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create('width'),
-//     width: '100%',
-//     [theme.breakpoints.up('md')]: {
-//       width: '20ch',
-//     },
-//   },
-// }));
-// export default function PrimarySearchAppBar() {
-
 const Navbar = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authData.isLogin);
@@ -159,38 +133,6 @@ const Navbar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Message</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem> */}
       {isLogin && (
         <MenuItem onClick={handleMenuClose} to="/createquiz" component={Link}>
           <Button variant="contained">CreateQuiz</Button>
@@ -261,8 +203,6 @@ const Navbar = () => {
   return (
     <>
       <div>
-        {/* <Button onClick={handleSignUpOpen}>Open modal</Button> */}
-
         <SignUp
           openLogin={handleLoginOpen}
           closeSignup={handleSignUpClose}
@@ -333,8 +273,6 @@ const Navbar = () => {
                       textTransform: "capitalize",
 
                       ...(ind === isActive && {
-                        // color:'#ffffff',
-                        // backgroundColor:'#3C76D2',
                         color: "#3C76D2",
                         borderBottom: 3,
                       }),
@@ -362,9 +300,9 @@ const Navbar = () => {
                     my: 2,
 
                     mr: 2,
-                    // color: "#004d40",
+
                     fontWeight: "bold",
-                    // borderBottom: "3 ",
+
                     textTransform: "capitalize",
 
                     color: "#3C76D2",

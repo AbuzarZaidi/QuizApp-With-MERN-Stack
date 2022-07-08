@@ -23,19 +23,18 @@ const CreateQuiz = () => {
   return (
     <Box sx={{ flexGrow: 1, mt: 0.5, height: "95vh", bgcolor: "#ffffff" }}>
       <Grid container spacing={0.1}>
-     
         <Grid item xs={12} md={2}>
           <ItemContainer sx={{ height: "95vh" }}>
             <RightQuizMenu />
           </ItemContainer>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Item sx={{ bgcolor: "#F2F2F1",height: "95vh" }}>
+          <Item sx={{ bgcolor: "#F2F2F1", height: "95vh" }}>
             <NewQuiz />
           </Item>
         </Grid>
         <Grid item xs={12} md={2}>
-          <ItemContainer sx={{ height: "95vh", }}>
+          <ItemContainer sx={{ height: "95vh" }}>
             <LeftQuizMenu />
           </ItemContainer>
         </Grid>

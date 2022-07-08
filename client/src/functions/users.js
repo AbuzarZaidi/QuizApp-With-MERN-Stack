@@ -14,6 +14,6 @@ export const login = async (user) => {
     const { data } = await api.login(user);
     return data;
   } catch (error) {
-   return error;
+    return error;
   }
 };

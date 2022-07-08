@@ -22,13 +22,7 @@ const Question = styled("div")(({ theme }) => ({
 }));
 const Buttons = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    width:"90%",
-    // ml:3,
-  },
-}));
-const SingleButton = styled("Button")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-   mt:1
+    width: "90%",
   },
 }));
 const Quiz = ({ ques, index, questionHandler }) => {
@@ -55,7 +49,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
       <Question
         component="form"
         sx={{
-           maxWidth: "98%",
+          maxWidth: "98%",
           bgcolor: "#fff",
           mt: 6,
           boxShadow: 3,
@@ -82,7 +76,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
           sx={{
             p: 1,
             borderRadius: "40px",
-           
+
             input: { textAlign: "center", fontSize: "20px" },
           }}
         />
@@ -91,12 +85,20 @@ const Quiz = ({ ques, index, questionHandler }) => {
       <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
         <Grid container spacing={1} sx={{ mb: 5 }}>
           {ques.options.map((op, j) => {
-            return <QuizAnswers correct={ques.correctOpt} key={j} indexj={j} opt={op} index={index} />;
+            return (
+              <QuizAnswers
+                correct={ques.correctOpt}
+                key={j}
+                indexj={j}
+                opt={op}
+                index={index}
+              />
+            );
           })}
         </Grid>
 
         {quizType === "quiz" && (
-          <Buttons sx={{width:"100%"}}>
+          <Buttons sx={{ width: "100%" }}>
             <Button
               variant="outlined"
               onClick={moreOptionHandler}
@@ -111,7 +113,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
               }}
             >
               {" "}
-              <StarsRoundedIcon/>
+              <StarsRoundedIcon />
               {moreOptionText}
             </Button>
 
@@ -132,7 +134,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
             </Button>
           </Buttons>
         )}
-        <Divider/>
+        <Divider />
       </Box>
     </>
   );

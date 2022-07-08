@@ -39,7 +39,6 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  // transform: "translate(-100%, -50%)",
   transform: "translate(-50%, -50%)",
   width: 800,
   bgcolor: "background.paper",
@@ -58,8 +57,6 @@ const QuizSummaryModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   //handle data
-  
-  // const imgSrc = useSelector((state) => state.detail.imgSrc);
   const Title = useSelector((state) => state.detail.title);
   const Description = useSelector((state) => state.detail.description);
   const Visibility = useSelector((state) => state.detail.visibility);

@@ -171,7 +171,11 @@ const Discover = () => {
               {/* {quizArr.map((ques, i) => { */}
               {checkcategory &&
                 quizArr
-                  .filter((val) => val.quizDetail.category === type&&val.quizDetail.visibility==="public")
+                  .filter(
+                    (val) =>
+                      val.quizDetail.category === type &&
+                      val.quizDetail.visibility === "public"
+                  )
                   .map((ques) => {
                     return (
                       <Grid item xs={10} md={4} key={ques}>
@@ -190,23 +194,25 @@ const Discover = () => {
                     );
                   })}
               {!checkcategory &&
-                quizArr.filter((val) => val.quizDetail.visibility==="public").map((ques, i) => {
-                  return (
-                    <Grid item xs={10} md={4} key={i}>
-                      <QuizCard
-                        quizType={ques.quizDetail.quizType}
-                        timeLimit={ques.quizDetail.timeLimit}
-                        title={ques.quizDetail.title}
-                        description={ques.quizDetail.description}
-                        quiz={ques}
-                        id={ques._id}
-                        visibility={ques.quizDetail.visibility}
-                        category={ques.quizDetail.category}
-                        img={ques.image}
-                      />
-                    </Grid>
-                  );
-                })}
+                quizArr
+                  .filter((val) => val.quizDetail.visibility === "public")
+                  .map((ques, i) => {
+                    return (
+                      <Grid item xs={10} md={4} key={i}>
+                        <QuizCard
+                          quizType={ques.quizDetail.quizType}
+                          timeLimit={ques.quizDetail.timeLimit}
+                          title={ques.quizDetail.title}
+                          description={ques.quizDetail.description}
+                          quiz={ques}
+                          id={ques._id}
+                          visibility={ques.quizDetail.visibility}
+                          category={ques.quizDetail.category}
+                          img={ques.image}
+                        />
+                      </Grid>
+                    );
+                  })}
             </Grid>
           </Box>
         )}

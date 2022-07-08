@@ -1,20 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = { 
+import { createSlice } from "@reduxjs/toolkit";
+const initialCounterState = {
   quizType: "quiz",
-  quizId:"",
-timeLimit: 30,
-title: "",
-description: "",
-visibility: "public",
-imgSrc: null,
-category:"",
-creator:""};
+  quizId: "",
+  timeLimit: 30,
+  title: "",
+  description: "",
+  visibility: "public",
+  imgSrc: null,
+  category: "",
+  creator: "",
+};
 const quizDetailSlice = createSlice({
   name: "QuizDetail",
   initialState: initialCounterState,
   reducers: {
-    updateQuizType(state,action) {
-      state.quizType =action.payload;
+    updateQuizType(state, action) {
+      state.quizType = action.payload;
     },
     updateTimeLimit(state, action) {
       state.timeLimit = action.payload;
@@ -39,21 +40,29 @@ const quizDetailSlice = createSlice({
     },
     updateImgSrc(state, action) {
       state.imgSrc = action.payload;
-    } ,
-   resetDetailHandlers(state,action){
-  state.timeLimit= 30;
-  state.title= action.payload;
-  state.description= action.payload;
-  state.visibility= action.payload;
-  state.imgSrc= null;
-  state.category=action.payload;
-  state.creator=action.payload;
-}
+    },
+    resetDetailHandlers(state, action) {
+      state.timeLimit = 30;
+      state.title = action.payload;
+      state.description = action.payload;
+      state.visibility = action.payload;
+      state.imgSrc = null;
+      state.category = action.payload;
+      state.creator = action.payload;
+    },
   },
 });
 
-export const {updateQuizType,updateTimeLimit,updateTitle,updateDescription,updateVisibility,updateImgSrc,updateCategory,resetDetailHandlers,updateCreator,updateQuizId } = quizDetailSlice.actions
+export const {
+  updateQuizType,
+  updateTimeLimit,
+  updateTitle,
+  updateDescription,
+  updateVisibility,
+  updateImgSrc,
+  updateCategory,
+  resetDetailHandlers,
+  updateCreator,
+  updateQuizId,
+} = quizDetailSlice.actions;
 export default quizDetailSlice.reducer;
-
-
-

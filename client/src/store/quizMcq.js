@@ -30,8 +30,8 @@ const quizMcqSlice = createSlice({
       });
       // console.log(state.quizQna)
     },
-    updateHandler(state,action){
-      state.quizQna=action.payload;
+    updateHandler(state, action) {
+      state.quizQna = action.payload;
     },
     quesHandler(state, action) {
       state.quizQna[action.payload.i].question = action.payload.text;
@@ -43,17 +43,17 @@ const quizMcqSlice = createSlice({
     correctOptionHandler(state, action) {
       state.quizQna[action.payload.i].correctOpt = action.payload.j;
     },
-    addMoreOptionHandler(state,action){
-      
-      state.quizQna[action.payload.index].options.push( { option: "", color: "#50A4A4" },
-      { option: "", color: "#864CBF" },)
-   
+    addMoreOptionHandler(state, action) {
+      state.quizQna[action.payload.index].options.push(
+        { option: "", color: "#50A4A4" },
+        { option: "", color: "#864CBF" }
+      );
     },
-    removeMoreOptionHandler(state,action){
-      state.quizQna[action.payload.index].options.splice(4, 2)
+    removeMoreOptionHandler(state, action) {
+      state.quizQna[action.payload.index].options.splice(4, 2);
     },
-    resetQuizHandler(state){
-      state.quizQna=[
+    resetQuizHandler(state) {
+      state.quizQna = [
         {
           question: "",
           correctOpt: "",
@@ -64,8 +64,8 @@ const quizMcqSlice = createSlice({
             { option: "", color: "#40890F" },
           ],
         },
-      ]
-    }
+      ];
+    },
   },
 });
 
@@ -77,6 +77,6 @@ export const {
   addMoreOptionHandler,
   removeMoreOptionHandler,
   resetQuizHandler,
-  updateHandler
+  updateHandler,
 } = quizMcqSlice.actions;
 export default quizMcqSlice.reducer;

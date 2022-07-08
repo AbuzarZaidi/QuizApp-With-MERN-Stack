@@ -21,11 +21,6 @@ const NewQuiz = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const quizType = useSelector((state) => state.detail.quizType);
-  // if (quizType === "quiz") {
-  // const [quizes, setQuizes] = useState(quizArray);
-  // }else{
-  //   const [quizes, setQuizes] = useState(truefalseArray);
-  // }
   const [quizes, setQuizes] = useState("");
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -43,8 +38,6 @@ const NewQuiz = () => {
       dispatch(tfQuesHandler({ text, i }));
     }
   };
-
-  const scrollContainerStyle = { width: "320px", maxHeight: "82vh" };
   return (
     <>
       <MDBContainer>
@@ -52,7 +45,7 @@ const NewQuiz = () => {
           <BoxContainer
             sx={{ height: "95vh",width: "820px", maxHeight: "82vh"  }}
             className="scrollbar scrollbar-primary"
-            // style={scrollContainerStyle}
+           
           >
             {show&&quizes.map((ques, i) => {
               return (

@@ -10,7 +10,7 @@ import { tfAddNewQuestion, tfResetHandler } from "../../store/truefalse";
 import { setActiveHandler } from "../../store/auth";
 import { styled } from "@mui/material/styles";
 import SubmitModel from "./SubmitModel";
-const { createNewQuiz,updateQuiz } = require("../../functions/createQuiz");
+const { createNewQuiz, updateQuiz } = require("../../functions/createQuiz");
 
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
@@ -18,14 +18,14 @@ const ButtonHover = styled("div")(({ theme }) => ({
     backgroundColor: "#6b530f",
   },
 }));
-const Container= styled("Box")(({ theme }) => ({
+const Container = styled("Box")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     gridAutoRows: "2px",
   },
 }));
-const OuterContainer= styled("div")(({ theme }) => ({
+const OuterContainer = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    height: 260 
+    height: 260,
   },
 }));
 function Item(props) {
@@ -71,7 +71,6 @@ const LeftQuizMenu = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler = async () => {
- 
     dispatch(setActiveHandler());
     let quiz = [];
     if (quizType === "quiz") {
@@ -79,34 +78,33 @@ const LeftQuizMenu = () => {
     } else {
       quiz = truefalseArray;
     }
-    
+
     const formData = new FormData();
-    formData.append('image', imgSrc);
-    formData.append( 'quizQNA',JSON.stringify(quiz));
-    formData.append( 'timeLimit',timeLimit);
-    formData.append( 'quizType',quizType);
-    formData.append( 'title',title);
-    formData.append( 'description',description);
-    formData.append( 'visibility',visibility);
-    formData.append( 'category',category);
-    formData.append( 'creator',creator);
-    formData.append( 'id',id);
-    if(quizId===""){
+    formData.append("image", imgSrc);
+    formData.append("quizQNA", JSON.stringify(quiz));
+    formData.append("timeLimit", timeLimit);
+    formData.append("quizType", quizType);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("visibility", visibility);
+    formData.append("category", category);
+    formData.append("creator", creator);
+    formData.append("id", id);
+    if (quizId === "") {
       await createNewQuiz(formData, {
         headers: {
-         "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: token,
         },
       });
-      
+
       dispatch(tfResetHandler());
       dispatch(resetDetailHandlers(""));
       dispatch(resetQuizHandler());
-    }else{
-   
-      await updateQuiz(quizId,formData, {
+    } else {
+      await updateQuiz(quizId, formData, {
         headers: {
-         "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: token,
         },
       });
@@ -114,8 +112,6 @@ const LeftQuizMenu = () => {
       dispatch(resetDetailHandlers(""));
       dispatch(resetQuizHandler());
     }
-   
- 
   };
   const addQuestionHandler = () => {
     if (quizType === "quiz") {
@@ -124,11 +120,11 @@ const LeftQuizMenu = () => {
       dispatch(tfAddNewQuestion());
     }
   };
-const exitHandler=()=>{
-  dispatch(tfResetHandler());
-  dispatch(resetDetailHandlers(""));
-  dispatch(resetQuizHandler());
-}
+  const exitHandler = () => {
+    dispatch(tfResetHandler());
+    dispatch(resetDetailHandlers(""));
+    dispatch(resetQuizHandler());
+  };
   return (
     <>
       <OuterContainer style={{ width: "100%", height: 360 }}>
@@ -197,11 +193,10 @@ const exitHandler=()=>{
                     visibility,
                     category,
                     creator,
-                    imgSrc
+                    imgSrc,
                   }}
                 />
-                <ButtonHover>
-                </ButtonHover>
+                <ButtonHover></ButtonHover>
               </ButtonGroup>
             </Box>
           </Item>

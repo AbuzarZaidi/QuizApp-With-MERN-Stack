@@ -22,7 +22,7 @@ const style = {
   width: 800,
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4, 
+  p: 4,
 };
 const Center = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
@@ -99,22 +99,25 @@ export default function QuizCard(props) {
             variant="contained"
             to="/startquiz"
             component={Link}
-            sx={{ display: "flex", justifyContent: "center", mt: 3,'&:hover': {
-              color:'#ffffff',
-          } }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: 3,
+              "&:hover": {
+                color: "#ffffff",
+              },
+            }}
             onClick={startQuizHandler}
           >
-            
             Start Quiz
           </Button>
         </Center>
       </Modal>
-      <Card sx={{ maxWidth: 345,mb:3  }}>
+      <Card sx={{ maxWidth: 345, mb: 3 }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="140"
-            // image="images/quiz.jpg"
             image={`http://localhost:5000/${props.img}`}
             alt="green iguana"
           />

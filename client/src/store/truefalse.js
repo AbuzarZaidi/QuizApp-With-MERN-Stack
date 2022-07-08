@@ -28,8 +28,8 @@ const quizTruefalseSlice = createSlice({
     tfQuesHandler(state, action) {
       state.quizQna[action.payload.i].question = action.payload.text;
     },
-    updatetfHandler(state,action){
-      state.quizQna=action.payload;
+    updatetfHandler(state, action) {
+      state.quizQna = action.payload;
     },
     tfOptionHandler(state, action) {
       state.quizQna[action.payload.i].options[action.payload.j].option =
@@ -38,8 +38,8 @@ const quizTruefalseSlice = createSlice({
     tfCorrectOptionHandler(state, action) {
       state.quizQna[action.payload.i].correctOpt = action.payload.j;
     },
-    tfResetHandler(state){
-      state.quizQna=[
+    tfResetHandler(state) {
+      state.quizQna = [
         {
           question: "",
           correctOpt: "",
@@ -48,8 +48,8 @@ const quizTruefalseSlice = createSlice({
             { option: "False", color: "#E22D3B" },
           ],
         },
-      ]
-    }
+      ];
+    },
   },
 });
 
@@ -59,6 +59,6 @@ export const {
   tfOptionHandler,
   tfCorrectOptionHandler,
   tfResetHandler,
-  updatetfHandler
+  updatetfHandler,
 } = quizTruefalseSlice.actions;
 export default quizTruefalseSlice.reducer;
