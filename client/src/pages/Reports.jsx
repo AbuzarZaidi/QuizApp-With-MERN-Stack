@@ -32,7 +32,6 @@ const Reports = () => {
   const [attemptsShow, setAttemptsShow] = useState(false);
   const [attempts,setAttempts]=useState([]);
   const setIndexHandler=(index)=>{
-    console.log(userQuizArr)
     setShow(false);
     setAttemptsShow(true)
       setAttempts(userQuizArr[index].attempts)

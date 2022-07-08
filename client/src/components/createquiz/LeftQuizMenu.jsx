@@ -18,7 +18,16 @@ const ButtonHover = styled("div")(({ theme }) => ({
     backgroundColor: "#6b530f",
   },
 }));
-
+const Container= styled("Box")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    gridAutoRows: "2px",
+  },
+}));
+const OuterContainer= styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    height: 260 
+  },
+}));
 function Item(props) {
   const { sx, ...other } = props;
   return (
@@ -122,8 +131,8 @@ const exitHandler=()=>{
 }
   return (
     <>
-      <div style={{ width: "100%", height: 360 }}>
-        <Box
+      <OuterContainer style={{ width: "100%", height: 360 }}>
+        <Container
           sx={{
             display: "grid",
             gridAutoRows: "90px",
@@ -192,31 +201,12 @@ const exitHandler=()=>{
                   }}
                 />
                 <ButtonHover>
-                  {/* <Button
-                    // onClick={saveInfoHandler}
-              //       to="/"
-              // component={Link}
-                    sx={{
-                      fontWeight: "bold",
-                      textTransform: "capitalize",
-                      px: 3,
-
-                      backgroundColor: "#40890F",
-                      color: "white",
-                      '&:hover': {
-                        backgroundColor: '#669900',
-                        color:'#ffffff',
-                    }
-                    }}
-                  >
-                    Save
-                  </Button> */}
                 </ButtonHover>
               </ButtonGroup>
             </Box>
           </Item>
-        </Box>
-      </div>
+        </Container>
+      </OuterContainer>
     </>
   );
 };

@@ -5,7 +5,6 @@ import {
   Box,
   Typography,
   Divider
-//   Checkbox,
 } from "../utlis/materialComponents";
 import CircularProgress from "@mui/material/CircularProgress";
 const { readUserQuizes,deleteQuiz } = require("../functions/readQuiz");
@@ -33,7 +32,7 @@ setShow(true);
   return (
     <>
     <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE"}}>
-    <Typography variant="h2" gutterBottom component="div">
+    <Typography variant="h2"  component="div">
        Library
       </Typography>
       
@@ -50,7 +49,6 @@ setShow(true);
     {show&&userQuizArr.length===0?<Box sx={{display: "flex", justifyContent: "center"}}> <Typography variant="h6" >
        Nothing to show
       </Typography></Box>:""}
-    {/* < SingleQuizpart key={123}  title={"Science Quiz"} creator={"abuzar"} /> */}
     </>
   );
 };

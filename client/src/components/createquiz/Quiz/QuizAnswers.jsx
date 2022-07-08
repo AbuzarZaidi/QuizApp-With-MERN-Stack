@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pink } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
+
 import {
   Box,
   Grid,
@@ -20,6 +21,15 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   fontColor: "white",
 }));
+const Answers = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  [theme.breakpoints.down("md")]: {
+    // input: { width: "194px", height: "100px" },
+    width: "220px",
+    backgroundColor:"#ffffff"
+  },
+}));
 const QuizAnswers = ({ indexj, opt, index,correct }) => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
@@ -35,12 +45,13 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
     }
   };
   return (
-    <Grid item xs={6}>
-      <Item>
+    <Grid item xs={7} md={6} >
+      {/* <Item> */}
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
+
           }}
         >
           <Item>
@@ -54,31 +65,31 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
               }}
             ></Box>
           </Item>
-          <Item>
+          <Answers>
             {" "}
             {quizType === "quiz" && (
               <TextField
-                onChange={(e) => {
-                  setOptionValue(e.target.value);
-                }}
-                onBlur={(e) => {
-                  optionValHandler(e.target.value, index, indexj);
-                }}
-                value={optionValue}
-                placeholder={`Add Answer ${indexj + 1}`}
-                id="fullWidth"
-                variant="standard"
-                sx={{
-                  input: { width: "294px", height: "100px" },
-                  pl: 2,
-                  display: "flex",
+              onChange={(e) => {
+                setOptionValue(e.target.value);
+              }}
+              onBlur={(e) => {
+                optionValHandler(e.target.value, index, indexj);
+              }}
+              value={optionValue}
+              placeholder={`Add Answer ${indexj + 1}`}
+              id="fullWidth"
+              variant="standard"
+              sx={{
+                input: { width: "294px", height: "100px" },
+                pl: 2,
+                display: "flex",
 
-                  justifyContent: "center",
-                }}
-                InputProps={{
-                  disableUnderline: true,
-                }}
-              />
+                justifyContent: "center",
+              }}
+              InputProps={{
+                disableUnderline: true,
+              }}
+            />
             )}
             {quizType === "trueFalse" && (
               <TextField
@@ -97,7 +108,7 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
                 }}
               />
             )}
-          </Item>
+          </Answers>
           <Item
             sx={{
               display: "flex",
@@ -122,7 +133,7 @@ const QuizAnswers = ({ indexj, opt, index,correct }) => {
             />
           </Item>
         </Box>
-      </Item>
+      {/* </Item> */}
     </Grid>
   );
 };

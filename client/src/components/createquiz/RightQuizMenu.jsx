@@ -38,7 +38,8 @@ const RightQuizMenu = () => {
       >
         <CategoryIcon /> Question Type
       </Typography>
-      <Box sx={{ minWidth: 120, mb: 2 }}>
+      <Box sx={{ minWidth: 120,ml:1, mb: 2,width:"90%", display: "flex",
+    justifyContent: "center", }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Quiz</InputLabel>
           <Select
@@ -61,7 +62,8 @@ const RightQuizMenu = () => {
       >
         <TimerOutlinedIcon /> Time Limit
       </Typography>
-      <Box sx={{ minWidth: 120, mb: 2 }}>
+      <Box sx={{ minWidth: 120,ml:1, mb: 2,width:"90%", display: "flex",
+    justifyContent: "center", }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Timer</InputLabel>
           <Select

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { quesHandler } from "../../store/quizMcq";
 import { tfQuesHandler } from "../../store/truefalse";
+import { styled } from "@mui/material/styles";
 import {
   Box,
   Container
@@ -10,7 +11,11 @@ import Quiz from "./Quiz/Quiz";
 
 import { MDBContainer } from "mdbreact";
 import "./Quiz/style.css";
-
+const BoxContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    width: "320px"
+  },
+}));
 const NewQuiz = () => {
   const dispatch = useDispatch();
   const quizArray = useSelector((state) => state.mcq.quizQna);
@@ -39,15 +44,15 @@ const NewQuiz = () => {
     }
   };
 
-  const scrollContainerStyle = { width: "820px", maxHeight: "92vh" };
+  const scrollContainerStyle = { width: "320px", maxHeight: "82vh" };
   return (
     <>
       <MDBContainer>
         <Container fixed>
-          <Box
-            sx={{ height: "95vh" }}
+          <BoxContainer
+            sx={{ height: "95vh",width: "820px", maxHeight: "82vh"  }}
             className="scrollbar scrollbar-primary"
-            style={scrollContainerStyle}
+            // style={scrollContainerStyle}
           >
             {show&&quizes.map((ques, i) => {
               return (
@@ -59,7 +64,7 @@ const NewQuiz = () => {
                 />
               );
             })}
-          </Box>
+          </BoxContainer>
         </Container>
       </MDBContainer>
     </>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import {useSelector, useDispatch } from "react-redux";
+import { styled } from "@mui/material/styles";
 import {
   updateTitle,
   updateDescription,
@@ -26,7 +27,6 @@ import {
   InputLabel,
   MenuItem,
 } from "../../../utlis/materialComponents";
-import { styled } from "@mui/material/styles";
 
 const ButtonHover = styled("div")(({ theme }) => ({
   backgroundColor: "#40890F",
@@ -39,13 +39,20 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
+  // transform: "translate(-100%, -50%)",
   transform: "translate(-50%, -50%)",
   width: 800,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
 };
-
+const Container = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    width: 400,
+    left: "45%",
+    transform: "translate(-100%, -50%)",
+  },
+}));
 const QuizSummaryModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -100,13 +107,13 @@ const QuizSummaryModal = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Container sx={style}>
           <Typography id="modal-modal-title" variant="h4" component="h4">
             Quiz Summary
           </Typography>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              <Grid item xs={7}>
+              <Grid item xs={12} md={7}>
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" component="h6" gutterBottom>
                     Title
@@ -148,7 +155,7 @@ const QuizSummaryModal = () => {
                   />
                 </Box>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} md={5}>
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="h6" component="h6" gutterBottom>
                     Cover Image
@@ -263,7 +270,7 @@ const QuizSummaryModal = () => {
               </ButtonHover>
             </ButtonGroup>
           </Box>
-        </Box>
+        </Container>
       </Modal>
     </div>
   );

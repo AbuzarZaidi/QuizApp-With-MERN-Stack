@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import QuizAnswers from "./QuizAnswers";
+import { styled } from "@mui/material/styles";
 import {
   addMoreOptionHandler,
   removeMoreOptionHandler,
@@ -14,7 +15,22 @@ import {
   Divider,
   StarsRoundedIcon,
 } from "../../../utlis/materialComponents";
-
+const Question = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    maxWidth: "95%",
+  },
+}));
+const Buttons = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    width:"90%",
+    // ml:3,
+  },
+}));
+const SingleButton = styled("Button")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+   mt:1
+  },
+}));
 const Quiz = ({ ques, index, questionHandler }) => {
   const dispatch = useDispatch();
   const quizType = useSelector((state) => state.detail.quizType);
@@ -36,10 +52,10 @@ const Quiz = ({ ques, index, questionHandler }) => {
 
   return (
     <>
-      <Box
+      <Question
         component="form"
         sx={{
-          maxWidth: "98%",
+           maxWidth: "98%",
           bgcolor: "#fff",
           mt: 6,
           boxShadow: 3,
@@ -66,10 +82,11 @@ const Quiz = ({ ques, index, questionHandler }) => {
           sx={{
             p: 1,
             borderRadius: "40px",
+           
             input: { textAlign: "center", fontSize: "20px" },
           }}
         />
-      </Box>
+      </Question>
 
       <Box sx={{ flexGrow: 1, mt: 6, mr: 2 }}>
         <Grid container spacing={1} sx={{ mb: 5 }}>
@@ -79,7 +96,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
         </Grid>
 
         {quizType === "quiz" && (
-          <>
+          <Buttons sx={{width:"100%"}}>
             <Button
               variant="outlined"
               onClick={moreOptionHandler}
@@ -94,7 +111,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
               }}
             >
               {" "}
-              <StarsRoundedIcon />
+              <StarsRoundedIcon/>
               {moreOptionText}
             </Button>
 
@@ -113,9 +130,9 @@ const Quiz = ({ ques, index, questionHandler }) => {
               <DeleteOutlineOutlinedIcon />
               Delete
             </Button>
-          </>
+          </Buttons>
         )}
-        <Divider />
+        <Divider/>
       </Box>
     </>
   );
