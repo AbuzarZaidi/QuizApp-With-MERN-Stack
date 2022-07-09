@@ -91,7 +91,7 @@ const Home = () => {
             Track progress with detailed reports, send reminders, <br />
             and edit content to match learners' needs.
           </Typography>
-          <Button
+          {/* <Button
             variant="contained"
             sx={{
               mr: 2,
@@ -111,7 +111,7 @@ const Home = () => {
             }}
           >
             Discover
-          </Button>
+          </Button> */}
         </Box>
         </HeroSection>
         <Image>
@@ -248,9 +248,6 @@ const Home = () => {
             play={ques.attempts.length}
           />
           })}
-{/*           
-          <TopPicks title={"Science Knowledge"} creator={"James"} play={1.2} />
-          <TopPicks title={"future Technology"} creator={"Harry"} play={1.1} /> */}
 
           <Typography
             variant="body1"
