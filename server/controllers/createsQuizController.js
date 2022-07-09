@@ -1,6 +1,4 @@
-const mongoose =require('mongoose');
 const CreateQuiz=require('../models/quiz')
-// const fileUpload =require('../middlewares/file-upload')
 const createQuiz=async(req,res,next)=>{
   const {  quizQNA, quizType,
     timeLimit,
@@ -34,7 +32,6 @@ const createQuiz=async(req,res,next)=>{
     };
   const newQuiz=new CreateQuiz(Quiz);
   try{
-    // console.log(newQuiz)
      await  newQuiz.save();
      res.status(201).json(newQuiz);
   }catch(error){

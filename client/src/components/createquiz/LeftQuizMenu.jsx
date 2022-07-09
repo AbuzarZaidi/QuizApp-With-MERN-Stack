@@ -18,7 +18,7 @@ const ButtonHover = styled("div")(({ theme }) => ({
     backgroundColor: "#6b530f",
   },
 }));
-const Container = styled("Box")(({ theme }) => ({
+const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     gridAutoRows: "2px",
   },

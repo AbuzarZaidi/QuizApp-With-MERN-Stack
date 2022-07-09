@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
   color: theme.palette.text.secondary,
 }));
-const ItemContainer = styled("Item")(({ theme }) => ({
+const ItemContainer = styled(Item)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     height: "5vh",
     bgcolor: "#F2F2F1",

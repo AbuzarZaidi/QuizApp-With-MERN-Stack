@@ -122,7 +122,6 @@ const StartQuiz = () => {
      Date: date,
      TotalQuestion: quizArray.quizQNA.length,
     }]  
-    console.log(userData.userName)
    await newPlayer(quizArray._id,attempArr);
     
   }

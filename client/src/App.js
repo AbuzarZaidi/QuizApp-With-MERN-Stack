@@ -12,7 +12,6 @@ import Discover from './pages/Discover';
 import Library from './pages/Library';
 import Reports from './pages/Reports';
 import StartQuiz from "./pages/StartQuiz";
-// import Footer from './components/Footer';
 function App() {
   const dispatch = useDispatch();
   const isLogin= useSelector((state) => state.authData.isLogin);

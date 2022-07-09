@@ -17,7 +17,6 @@ const authSlice = createSlice({
 setlogoutHandler(state){
   state.token="";
   state.id="";
-  // state.userName="";
   state.isLogin=false;
 },
 setActiveHandler(state){

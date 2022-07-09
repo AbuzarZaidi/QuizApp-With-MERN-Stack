@@ -2,18 +2,11 @@ import * as React from "react";
 import Attemps from "../components/reports/Attemps";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import SingleQuizRow from "../components/reports/SingleQuizRow";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import {Box,Typography,Paper,Table,TableBody,TableCell,TableContainer,TableHead,TableRow } from '../utlis/materialComponents'
+
+
 
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";

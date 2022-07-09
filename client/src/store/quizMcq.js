@@ -28,7 +28,6 @@ const quizMcqSlice = createSlice({
           { option: "", color: "#40890F" },
         ],
       });
-      // console.log(state.quizQna)
     },
     updateHandler(state, action) {
       state.quizQna = action.payload;
