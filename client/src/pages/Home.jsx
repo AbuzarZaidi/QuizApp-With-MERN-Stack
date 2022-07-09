@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import TopPicks from "../components/home/TopPicks";
 import { styled } from "@mui/material/styles";
+
 import {
   Box,
   Paper,
@@ -10,6 +11,7 @@ import {
   Button,
   Divider,
 } from "../utlis/materialComponents";
+const { readQuiz } = require("../functions/readQuiz");
 const Cards = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 
@@ -39,6 +41,18 @@ const HeroSection = styled("div")(({ theme }) => ({
 }));
 const Home = () => {
   document.title = "Home-QuizWorld";
+  const [quizArr, setQuizArr] = useState(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await readQuiz();
+    const newResult=  result.slice(0, 3);
+      setShow(true);
+
+      setQuizArr(newResult);
+    };
+    fetchData();
+  }, [setQuizArr]);
   return (
     <>
       <Box
@@ -227,13 +241,16 @@ const Home = () => {
             Top picks
           </Typography>
           <Divider />
-          <TopPicks
-            title={"World History"}
-            creator={"william wordsworth"}
-            play={1.5}
+          {show&&quizArr.map((ques)=>{
+            return<TopPicks
+            title={ques.quizDetail.title}
+            creator={ques.quizDetail.creator}
+            play={ques.attempts.length}
           />
+          })}
+{/*           
           <TopPicks title={"Science Knowledge"} creator={"James"} play={1.2} />
-          <TopPicks title={"future Technology"} creator={"Harry"} play={1.1} />
+          <TopPicks title={"future Technology"} creator={"Harry"} play={1.1} /> */}
 
           <Typography
             variant="body1"
