@@ -1,6 +1,8 @@
 import * as React from "react";
+import  { useContext } from "react";
 import { Link } from "react-router-dom";
 import QuizSummaryModal from "./Quiz/QuizSummaryModal";
+import ImageContext from '../../contextapi/ImageContext'
 import PropTypes from "prop-types";
 import { Box, Button, ButtonGroup } from "../../utlis/materialComponents";
 import { useSelector, useDispatch } from "react-redux";
@@ -56,12 +58,14 @@ Item.propTypes = {
 };
 
 const LeftQuizMenu = () => {
+  const context = useContext(ImageContext);
+  const { image } = context;
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authData.token);
   const id = useSelector((state) => state.authData.id);
   const quizType = useSelector((state) => state.detail.quizType);
   const timeLimit = useSelector((state) => state.detail.timeLimit);
-  const imgSrc = useSelector((state) => state.detail.imgSrc);
+  // const imgSrc = useSelector((state) => state.detail.imgSrc);
   const title = useSelector((state) => state.detail.title);
   const quizId = useSelector((state) => state.detail.quizId);
   const description = useSelector((state) => state.detail.description);
@@ -80,7 +84,7 @@ const LeftQuizMenu = () => {
     }
 
     const formData = new FormData();
-    formData.append("image", imgSrc);
+    formData.append("image", image);
     formData.append("quizQNA", JSON.stringify(quiz));
     formData.append("timeLimit", timeLimit);
     formData.append("quizType", quizType);
@@ -193,7 +197,7 @@ const LeftQuizMenu = () => {
                     visibility,
                     category,
                     creator,
-                    imgSrc,
+                    image,
                   }}
                 />
                 <ButtonHover></ButtonHover>

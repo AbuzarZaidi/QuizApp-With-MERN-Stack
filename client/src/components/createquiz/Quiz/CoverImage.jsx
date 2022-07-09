@@ -1,6 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect,useContext } from "react";
 import { useDispatch } from "react-redux";
-import { updateImgSrc } from "../../../store/quizSummary";
+// import { updateImgSrc } from "../../../store/quizSummary";
+import ImageContext from '../../../contextapi/ImageContext'
 import { Box, Button, Paper } from "../../../utlis/materialComponents";
 const styles = {
   paperContainer: {
@@ -12,11 +13,12 @@ const styles = {
   },
 };
 const CoverImage = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
-
+  const context = useContext(ImageContext);
+  const { image,setImage } = context;
   const filePickerRef = useRef();
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const CoverImage = (props) => {
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
       setFile(pickedFile);
-      dispatch(updateImgSrc(pickedFile));
+      setImage(pickedFile)
       setIsValid(true);
       fileIsValid = true;
     } else {

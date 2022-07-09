@@ -17,7 +17,6 @@ const SubmitModel = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
-    console.log(props.detail.imgSrc);
     if (
       props.newQuiz[0].question === "" &&
       props.newTrueFalse[0].question === ""
