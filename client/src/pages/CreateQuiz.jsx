@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const ItemContainer = styled(Item)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    height: "5vh",
+    height: "32vh",
     bgcolor: "#F2F2F1",
   },
 }));
@@ -24,7 +24,7 @@ const CreateQuiz = () => {
     <Box sx={{ flexGrow: 1, mt: 0.5, height: "95vh", bgcolor: "#ffffff" }}>
       <Grid container spacing={0.1}>
         <Grid item xs={12} md={2}>
-          <ItemContainer sx={{ height: "95vh" }}>
+          <ItemContainer sx={{ height: "95vh",bgcolor: "#ffffff", }}>
             <RightQuizMenu />
           </ItemContainer>
         </Grid>
