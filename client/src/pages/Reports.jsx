@@ -112,7 +112,7 @@ const Reports = () => {
       {!show && !attemptsShow && userQuizArr.length === 0 ? (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ textTransform: "capitalize" }}>
-            It looks very empty in here, go ahead and create a kahoot.
+            It looks very empty in here, go ahead and create a Quiz.
           </Typography>
         </Box>
       ) : (
