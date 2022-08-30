@@ -21,7 +21,7 @@ next();
 
 usersSchema.methods.generateAuthToken=async function(next){
 try {
-    let token=jwt.sign({_id:this._id},process.env.SECRET_KEY,{expiresIn:'1h'});
+    let token=jwt.sign({_id:this._id},"abc",{expiresIn:'1h'});
   
     this.tokens=this.tokens.concat({token:token})
     await this.save();
