@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SignUp from "./authpages/SignUp";
 import Login from "./authpages/Login";
 import { Link } from "react-router-dom";
-import { setlogoutHandler } from "../store/auth";
+import { setlogoutHandler,setSignupHandler } from "../store/auth";
 import {
   AppBar,
   Box,
@@ -44,17 +44,19 @@ const Search = styled("div")(({ theme }) => ({
 const Navbar = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authData.isLogin);
+  const signupOpen = useSelector((state) => state.authData.signupOpen);
   const active = useSelector((state) => state.authData.active);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [signUpOpen, setSignUpOpen] = React.useState(false);
+  const [signUpOpen, setSignUpOpen] = React.useState(signupOpen);
   const [loginOpen, setLoginOpen] = React.useState(false);
   const [isActive, setIsActive] = useState(active);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   useEffect(() => {
-    setIsActive(0);
-  }, [active]);
+    setIsActive(active);
+    setSignUpOpen(signupOpen);
+  }, [active,signupOpen]);
 
   const handleSignUpOpen = () => {
     setSignUpOpen(true);
@@ -63,6 +65,7 @@ const Navbar = () => {
   const handleSignUpClose = () => {
     setSignUpOpen(false);
     setIsActive("");
+    dispatch(setSignupHandler(false));
   };
   const handleLoginOpen = () => {
     setLoginOpen(true);

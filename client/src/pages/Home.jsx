@@ -1,8 +1,10 @@
-import React,{useState,useEffect} from "react";
+import * as React from 'react';
+import {useState,useEffect} from "react";
 import TopPicks from "../components/home/TopPicks";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
+import { setLocationHandler,setSignupHandler } from "../store/auth";
 import {
   Box,
   Paper,
@@ -41,6 +43,7 @@ const HeroSection = styled("div")(({ theme }) => ({
   },
 }));
 const Home = () => {
+  const dispatch = useDispatch();
   const isLogin= useSelector((state) => state.authData.isLogin);
   document.title = "Home-QuizWorld";
   const [quizArr, setQuizArr] = useState(null);
@@ -50,11 +53,17 @@ const Home = () => {
       const result = await readQuiz();
     const newResult=  result.slice(0, 3);
       setShow(true);
-
+      dispatch(setLocationHandler(0));
       setQuizArr(newResult);
     };
     fetchData();
-  }, [setQuizArr]);
+  }, [setQuizArr,dispatch]);
+  const locationHandler=()=>{
+    dispatch(setLocationHandler(1));
+    if(!isLogin){
+      dispatch(setSignupHandler(true));
+    }
+  }
   return (
     <>
       <Box
@@ -243,8 +252,9 @@ const Home = () => {
             Top picks
           </Typography>
           <Divider />
-          {show&&quizArr.map((ques)=>{
+          {show&&quizArr.map((ques,ind)=>{
             return<TopPicks
+            key={ind}
             title={ques.quizDetail.title}
             creator={ques.quizDetail.creator}
             play={ques.attempts.length}
@@ -267,10 +277,11 @@ const Home = () => {
             More awesomeness awaits! Search millions of quizes on any topic
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Link to={isLogin===true?"/discover":"/"}>
+          <Link to={isLogin===true?"/Discover":"/"}>
             <Button
               variant="contained"
               sx={{ fontWeight: "bold", textTransform: "capitalize",color:"white" }}
+              onClick={locationHandler}
             >
               Discover Now
               

@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addNewQuestion, resetQuizHandler } from "../../store/quizMcq";
 import { resetDetailHandlers } from "../../store/quizSummary";
 import { tfAddNewQuestion, tfResetHandler } from "../../store/truefalse";
-import { setActiveHandler } from "../../store/auth";
+import { setLocationHandler } from "../../store/auth";
 import { styled } from "@mui/material/styles";
 import SubmitModel from "./SubmitModel";
 const { createNewQuiz, updateQuiz } = require("../../functions/createQuiz");
@@ -75,7 +75,7 @@ const LeftQuizMenu = () => {
   const quizArray = useSelector((state) => state.mcq.quizQna);
   const truefalseArray = useSelector((state) => state.trueFalse.quizQna);
   const saveInfoHandler = async () => {
-    dispatch(setActiveHandler());
+    dispatch(setLocationHandler(0));
     let quiz = [];
     if (quizType === "quiz") {
       quiz = quizArray;
@@ -125,6 +125,7 @@ const LeftQuizMenu = () => {
     }
   };
   const exitHandler = () => {
+    dispatch(setLocationHandler(0));
     dispatch(tfResetHandler());
     dispatch(resetDetailHandlers(""));
     dispatch(resetQuizHandler());

@@ -9,5 +9,5 @@ const createQuizSchema = new Schema({
     attempts:{type:Array}
 });
 
-const CreateQuizModel = mongoose.model('CreateQuiz', createQuizSchema );
+const CreateQuizModel = mongoose.model('createquizzes', createQuizSchema );
 module.exports=CreateQuizModel;
