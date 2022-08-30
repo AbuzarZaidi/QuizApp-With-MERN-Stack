@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect,useContext } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { updateImgSrc } from "../../../store/quizSummary";
 import ImageContext from '../../../contextapi/ImageContext'
 import { Box, Button, Paper } from "../../../utlis/materialComponents";
@@ -18,7 +18,7 @@ const CoverImage = (props) => {
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
   const context = useContext(ImageContext);
-  const { image,setImage } = context;
+  const { setImage } = context;
   const filePickerRef = useRef();
 
   useEffect(() => {
