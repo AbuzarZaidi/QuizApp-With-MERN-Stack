@@ -137,7 +137,7 @@ const StartQuiz = () => {
             Result:
           </Typography>
           <Typography id="modal-modal-description" variant="h4" sx={{ mt: 2 }}>
-            Congratulations! You have Scored {correct} out of{" "}
+             You have Scored {correct} out of{" "}
             {quizArray.quizQNA.length}.
           </Typography>
           <Divider />
