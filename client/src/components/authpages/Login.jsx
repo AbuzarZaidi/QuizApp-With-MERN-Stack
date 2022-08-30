@@ -99,17 +99,13 @@ const Login = (props) => {
             setEmail(e.target.value);
           }}
         />
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h6"
-          sx={{ fontWeight: 500, mt: 2 }}
-        >
+        <Typography id="outlined-basic" variant="h6" component="h6" sx={{ fontWeight: 500, mt: 2 }}>
           Password
         </Typography>
-
         <TextField
-          id="outlined-basic"
+          id="outlined-password-input"
+          type="password"
+          autoComplete="current-password"
           label="Password"
           variant="outlined"
           sx={{ width: "95%" }}

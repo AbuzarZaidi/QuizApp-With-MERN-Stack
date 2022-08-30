@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from "react";
 import TopPicks from "../components/home/TopPicks";
 import { styled } from "@mui/material/styles";
-
+import { Link } from "react-router-dom";
+import { useSelector} from "react-redux";
 import {
   Box,
   Paper,
@@ -40,6 +41,7 @@ const HeroSection = styled("div")(({ theme }) => ({
   },
 }));
 const Home = () => {
+  const isLogin= useSelector((state) => state.authData.isLogin);
   document.title = "Home-QuizWorld";
   const [quizArr, setQuizArr] = useState(null);
   const [show, setShow] = useState(false);
@@ -265,12 +267,15 @@ const Home = () => {
             More awesomeness awaits! Search millions of quizes on any topic
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <Link to={isLogin===true?"/discover":"/"}>
             <Button
               variant="contained"
-              sx={{ fontWeight: "bold", textTransform: "capitalize" }}
+              sx={{ fontWeight: "bold", textTransform: "capitalize",color:"white" }}
             >
               Discover Now
+              
             </Button>
+            </Link>
           </Box>
         </Paper>
       </Box>

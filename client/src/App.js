@@ -35,10 +35,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
        { isLogin&& <Route path="/createquiz" element={<CreateQuiz/>} />}
-        <Route path="/discover" element={<Discover/>} />
-        <Route path="/library" element={<Library/>} />
-        <Route path="/reports" element={<Reports/>} />
-        <Route path="/startquiz" element={<StartQuiz/>} />
+       { isLogin&& <Route path="/discover" element={<Discover/>} />}
+       { isLogin&&<Route path="/library" element={<Library/>} />}
+       { isLogin&& <Route path="/reports" element={<Reports/>} />}
+       { isLogin&& <Route path="/startquiz" element={<StartQuiz/>} />}
       </Routes>
       </ImageState>
     </div>
