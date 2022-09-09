@@ -22,7 +22,8 @@ const Question = styled("div")(({ theme }) => ({
 }));
 const Buttons = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    width: "90%",
+    width: "100%",
+    // ml:5
   },
 }));
 const Quiz = ({ ques, index, questionHandler }) => {
@@ -108,7 +109,7 @@ const Quiz = ({ ques, index, questionHandler }) => {
                 px: 3,
                 mt: 5,
                 mb: 2,
-                mr: 3,
+                mr: 2,
                 color: "#3E8282 ",
               }}
             >
