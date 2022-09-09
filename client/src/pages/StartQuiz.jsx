@@ -25,17 +25,32 @@ const Question = styled(Paper)(({ theme }) => ({
   width: "70%",
   color: theme.palette.text.secondary,
 }));
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  bgcolor: "background.paper",
 
-  boxShadow: 24,
-  p: 4,
-};
+const ResultModal = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(1),
+  bgcolor: "background.paper",
+  [theme.breakpoints.down('md')]: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "24rem",
+    boxShadow: 24,
+    p: 4,
+  },
+  [theme.breakpoints.up('md')]: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "50rem",
+    
+  
+    boxShadow: 24,
+    p: 4,
+  },
+
+}));
 window.onbeforeunload = function () {
   if (true) {
     return "If you reload this page, your previous action will be repeated";
@@ -102,6 +117,8 @@ const StartQuiz = () => {
           if (userSelected === currVal.correctOpt) {
             setCorrect(correct + 1);
           }
+        } else {
+          setOpen(true);
         }
       }, 1000);
     }
@@ -132,7 +149,8 @@ const StartQuiz = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        {/* <Box sx={style}> */}
+        <ResultModal sx={{bgcolor: "#ffffff",borderRadius: '16px'}}>
           <Typography id="modal-modal-title" variant="h2" component="h2">
             Result:
           </Typography>
@@ -154,7 +172,8 @@ const StartQuiz = () => {
               Back
             </Button>
           </Box>
-        </Box>
+          </ResultModal>
+        {/* </Box> */}
       </Modal>
       {show === false ? (
         <Box
@@ -196,8 +215,8 @@ const StartQuiz = () => {
               </Typography>
             </Question>
           </Box>
-          <Box sx={{ flexGrow: 1, mt: 4 }}>
-            <Grid container spacing={2} sx={{ ml: 2, mt: 4 }}>
+          <Box sx={{ flexGrow: 1, mt: 4,mr:5 }}>
+            <Grid container spacing={2} sx={{ ml: 1, mt: 4 }}>
               {currVal.options.map((value, ind) => {
                 return (
                   <AnswerSection

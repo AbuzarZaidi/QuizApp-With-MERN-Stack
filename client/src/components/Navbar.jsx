@@ -14,7 +14,7 @@ import {
   MenuItem,
   Menu,
   MenuIcon,
-  AccountCircle,
+  // AccountCircle,
   Button,
   HomeOutlinedIcon,
   ExploreOutlinedIcon,
@@ -80,9 +80,9 @@ const Navbar = () => {
     dispatch(setlogoutHandler());
     setIsActive(0);
   };
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleProfileMenuOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -390,7 +390,7 @@ const Navbar = () => {
                   Logout
                 </Button>
               )}
-              <IconButton
+              {/* <IconButton
                 size="large"
                 edge="end"
                 aria-label="account of current user"
@@ -400,7 +400,7 @@ const Navbar = () => {
                 sx={{ color: "#EFA51C" }}
               >
                 <AccountCircle sx={{ fontSize: "30px" }} />
-              </IconButton>
+              </IconButton> */}
             </Box>
           </Toolbar>
         </AppBar>
