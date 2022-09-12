@@ -31,7 +31,8 @@ setShow(true);
   }
   return (
     <>
-    <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE"}}>
+    <Box >
+    <Box sx={{ display: "flex", justifyContent: "center",color:"#3668CE",}}>
     <Typography variant="h2"  component="div">
        Library
       </Typography>
@@ -39,7 +40,7 @@ setShow(true);
     </Box>
     <Divider />
    
-    {!show&&  <Box sx={{display: "flex", justifyContent: "center",}}>
+    {!show&&  <Box sx={{display: "flex", justifyContent: "center"}}>
             <CircularProgress />
           </Box>}
          
@@ -49,6 +50,7 @@ setShow(true);
     {show&&userQuizArr.length===0?<Box sx={{display: "flex", justifyContent: "center"}}> <Typography variant="h6" >
        Nothing to show
       </Typography></Box>:""}
+      </Box>
     </>
   );
 };

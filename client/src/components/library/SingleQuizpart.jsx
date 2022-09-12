@@ -26,11 +26,16 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 const Container = styled("div")(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    // width: "70%",
+    // justifyContent: "flex-start",
+  },
   [theme.breakpoints.down("md")]: {
-    width: "137%",
-    justifyContent: "flex-start",
+    // width: "535px",
+    // justifyContent: "flex-start",
   },
 }));
+
 const Text = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     fontSize: "1rem",
@@ -78,14 +83,15 @@ const SingleQuizpart = (props) => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
+          
           "& > :not(style)": {
             m: 1,
-            width: "70%",
+            
             height: 128,
           },
         }}
       >
-        <Paper elevation={2}>
+        <Paper elevation={2} sx={{width: "800px",}}>
           <Grid container spacing={2}>
             <Grid item xs={2}>
               <Images
