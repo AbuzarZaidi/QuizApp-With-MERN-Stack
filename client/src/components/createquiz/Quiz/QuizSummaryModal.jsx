@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import {useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
 import {
   updateTitle,
@@ -47,9 +47,9 @@ const style = {
 };
 const Container = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    width: 400,
-    left: "45%",
-    transform: "translate(-100%, -50%)",
+    width: 380,
+    height: 700,
+    overflow: "scroll",
   },
 }));
 const QuizSummaryModal = () => {
@@ -65,7 +65,7 @@ const QuizSummaryModal = () => {
 
   const [title, setTitle] = useState(Title);
   const [creator, setCreator] = useState(Creator);
-  const [category, setCategory] = useState(Category );
+  const [category, setCategory] = useState(Category);
   const [description, setDescription] = useState(Description);
   const [visibility, setVisibility] = useState(Visibility);
   const dispatch = useDispatch();
@@ -157,7 +157,7 @@ const QuizSummaryModal = () => {
                   <Typography variant="h6" component="h6" gutterBottom>
                     Cover Image
                   </Typography>
-                  <CoverImage id="image" errorText="Please provide an image."/>
+                  <CoverImage id="image" errorText="Please provide an image." />
                   <Typography
                     variant="h6"
                     component="h6"
@@ -171,10 +171,10 @@ const QuizSummaryModal = () => {
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
-                       value={visibility}
+                      value={visibility}
                     >
                       <FormControlLabel
-                         value="private"
+                        value="private"
                         control={<Radio />}
                         label="Private"
                         onClick={() => {

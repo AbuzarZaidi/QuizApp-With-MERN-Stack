@@ -138,7 +138,7 @@ const Navbar = () => {
     >
       {isLogin && (
         <MenuItem onClick={handleMenuClose} to="/createquiz" component={Link}>
-          <Button variant="contained">CreateQuiz</Button>
+          <Button variant="contained">Create Quiz</Button>
         </MenuItem>
       )}
       {isLogin && (
