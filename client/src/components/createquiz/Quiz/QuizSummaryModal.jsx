@@ -47,7 +47,7 @@ const style = {
 };
 const Container = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    width: 380,
+    width: "90%",
     height: 700,
     overflow: "scroll",
   },

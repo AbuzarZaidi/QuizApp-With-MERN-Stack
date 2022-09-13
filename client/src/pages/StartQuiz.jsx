@@ -34,7 +34,7 @@ const ResultModal = styled(Box)(({ theme }) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "24rem",
+    width: "90%",
     boxShadow: 24,
     p: 4,
   },
@@ -154,6 +154,7 @@ const StartQuiz = () => {
           <Typography id="modal-modal-title" variant="h2" component="h2">
             Result:
           </Typography>
+          <Divider />
           <Typography id="modal-modal-description" variant="h4" sx={{ mt: 2 }}>
              You have Scored {correct} out of{" "}
             {quizArray.quizQNA.length}.

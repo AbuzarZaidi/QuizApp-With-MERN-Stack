@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { styled } from "@mui/material/styles";
 import {
   Box,
   Typography,
@@ -18,6 +19,18 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const Container = styled("div")(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+
+    width: 450,
+
+  },
+  [theme.breakpoints.down("md")]: {
+
+    width: "90%",
+
+  },
+}));
 const SignUp = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,7 +73,7 @@ const SignUp = (props) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Container sx={style}>
         <Typography
           id="modal-modal-title"
           variant="h4"
@@ -180,7 +193,7 @@ const SignUp = (props) => {
             Login
           </Button>
         </Box>
-      </Box>
+      </Container>
     </Modal>
   );
 };

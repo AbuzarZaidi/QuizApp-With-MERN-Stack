@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTokenHandler, setIdHandler } from "../../store/auth";
+import { styled } from "@mui/material/styles";
 import {
   Box,
   Typography,
@@ -19,6 +20,14 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const Container = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    width: 450,
+  },
+  [theme.breakpoints.down("md")]: {
+    width: "90%",
+  },
+}));
 const Login = (props) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -72,7 +81,7 @@ const Login = (props) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Container sx={style}>
         <Typography
           id="modal-modal-title"
           variant="h4"
@@ -99,7 +108,12 @@ const Login = (props) => {
             setEmail(e.target.value);
           }}
         />
-        <Typography id="outlined-basic" variant="h6" component="h6" sx={{ fontWeight: 500, mt: 2 }}>
+        <Typography
+          id="outlined-basic"
+          variant="h6"
+          component="h6"
+          sx={{ fontWeight: 500, mt: 2 }}
+        >
           Password
         </Typography>
         <TextField
@@ -161,7 +175,7 @@ const Login = (props) => {
             Sign Up
           </Button>
         </Box>
-      </Box>
+      </Container>
     </Modal>
   );
 };

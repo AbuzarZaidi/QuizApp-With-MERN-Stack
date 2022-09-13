@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const ItemContainer1 = styled(Item)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    height: "37vh",
+    height: "100%",
     bgcolor: "#F2F2F1",
   },
 }));
